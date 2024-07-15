@@ -136,7 +136,6 @@
                     </a>
                     <div class="text">Sultan of The Disco - Shining Road (Live)</div>
                 </div>
-d
                 <div class="mySlides2">
                     <a href="https://www.youtube.com/watch?v=kGAhLNbZ864" target="_blank">
                         <img width="100%" height="350" src="../../album_img/driveme.jpg">
@@ -524,27 +523,55 @@ d
 
     let newAlbumAll = [];
 
+    // 페이지 로드 시 로컬 스토리지에서 앨범 불러오기
+    document.addEventListener("DOMContentLoaded", () => {
+        const storedAlbums = JSON.parse(localStorage.getItem("newAlbumAll"));
+        if (storedAlbums) {
+            newAlbumAll = storedAlbums.map(albumSrc => {
+                const img = document.createElement("img");
+                img.src = albumSrc;
+                img.style.width = "130px";
+                img.style.height = "100px";
+                return img;
+            });
+            updateAlbumsDisplay();
+        }
+    });
+
     function moveAll(event, index) {
         event.preventDefault();
         const albumPick = albumAll[index].cloneNode();
         albumPick.style.width = "130px";
         albumPick.style.height = "100px";
 
-        // 선택한 앨범이 박스에 있다면 그 인덱스의 값을 탐정에 대입한다
+        // 선택한 앨범이 이미 박스에 있는지 확인
         const tamjung = newAlbumAll.findIndex((event) => event.src === albumPick.src);
-        // 중복 선택일 경우 기존 박스에 그 인덱스의 값을 삭제한다
+        // 중복 선택일 경우 기존 박스에서 제거
         if (tamjung !== -1) {
             newAlbumAll.splice(tamjung, 1);
         }
-        // 클릭한 앨범은 항상 첫번째 배열에 대입
+        // 클릭한 앨범을 배열의 첫 번째에 추가
         newAlbumAll.unshift(albumPick);
 
-        for (let i = 0; i < boxMore.length && i < newAlbumAll.length; i++) {
-            boxMore[i].innerHTML = " ";
-            boxMore[i].appendChild(newAlbumAll[i]);
+        // 디스플레이 업데이트 및 로컬 스토리지에 저장
+        updateAlbumsDisplay();
+        saveAlbumsToLocalStorage();
+    }
+
+    function updateAlbumsDisplay() {
+        for (let i = 0; i < boxMore.length; i++) {
+            boxMore[i].innerHTML = "";
+            if (i < newAlbumAll.length) {
+                boxMore[i].appendChild(newAlbumAll[i]);
+            }
         }
     }
-    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+    function saveAlbumsToLocalStorage() {
+        const albumSrcArray = newAlbumAll.map(album => album.src);
+        localStorage.setItem("newAlbumAll", JSON.stringify(albumSrcArray));
+    }
+// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     function handleKeyPress(event) {
         // Enter 키의 keyCode는 13입니다.
@@ -627,9 +654,8 @@ d
         dots[slideIndex2 - 1].className += " active";
     }
 
-    // function stop() {
-    //     event.preventDefault();
-    // }
+    history.scrollRestoration = "manual"
+
 </script>
 
 
