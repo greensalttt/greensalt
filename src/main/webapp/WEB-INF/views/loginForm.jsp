@@ -10,7 +10,6 @@
     <link rel="icon" type="image/x-icon" href="../../icon_img/applegreen.png">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
     <style>
-<%--        <%@ include file="/resources/css/default.css" %>--%>
 
         #loginSection {
             text-align: center;

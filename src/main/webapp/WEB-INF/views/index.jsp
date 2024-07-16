@@ -1,10 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%--<%@ page session="false" %>--%>
-
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <title>Green Salt</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
@@ -15,14 +9,12 @@
         <%@ include file="/resources/css/main.css" %>
 
     </style>
-<%--    <link href="/resources/css/main.css" rel="stylesheet" type="text/css">--%>
 
 </head>
 
 <body>
 <header id="top">
-<%--    <%@ include file="/WEB-INF/views/header.jspews/header.jsp" %>--%>
-    <%@ include file="header.jsp" %>
+   <%@ include file="header.jsp" %>
 </header>
 
 <div id="content">
@@ -34,8 +26,6 @@
                 <div class="mySlides">
                     <a href="#">
                         <img src="/album_img/SilicaGel.avif" style="width:100%" height="325">
-
-
                     </a>
                 </div>
 
@@ -426,7 +416,6 @@
                                     <p class="sub">POWER ANDRE 99</p><br>
                                     <p class="small">2023.11.10 ~2023.11.12</p>
                                     <p class="small">블루스퀘어 마스터카드홀</p><br>
-                                    <!-- <p><button class="button2">Contact</button></p> -->
                                 </div>
                             </a>
                         </div>
@@ -442,7 +431,6 @@
                                     <p class="sub">Superpowers World Tour</p><br>
                                     <p class="small">2023.12.11 ~ 2023.12.12</p>
                                     <p class="small">올림픽공원 올림픽홀</p><br>
-                                    <!-- <p><button class="button2">Contact</button></p> -->
                                 </div>
                             </a>
                         </div>
@@ -458,7 +446,6 @@
                                     <p class="sub">201 DAYS OF HOLIDAY</p><br>
                                     <p class="small">2023.12.23 ~ 2023.12.31</p>
                                     <p class="small">예스24 라이브홀</p><br>
-                                    <!-- <p><button class="button2">Contact</button></p> -->
                                 </div>
                             </a>
                         </div>
@@ -474,7 +461,6 @@
                                     <p class="sub">SE SO NEON 2023</p><br>
                                     <p class="small">2023.11.04</p>
                                     <p class="small">올림픽공원 올림픽홀</p><br>
-                                    <!-- <p><button class="button2">Contact</button></p> -->
                                 </div>
                             </a>
                         </div>
@@ -510,8 +496,7 @@
 
 
 <footer>
-<%--    <%@ include file="/WEB-INF/views/footer.jspews/footer.jsp" %>--%>
-    <%@ include file="footer.jsp" %>
+<%@ include file="footer.jsp" %>
 </footer>
 
 
@@ -571,8 +556,8 @@
         const albumSrcArray = newAlbumAll.map(album => album.src);
         localStorage.setItem("newAlbumAll", JSON.stringify(albumSrcArray));
     }
-// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
+        // 검색창 엔터키 호환
     function handleKeyPress(event) {
         // Enter 키의 keyCode는 13입니다.
         if (event.keyCode === 13) {
@@ -582,22 +567,7 @@
         }
     }
 
-    var modal = document.getElementById("login1");
-
-    function openModal() {
-        modal.style.display = "block";
-    }
-
-    function closeModal() {
-        modal.style.display = "none";
-        resetInputs();
-    }
-
-    function resetInputs() {
-        document.getElementById("usernameInput").value = "";
-        document.getElementById("passwordInput").value = "";
-    }
-
+    // 첫번째 슬라이드
     let slideIndex = 1;
     showSlides(slideIndex);
 
@@ -625,8 +595,7 @@
         captionText.innerHTML = dots[slideIndex - 1].alt;
     }
 
-    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
+    // 두번째 슬라이드
     let slideIndex2 = 1;
     showSlides2(slideIndex2);
 
@@ -654,11 +623,9 @@
         dots[slideIndex2 - 1].className += " active";
     }
 
+    // 새로고침시 스크롤 맨위로
     history.scrollRestoration = "manual"
 
 </script>
 
-
 </body>
-
-</html>
