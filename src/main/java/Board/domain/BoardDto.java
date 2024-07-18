@@ -1,4 +1,4 @@
-package com.example.green.domain;
+package Board.domain;
 
 import java.util.Date;
 import java.util.Objects;

@@ -1,6 +1,7 @@
 package com.example.green.dao;
 
-import com.example.green.domain.*;
+import Board.dao.BoardDao;
+import Board.domain.BoardDto;
 import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;

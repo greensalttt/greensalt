@@ -1,6 +1,6 @@
-package com.example.green.dao;
+package Board.dao;
 
-import com.example.green.domain.BoardDto;
+import Board.domain.BoardDto;
 
 import java.util.List;
 import java.util.Map;

@@ -1,7 +1,7 @@
-package com.example.green.service;
+package Board.service;
 
-import com.example.green.dao.*;
-import com.example.green.domain.*;
+import Board.dao.BoardDao;
+import Board.domain.BoardDto;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 

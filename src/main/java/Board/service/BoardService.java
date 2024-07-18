@@ -1,6 +1,6 @@
-package com.example.green.service;
+package Board.service;
 
-import com.example.green.domain.BoardDto;
+import Board.domain.BoardDto;
 
 import java.util.List;
 import java.util.Map;

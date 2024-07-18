@@ -1,6 +1,6 @@
-package com.example.green.dao;
+package Board.dao;
 
-import com.example.green.domain.*;
+import Board.domain.BoardDto;
 import org.apache.ibatis.session.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;

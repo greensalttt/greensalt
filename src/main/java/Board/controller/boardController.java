@@ -1,8 +1,8 @@
-package com.example.green.controller;
+package Board.controller;
 
 import com.example.green.domain.PageHandler;
-import com.example.green.domain.BoardDto;
-import com.example.green.service.BoardService;
+import Board.domain.BoardDto;
+import Board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
