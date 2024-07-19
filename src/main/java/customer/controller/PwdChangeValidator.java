@@ -1,6 +1,6 @@
 package customer.controller;
 
-import com.homerunball.customer.domain.CustDto;
+import customer.domain.CustDto;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

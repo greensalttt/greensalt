@@ -1,8 +1,8 @@
 package customer.controller;
 
-import com.homerunball.customer.dao.CustDao;
-import com.homerunball.customer.domain.CustDto;
-import com.homerunball.customer.service.CustService;
+import customer.dao.CustDao;
+import customer.domain.CustDto;
+import customer.service.CustService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
