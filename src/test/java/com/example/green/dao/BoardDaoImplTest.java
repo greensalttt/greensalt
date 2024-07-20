@@ -1,7 +1,7 @@
 package com.example.green.dao;
 
-import Board.dao.BoardDao;
-import Board.domain.BoardDto;
+import greensalt.Board.dao.BoardDao;
+import greensalt.Board.domain.BoardDto;
 import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;

@@ -1,4 +1,4 @@
-package customer.service;
+package greensalt.customer.service;
 
 public interface CustService {
 

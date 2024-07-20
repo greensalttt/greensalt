@@ -1,6 +1,6 @@
 package com.example.green;
 
-import com.example.green.domain.PageHandler;
+import greensalt.Board.domain.PageHandler;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

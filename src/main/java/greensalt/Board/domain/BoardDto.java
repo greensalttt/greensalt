@@ -1,4 +1,4 @@
-package Board.domain;
+package greensalt.Board.domain;
 
 import java.util.Date;
 import java.util.Objects;

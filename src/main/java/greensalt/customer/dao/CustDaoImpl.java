@@ -1,6 +1,6 @@
-package customer.dao;
+package greensalt.customer.dao;
 
-import com.homerunball.customer.domain.CustDto;
+import greensalt.customer.domain.CustDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,7 +12,7 @@ public class CustDaoImpl implements CustDao {
     @Autowired
     private SqlSession session;
 
-    private static String namespace = "com.homerunball.customer.dao.CustDao.";
+    private static String namespace = "greensalt.customer.dao.CustDao.";
 
     @Override
     public int deleteCust(String c_email)throws Exception {

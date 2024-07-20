@@ -1,6 +1,6 @@
-package customer.dao;
+package greensalt.customer.dao;
 
-import com.homerunball.customer.domain.CustDto;
+import greensalt.customer.domain.CustDto;
 
 public interface CustDao {
     int deleteCust(String c_email) throws Exception;

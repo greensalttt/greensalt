@@ -1,4 +1,4 @@
-package customer.domain;
+package greensalt.customer.domain;
 
 import java.util.Date;
 

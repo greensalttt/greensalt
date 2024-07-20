@@ -1,7 +1,7 @@
-package customer.controller;
-import customer.dao.CustDao;
-import customer.domain.CustDto;
-import customer.service.CustService;
+package greensalt.customer.controller;
+import greensalt.customer.dao.CustDao;
+import greensalt.customer.domain.CustDto;
+import greensalt.customer.service.CustService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;

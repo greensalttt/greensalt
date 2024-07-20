@@ -1,6 +1,6 @@
-package Board.dao;
+package greensalt.Board.dao;
 
-import Board.domain.BoardDto;
+import greensalt.Board.domain.BoardDto;
 
 import java.util.List;
 import java.util.Map;

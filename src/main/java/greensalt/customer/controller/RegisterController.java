@@ -1,8 +1,8 @@
-package customer.controller;
+package greensalt.customer.controller;
 
-import customer.dao.CustDao;
-import customer.domain.CustDto;
-import customer.service.CustService;
+import greensalt.customer.dao.CustDao;
+import greensalt.customer.domain.CustDto;
+import greensalt.customer.service.CustService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

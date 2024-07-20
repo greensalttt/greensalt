@@ -1,6 +1,6 @@
-package Board.service;
+package greensalt.Board.service;
 
-import Board.domain.BoardDto;
+import greensalt.Board.domain.BoardDto;
 
 import java.util.List;
 import java.util.Map;

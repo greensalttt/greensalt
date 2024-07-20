@@ -1,6 +1,6 @@
-package customer.controller;
+package greensalt.customer.controller;
 
-import com.homerunball.customer.domain.CustDto;
+import greensalt.customer.domain.CustDto;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
