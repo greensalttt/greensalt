@@ -10,7 +10,6 @@
 
 
         <style>
-
             body {
                 font-size: 11px;
                 font-family: "IBM Plex Sans KR", sans-serif;
@@ -218,7 +217,7 @@
                 <p id="check-result"></p>
                 <label id="email">이메일</label>
                 <input id="verify" type="button" value="인증번호 받기" disabled><br>
-                <input class="special-class" type="text" id="c_email" name="c_email" maxlength="30" onblur="emailCheck()" placeholder="homerun@ball.com">
+                <input class="special-class" type="text" id="c_email" name="c_email" maxlength="30" onblur="emailCheck()" placeholder="green@salt.com">
                 <p id="mail-check-warn"></p>
                 <label>인증번호</label>
                 <input class="special-class" type="text" id="c_email2" name="c_email2" maxlength="10" disabled>
