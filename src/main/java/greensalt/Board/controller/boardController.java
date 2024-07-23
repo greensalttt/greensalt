@@ -25,7 +25,7 @@ public class boardController {
 
     @PostMapping("/remove")
     public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr){
-        String writer = (String)session.getAttribute("userID");
+        String writer = (String)session.getAttribute("c_id");
         try {
             m.addAttribute("page", page);
             m.addAttribute("pageSize", pageSize);
@@ -60,9 +60,8 @@ public class boardController {
     @GetMapping("/list")
 //    @GetMapping("/community")
     public String community(Integer page, Integer pageSize, Model m, HttpServletRequest request) {
-        if(!loginCheck(request))
-//            return "redirect:/login/login";
-            return "redirect:/login?toURL="+request.getRequestURI();
+//        if(!loginCheck(request))
+//            return "redirect:/login?toURL="+request.getRequestURI();
 
         if(page==null) page=1;
         if(pageSize==null) pageSize=10;
@@ -87,12 +86,12 @@ public class boardController {
         return "community"; // 로그인을 한 상태이면, 게시판 화면으로 이동
     }
 
-    private boolean loginCheck(HttpServletRequest request) {
-        // 1. 세션을 얻어서
-        HttpSession session = request.getSession();
-        // 2. 세션에 id가 있는지 확인, 있으면 true를 반환
-        return session.getAttribute("userID")!=null;
-    }
+//    private boolean loginCheck(HttpServletRequest request) {
+//        // 1. 세션을 얻어서
+//        HttpSession session = request.getSession();
+//        // 2. 세션에 id가 있는지 확인, 있으면 true를 반환
+//        return session.getAttribute("userID")!=null;
+//    }
 
 
 

@@ -1,10 +1,9 @@
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 
 <head>
-    <title>Home Run Ball</title>
+    <title>Green Salt</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
@@ -191,14 +190,11 @@
 <body>
 
 <header id="top">
-    <%@ include file="header.jsp" %>
+    <jsp:include page="header.jsp"/>
 </header>
 
 <div id="loginform">
     <form action="<c:url value='/login'/>" method="post" onsubmit="return">
-
-<%--        <a href="/"><img id="logo" src="/img/homerunball_logo.png" style="width:200px"></a><br><br><br><br>--%>
-
         <h1 id="logo">Green Salt</h1><br><br><br>
 
         <div class="container">

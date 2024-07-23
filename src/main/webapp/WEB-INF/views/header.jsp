@@ -1,17 +1,16 @@
-﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%--<meta charset="UTF-8">--%>
-
-<c:set var="loginOutLink" value="${sessionScope.userID==null ? '/login' : '/logout'}"/>
-<c:set var="loginOut" value="${sessionScope.userID==null ? 'Sign In' : 'Logout'}"/>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="loginOutLink" value="${sessionScope.c_id==null ? '/login' : '/logout'}"/>
+<c:set var="loginOut" value="${sessionScope.c_id==null ? 'login' : 'logout'}"/>
 
 <script>
-    window.onload = function() {
-        if("${sessionScope.userID}" !== "") {
-            document.getElementById('logoutLink').addEventListener('click', function(event) {
+    window.onload = function () {
+        if ("${sessionScope.c_id}" !== "") {
+            document.getElementById('logoutLink').addEventListener('click', function (event) {
                 event.preventDefault();
                 if (confirm('정말로 로그아웃을 하시겠습니까?')) {
+                    alert('로그아웃이 되어 메인페이지로 이동합니다.');
                     window.location.href = event.target.href;
-                    alert('로그아웃이 되셨습니다.');
                 }
             });
         }
