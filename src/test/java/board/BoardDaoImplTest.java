@@ -1,4 +1,4 @@
-package com.example.green.dao;
+package board;
 
 import greensalt.Board.dao.BoardDao;
 import greensalt.Board.domain.BoardDto;

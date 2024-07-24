@@ -1,7 +1,9 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="loginOutLink" value="${sessionScope.c_id==null ? '/login' : '/logout'}"/>
-<c:set var="loginOut" value="${sessionScope.c_id==null ? 'login' : 'logout'}"/>
+<c:set var="loginOut" value="${sessionScope.c_id==null ? 'Sign In' : 'Sign Out'}"/>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
 
 <script>
     window.onload = function () {
@@ -36,7 +38,7 @@
             <li><a href="#">Video</a></li>
             <li><a href="#">Interview</a></li>
             <li><a href="#">Performance</a></li>
-            <li><a href="<c:url value='/community/list'/>">Community</a></li>
+            <li><a href="<c:url value='/board/list'/>">Community</a></li>
             <li><a href="#">Help</a></li>
         </ul>
     </nav>
@@ -108,7 +110,7 @@
         font-weight: bold;
         overflow: hidden;
         padding: 5px 16px;
-        width: 75px;
+        width: 85px;
         height: 30px;
         border: 1px solid darkgreen;
         background-color: darkgreen;

@@ -1,4 +1,4 @@
-package com.example.green;
+package board;
 
 import greensalt.Board.domain.PageHandler;
 import org.junit.Test;

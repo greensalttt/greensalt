@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/community")
+@RequestMapping("/board")
 public class boardController {
     @Autowired
     BoardService boardService;
@@ -38,30 +38,27 @@ public class boardController {
             e.printStackTrace();
             rattr.addFlashAttribute("msg", "DEL_ERR");
         }
-        return "redirect:/community/list";
+        return "redirect:/board/list";
     }
 
 
 
-    @GetMapping("/read")
-    public String read(Integer bno, Integer page, Integer pageSize, Model m){
-    try {
-        BoardDto boardDto = boardService.read(bno);
-        m.addAttribute(boardDto);
-        m.addAttribute("page", page);
-        m.addAttribute("pageSize", pageSize);
-    } catch (Exception e) {
-        throw new RuntimeException(e);
-    }
-
-    return "board";
-}
+//    @GetMapping("/read")
+//    public String read(Integer bno, Integer page, Integer pageSize, Model m){
+//    try {
+//        BoardDto boardDto = boardService.read(bno);
+//        m.addAttribute(boardDto);
+//        m.addAttribute("page", page);
+//        m.addAttribute("pageSize", pageSize);
+//    } catch (Exception e) {
+//        throw new RuntimeException(e);
+//    }
+//
+//    return "board";
+//}
 
     @GetMapping("/list")
-//    @GetMapping("/community")
-    public String community(Integer page, Integer pageSize, Model m, HttpServletRequest request) {
-//        if(!loginCheck(request))
-//            return "redirect:/login?toURL="+request.getRequestURI();
+    public String board(Integer page, Integer pageSize, Model m, HttpServletRequest request) {
 
         if(page==null) page=1;
         if(pageSize==null) pageSize=10;
@@ -83,15 +80,10 @@ public class boardController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "community"; // 로그인을 한 상태이면, 게시판 화면으로 이동
+        return "board"; // 로그인을 한 상태이면, 게시판 화면으로 이동
     }
 
-//    private boolean loginCheck(HttpServletRequest request) {
-//        // 1. 세션을 얻어서
-//        HttpSession session = request.getSession();
-//        // 2. 세션에 id가 있는지 확인, 있으면 true를 반환
-//        return session.getAttribute("userID")!=null;
-//    }
+
 
 
 

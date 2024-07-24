@@ -207,7 +207,7 @@
 
     <body>
     <header id="top">
-        <%@ include file="header.jsp" %>
+        <jsp:include page="header.jsp"/>
     </header>
 
     <div id="myform">

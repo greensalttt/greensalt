@@ -34,9 +34,7 @@
         <interceptor>
             <!--			<mapping path="/mypage/list"/>-->
             <mapping path="/mypage/**"/>
-            <mapping path="/community/list"/>
-<!--            <mapping path="/payment"/>-->
-<!--            <mapping path="/orderDetail"/>-->
+            <mapping path="/board/**"/>
             <beans:ref bean="custInterceptor"/>
         </interceptor>
     </interceptors>
