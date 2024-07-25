@@ -8,9 +8,9 @@
     <link rel="icon" type="image/x-icon" href="../../icon_img/applegreen.png">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <style>
+    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
 
-<%--        <%@ include file="/resources/css/default.css" %>--%>
+    <style>
         #Communitysection {
             max-width: 1000px;
             margin-top: 70px;

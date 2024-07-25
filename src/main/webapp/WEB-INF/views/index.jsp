@@ -1,20 +1,20 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
     <title>Green Salt</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="/icon_img/applegreen.png">
+    <link rel="icon" type="image/x-icon" href="<c:url value="/icon_img/applegreen.png"/>">
+<%--    <style>--%>
+<%--        <%@ include file="/resources/css/main.css" %>--%>
+<%--    </style>--%>
 
-
-    <style>
-        <%@ include file="/resources/css/main.css" %>
-
-    </style>
+    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
 
 </head>
 
 <body>
 <header id="top">
-   <%@ include file="header.jsp" %>
+    <jsp:include page="header.jsp"/>
 </header>
 
 <div id="content">

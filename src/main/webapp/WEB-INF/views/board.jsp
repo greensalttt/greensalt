@@ -7,6 +7,8 @@
     <title>Green Salt</title>
     <link rel="icon" type="image/x-icon" href="../../icon_img/applegreen.png">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
+
 
     <style>
 
