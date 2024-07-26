@@ -499,8 +499,6 @@
 <%@ include file="footer.jsp" %>
 </footer>
 
-
-
 <script>
     // 히스토리
     const albumAll = document.getElementsByClassName("albumAll1");
@@ -510,16 +508,22 @@
 
     // 페이지 로드 시 로컬 스토리지에서 앨범 불러오기
     document.addEventListener("DOMContentLoaded", () => {
-        const storedAlbums = JSON.parse(localStorage.getItem("newAlbumAll"));
-        if (storedAlbums) {
-            newAlbumAll = storedAlbums.map(albumSrc => {
-                const img = document.createElement("img");
-                img.src = albumSrc;
-                img.style.width = "130px";
-                img.style.height = "100px";
-                return img;
-            });
+        const storedData = JSON.parse(localStorage.getItem("albums"));
+        if (storedData) {
+            const currentTime = new Date().getTime();
+            const oneDay = 24 * 60 * 60 * 1000; // 24시간을 밀리초로 계산
+
+            newAlbumAll = storedData.filter(album => currentTime - album.timestamp < oneDay)
+                .map(album => {
+                    const img = document.createElement("img");
+                    img.src = album.src;
+                    img.style.width = "130px";
+                    img.style.height = "100px";
+                    return { element: img, timestamp: album.timestamp };
+                });
             updateAlbumsDisplay();
+            // 만료된 데이터 삭제
+            saveAlbumsToLocalStorage();
         }
     });
 
@@ -530,13 +534,13 @@
         albumPick.style.height = "100px";
 
         // 선택한 앨범이 이미 박스에 있는지 확인
-        const tamjung = newAlbumAll.findIndex((event) => event.src === albumPick.src);
+        const tamjung = newAlbumAll.findIndex((event) => event.element.src === albumPick.src);
         // 중복 선택일 경우 기존 박스에서 제거
         if (tamjung !== -1) {
             newAlbumAll.splice(tamjung, 1);
         }
         // 클릭한 앨범을 배열의 첫 번째에 추가
-        newAlbumAll.unshift(albumPick);
+        newAlbumAll.unshift({ element: albumPick, timestamp: new Date().getTime() });
 
         // 디스플레이 업데이트 및 로컬 스토리지에 저장
         updateAlbumsDisplay();
@@ -544,22 +548,35 @@
     }
 
     function updateAlbumsDisplay() {
+        // boxMore 요소(앨범을 표시할 박스들)의 개수만큼 반복
         for (let i = 0; i < boxMore.length; i++) {
+            // 박스 초기화
             boxMore[i].innerHTML = "";
+
+            // 현재 인덱스가 newAlbumAll 배열의 길이보다 작으면
             if (i < newAlbumAll.length) {
-                boxMore[i].appendChild(newAlbumAll[i]);
+                // 박스에 newAlbumAll 배열의 앨범 이미지를 추가
+                boxMore[i].appendChild(newAlbumAll[i].element);
             }
         }
     }
 
     function saveAlbumsToLocalStorage() {
-        const albumSrcArray = newAlbumAll.map(album => album.src);
-        localStorage.setItem("newAlbumAll", JSON.stringify(albumSrcArray));
-    }
+        // newAlbumAll 배열의 각 앨범 객체를 순회하면서
+        // 앨범의 src(이미지 소스)와 timestamp(타임스탬프)를 추출하여
+        // 새로운 객체 배열(albumDataArray)을 생성
+        const albumDataArray = newAlbumAll.map(album => ({
+            src: album.element.src,
+            timestamp: album.timestamp
+        }));
 
-        // 검색창 엔터키 호환
+        // albumDataArray 배열을 JSON 문자열로 변환하여
+        // 로컬 스토리지에 'albums'라는 키로 저장
+        localStorage.setItem("albums", JSON.stringify(albumDataArray));
+    }
+    // 검색창 엔터키 호환
     function handleKeyPress(event) {
-        // Enter 키의 keyCode는 13입니다.
+        // Enter 키의 keyCode는 13
         if (event.keyCode === 13) {
             // 엔터 키를 눌렀을 때 검색 함수 호출
             var searchValue = document.getElementById('search').value;
@@ -625,7 +642,5 @@
 
     // 새로고침시 스크롤 맨위로
     history.scrollRestoration = "manual"
-
 </script>
-
 </body>
