@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,11 @@
     <link rel="icon" type="image/x-icon" href="../../icon_img/applegreen.png">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
+
+
 
     <style>
         #Communitysection {

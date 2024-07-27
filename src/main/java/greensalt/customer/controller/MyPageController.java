@@ -55,11 +55,6 @@ public class MyPageController {
                 String loginDateStr = dateFormat2.format(loginDate); // 날짜를 원하는 형식으로 변환
                 session.setAttribute("login_dt", loginDateStr); // 세션에 날짜를 설정
 
-
-
-
-//                                session.setAttribute("reg_dt", custDto.getReg_dt());
-//                session.setAttribute("login_dt", custDto.getLogin_dt());
             }
 
             return "myPage";
@@ -127,7 +122,9 @@ public class MyPageController {
             System.out.println(custDto.toStringV1());
 
             return "redirect:/mypage/list";
-        } catch (Exception E) {
+        }
+
+        catch (Exception E) {
             return "errorPageC";
         }
     }

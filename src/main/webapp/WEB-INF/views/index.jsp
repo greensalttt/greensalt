@@ -4,11 +4,11 @@
     <title>Green Salt</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="<c:url value="/icon_img/applegreen.png"/>">
-<%--    <style>--%>
-<%--        <%@ include file="/resources/css/main.css" %>--%>
-<%--    </style>--%>
 
-    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
+
+    <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
 
 </head>
 
