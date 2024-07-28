@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
 
-
-
-
     <style>
         #loginform {
             max-width: 500px;

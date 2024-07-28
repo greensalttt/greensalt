@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
-
-
-
-
     <style>
         #Communitysection {
             max-width: 1000px;
@@ -109,9 +105,7 @@
 </section>
 </div>
 <footer>
-<%--    <%@ include file="/footer.jsp" %>--%>
     <%@ include file="footer.jsp" %>
-<%--    <%@ include file="/WEB-INF/views/footer.jspews/footer.jsp" %>--%>
 </footer>
 </body>
 

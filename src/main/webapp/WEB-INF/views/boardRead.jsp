@@ -1,8 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <title>Green Salt</title>
@@ -12,8 +10,6 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
-
-
 
     <style>
         #Communitysection {
@@ -102,10 +98,5 @@
         form.submit();
         });
     });
-
-
-
 </script>
 </body>
-
-</html>

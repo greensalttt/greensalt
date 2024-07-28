@@ -19,7 +19,7 @@
     };
 </script>
 
-    <div id="title1">
+    <div id="headerTitle">
         <h1><a href="<c:url value='/'/>">Green Salt !</a></h1>
         <h2 id="appleGreen"><img src=/icon_img/applegreen.png></h2>
     </div>
@@ -35,7 +35,7 @@
 
     <input id="search" type="text" placeholder="Search.." onkeydown="handleKeyPress(event)">
 
-    <nav id="title3">
+    <nav id="headerNav">
         <ul>
             <li><a href="#">Store</a></li>
             <li><a href="#">Video</a></li>
@@ -47,12 +47,28 @@
     </nav>
 
 <script>
-    document.getElementById('custIconImg').addEventListener('click', function () {
+    // document.getElementById('custIconImg').addEventListener('click', function () {
+    //     var links = document.getElementById('links');
+    //     if (links.classList.contains('show')) {
+    //         links.classList.remove('show');
+    //     } else {
+    //         links.classList.add('show');
+    //     }
+    // });
+
+    document.getElementById('custIconImg').addEventListener('click', function (event) {
         var links = document.getElementById('links');
-        if (links.classList.contains('show')) {
+        links.classList.toggle('show');
+        event.stopPropagation(); // 이벤트 전파 중지
+    });
+
+    document.addEventListener('click', function (event) {
+        var links = document.getElementById('links');
+        var isClickInside = document.getElementById('custIcon').contains(event.target);
+
+        if (!isClickInside) {
             links.classList.remove('show');
-        } else {
-            links.classList.add('show');
         }
     });
+
 </script>
