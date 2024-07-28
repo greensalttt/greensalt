@@ -12,6 +12,16 @@ body {
     overflow-x: hidden;
 }
 
+/*header{*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    color: black;*/
+/*    box-sizing: border-box;*/
+/*    background-color: whitesmoke;*/
+/*    max-width: 1130px;*/
+/*    overflow-x: hidden;*/
+/*}*/
+
 li {
     list-style: none;
 }

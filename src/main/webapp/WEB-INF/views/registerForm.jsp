@@ -485,9 +485,8 @@
         </div>
     </div>
 
-
     <footer>
-        <%@ include file="footer.jsp" %>
+        <jsp:include page="footer.jsp"/>
     </footer>
 
     <script>
@@ -770,15 +769,6 @@
             }
             return true;
         }
-
-        /*  우편번호 유효성 검사*/
-        /*function zipCheck(frm) {
-            var zip = frm.c_zip.value;
-            if (zip.length > 6) {
-                return false;
-            }
-            return true;
-        }*/
 
         /*   휴대폰 유효성 검사*/
         function phnCheck(frm) {

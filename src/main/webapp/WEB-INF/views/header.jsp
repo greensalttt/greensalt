@@ -47,14 +47,7 @@
     </nav>
 
 <script>
-    // document.getElementById('custIconImg').addEventListener('click', function () {
-    //     var links = document.getElementById('links');
-    //     if (links.classList.contains('show')) {
-    //         links.classList.remove('show');
-    //     } else {
-    //         links.classList.add('show');
-    //     }
-    // });
+
 
     document.getElementById('custIconImg').addEventListener('click', function (event) {
         var links = document.getElementById('links');

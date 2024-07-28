@@ -1,7 +1,9 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <head>
     <title>Green Salt</title>
@@ -105,8 +107,6 @@
 </section>
 </div>
 <footer>
-    <%@ include file="footer.jsp" %>
+    <jsp:include page="footer.jsp"/>
 </footer>
 </body>
-
-</html>
