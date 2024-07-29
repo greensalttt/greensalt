@@ -32,16 +32,16 @@
             align-items: center;
         }
 
-        .one {
-            display: flex;
-            justify-content: center;
-            margin-top: -15px
-        }
-
         .one1 {
             margin-top: -15px;
             display: flex;
             justify-content: center;
+        }
+
+        .one2 {
+            display: flex;
+            justify-content: center;
+            margin-top: -15px
         }
 
         .ma2 {
@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    <div class="one">
+    <div class="one2">
         <div class="sp">
             <span><a class="none" href="/orderDetail">주문 목록</a></span>
         </div>

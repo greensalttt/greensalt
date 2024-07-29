@@ -4,6 +4,7 @@
 
 <head>
 
+    <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
 
@@ -35,13 +36,13 @@
             align-items: center;
         }
 
-        .one {
+        .oneone {
             display: flex;
             justify-content: center;
             margin-top: -15px;/
         }
 
-        .box {
+        .boxbox {
             margin: auto;
             box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
             width: 850px;
@@ -84,16 +85,19 @@
 </head>
 
 <body>
-<jsp:include page="header.jsp"/>
+
+<header id="top">
+<jsp:include page="header.jsp"/></header>
+
 <jsp:include page="myPageHeader.jsp"/>
 
 <p class="myPageH">주문 내역<br></p>
 <div id="tong">
-    <div class="box">
+    <div class="boxbox">
         <br>
         <p id="oneMonth">나의 주문처리 현황 (최근 1개월 기준)</p>
 
-        <div class="one">
+        <div class="oneone">
             <div class="sp">
                 <span class="ma">입금전</span>
                 <span class="ma2">0</span>
@@ -120,10 +124,10 @@
 </div>
 
 <p class="myPageH">리뷰 내역<br></p>
-<div class="box"><br>
+<div class="boxbox"><br>
     <p id="oneMonth2">나의 리뷰처리 현황 (최근 1개월 기준)</p>
 
-    <div class="one">
+    <div class="oneone">
         <div class="sp">
             <span class="ma">일반 리뷰</span>
             <span class="ma2">0</span>
@@ -151,10 +155,10 @@
 
 
 <p class="myPageH">문의 내역<br></p>
-<div class="box"><br>
+<div class="boxbox"><br>
     <p id="oneMonth3">나의 문의처리 현황 (최근 1개월 기준)</p>
 
-    <div class="one">
+    <div class="oneone">
 
         <div class="sp">
             <span class="ma">1:1 문의</span>
@@ -176,8 +180,9 @@
     </div>
 </div><br><br>
 
+<footer>
 <jsp:include page="footer.jsp" flush="false" />
-
+</footer>
 <script>
     function test(){
         alert("테스트중입니다")
