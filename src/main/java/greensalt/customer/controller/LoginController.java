@@ -61,7 +61,8 @@ public class LoginController {
         if (rememberEmail != null) {
             /*리멤버이메일 체크박스를 클릭시 c_email 쿠기 생성*/
             Cookie idcookie = new Cookie("c_email", c_email);
-            idcookie.setMaxAge(3600);
+            /*7일 = 604800초*/
+            idcookie.setMaxAge(7 * 24 * 3600);
             response.addCookie(idcookie);
         } else {
             Cookie idcookie = new Cookie("c_email", "");
