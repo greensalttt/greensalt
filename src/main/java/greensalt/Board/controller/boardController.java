@@ -23,14 +23,15 @@ public class boardController {
     @Autowired
     BoardService boardService;
 
+    //
     @PostMapping("/remove")
     public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr){
-        String writer = (String)session.getAttribute("c_id");
+        Integer writer = (Integer)session.getAttribute("c_id");
         try {
             m.addAttribute("page", page);
             m.addAttribute("pageSize", pageSize);
 
-            int rowCnt = boardService.remove(bno, writer);
+            int rowCnt = boardService.remove(bno, String.valueOf(writer));
             if(rowCnt!=1){
                 throw new Exception("board remove error");}
             rattr.addFlashAttribute("msg", "DEL_OK");
@@ -43,19 +44,19 @@ public class boardController {
 
 
 
-//    @GetMapping("/read")
-//    public String read(Integer bno, Integer page, Integer pageSize, Model m){
-//    try {
-//        BoardDto boardDto = boardService.read(bno);
-//        m.addAttribute(boardDto);
-//        m.addAttribute("page", page);
-//        m.addAttribute("pageSize", pageSize);
-//    } catch (Exception e) {
-//        throw new RuntimeException(e);
-//    }
-//
-//    return "board";
-//}
+    @GetMapping("/read")
+    public String read(Integer bno, Integer page, Integer pageSize, Model m){
+    try {
+        BoardDto boardDto = boardService.read(bno);
+        m.addAttribute(boardDto);
+        m.addAttribute("page", page);
+        m.addAttribute("pageSize", pageSize);
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+
+    return "boardRead";
+}
 
     @GetMapping("/list")
     public String board(Integer page, Integer pageSize, Model m, HttpServletRequest request) {

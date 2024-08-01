@@ -3,8 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <head>
-<%--    <link rel="preconnect" href="https://fonts.googleapis.com">--%>
-<%--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>--%>
+
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -13,7 +12,6 @@
     <style>
         #myPage {
             margin: auto;
-            /*width: 900px;*/
         }
 
         .none {

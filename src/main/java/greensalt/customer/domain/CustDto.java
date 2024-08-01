@@ -53,19 +53,6 @@ public class CustDto {
         this.reg_dt = reg_dt;
     }
 
-//    public CustDto(int c_id, String c_pwd, String c_zip, String c_road_a, String c_jibun_a, String c_det_a, String c_ext_a, String c_phn, String sms_agr, String email_agr){
-//        this.c_id = c_id;
-//        this.c_pwd = c_pwd;
-//        this.c_zip = c_zip;
-//        this.c_road_a = c_road_a;
-//        this.c_jibun_a = c_jibun_a;
-//        this.c_det_a = c_det_a;
-//        this.c_ext_a = c_ext_a;
-//        this.c_phn = c_phn;
-//        this.sms_agr = sms_agr;
-//        this.email_agr = email_agr;
-//    }
-
     @Override
     public String toString() {
         return "toString() CustDto{" +
