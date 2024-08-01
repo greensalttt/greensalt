@@ -21,7 +21,7 @@
 
     <div id="headerTitle">
         <h1><a href="<c:url value='/'/>">Green Salt !</a></h1>
-        <h2 id="appleGreen"><img src=/icon_img/applegreen.png></h2>
+        <h2 id="appleGreen"><img src=https://cdn-icons-png.flaticon.com/128/15439/15439306.png></h2>
     </div>
 
 <div id="custIcon">

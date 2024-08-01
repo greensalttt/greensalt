@@ -3,7 +3,7 @@
 <head>
     <title>Green Salt</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="<c:url value="/icon_img/applegreen.png"/>">
+    <link rel="icon" type="image/x-icon" href="<c:url value="https://cdn-icons-png.flaticon.com/128/15439/15439306.png"/>">
 
 
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">

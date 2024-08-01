@@ -4,7 +4,7 @@
 
 <head>
     <title>Green Salt</title>
-    <link rel="icon" type="image/x-icon" href="../../icon_img/applegreen.png">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/15439/15439306.png">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
