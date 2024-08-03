@@ -1,14 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
     <title>Green Salt</title>
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/15439/15439306.png">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
+
     <style>
         #Communitysection {
             max-width: 1000px;
@@ -46,64 +48,65 @@
         #mid {
             max-width: 1130px;
             margin: 0 auto;
-            margin-bottom: 400px;
+            margin-bottom: 420px;
         }
     </style>
 </head>
 
-<script>
-    let msg = "${msg}"
-    if(msg=="DEL_OK") alert("삭제되었습니다.");
-    if(msg=="DEL_ERR") alert("삭제에 실패했습니다.");
-</script>
-
 <body>
+
 <header id="top">
     <jsp:include page="header.jsp"/>
 </header>
 
 <div id="mid">
-<h1 id="Communitytitle">Community</h1>
-<a href="#" class="writeColor">글쓰기</a>
-<a href="#" class="writeColor">검색</a>
+<%--<h1 id="Communitytitle">Community</h1>--%>
+<%--<a id="writeBtn" class="writeColor">글쓰기</a>--%>
+<%--<a href="#" class="writeColor">검색</a>--%>
 
 <section id="Communitysection" style="text-align: center">
-    <table border="1">
-        <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>글쓴이</th>
-            <th>등록일</th>
-            <th>조회수</th>
-        </tr>
-        <c:forEach var="boardDto" items="${list}">
-        <tr>
-            <td>${boardDto.bno}</td>
-            <td><a href="<c:url value='/board/read?bno=${boardDto.bno}&page=${page}&pageSize=${pageSize}'/>">${boardDto.title}</a></td>
-            <td>${boardDto.writer}</td>
-            <td>${boardDto.reg_date}</td>
-            <td>${boardDto.view_cnt}</td>
-        </tr>
-        </c:forEach>
-    </table>
-    <br>
-    <div>
-        <c:if test="${ph.showPrev}">
-            <a href="<c:url value='/board/list?page=${ph.beginPage-1}&pageSize=${ph.pageSize}'/>">&lt;</a>
-        </c:if>
 
-        <c:forEach var ="i" begin="${ph.beginPage}" end="${ph.endPage}">
-            <a href="<c:url value='/board/list?page=${i}&pageSize=${ph.pageSize}'/>">${i}</a>
-        </c:forEach>
+    <h2>게시물 ${mode=="new" ? "글쓰기" : "읽기"}</h2>
+    <form action="" id="form">
+        <input type="hidden" name="bno" value="${boardDto.bno}">
+        <input type="text" name="title" value="${boardDto.title}" ${ mode=="new" ? '' : 'readonly="readonly"'}>
+        <textarea name="content" id="" cols="30" rows="10"  ${ mode=="new" ? '' : 'readonly="readonly"'}>${boardDto.content}</textarea>
+        <button type="button" id="writeBtn" class="btn">등록</button>
+        <button type="button" id="modifyBtn" class="btn">수정</button>
+        <button type="button" id="removeBtn" class="btn">삭제</button>
+        <button type="button" id="listBtn" class="btn">목록</button>
 
-        <c:if test="${ph.showNext}">
-            <a href="<c:url value='/board/list?page=${ph.endPage+1}&pageSize=${ph.pageSize}'/>">&gt;</a>
-        </c:if>
-    </div>
+    </form>
 
 </section>
 </div>
 <footer>
     <jsp:include page="footer.jsp"/>
 </footer>
+
+<script>
+    let msg = "${msg}"
+    if(msg=="WRT_ERR") alert("게시물 등록에 실패했습니다.");
+
+    $(document).ready(function(){
+        $('#listBtn').on("click", function(){
+            location.href = "<c:url value='/board/list'/>?page=${page}&pageSize=${pageSize}";
+        });
+
+        $('#writeBtn').on("click", function(){
+            let form = $('#form');
+            form.attr("action", "<c:url value='/board/write'/>?page=${page}&pageSize=${pageSize}");
+            form.attr("method", "post");
+            form.submit();
+        });
+
+        $('#removeBtn').on("click", function(){
+            if(!confirm("정말로 삭제하시겠습니까?")) return;
+        let form = $('#form');
+        form.attr("action", "<c:url value='/board/remove'/>?page=${page}&pageSize=${pageSize}");
+        form.attr("method", "post");
+        form.submit();
+        });
+    });
+</script>
 </body>
