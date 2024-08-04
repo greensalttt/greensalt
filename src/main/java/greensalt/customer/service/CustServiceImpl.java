@@ -52,7 +52,7 @@ public class CustServiceImpl implements CustService {
         makeRandomNumber();
         String setFrom = ".com"; // email-config에 설정한 자신의 이메일 주소를 입력
         String toMail = c_email;
-        String title = "WELCOME HOMERUN BALL :)"; // 이메일 제목
+        String title = "WELCOME GREEN :)"; // 이메일 제목
         String content = "고객님이 요청하신 인증번호는 " + authNumber + "입니다.";
         mailSend(setFrom, toMail, title, content);
         return Integer.toString(authNumber);

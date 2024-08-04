@@ -38,15 +38,4 @@
             <beans:ref bean="custInterceptor"/>
         </interceptor>
     </interceptors>
-
-
-
-    <!--    <beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">-->
-<!--        <beans:property name="basenames">-->
-<!--            <beans:list>-->
-<!--                <beans:value>error_message</beans:value> &lt;!&ndash; /src/main/resources/error_message.properties &ndash;&gt;-->
-<!--            </beans:list>-->
-<!--        </beans:property>-->
-<!--        <beans:property name="defaultEncoding" value="UTF-8"/>-->
-<!--    </beans:bean>-->
 </beans:beans>
