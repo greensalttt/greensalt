@@ -10,6 +10,9 @@ import javax.servlet.http.HttpSession;
 
 import greensalt.customer.dao.CustDao;
 import greensalt.customer.domain.CustDto;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,51 +26,127 @@ public class LoginController {
     /*CustDto 주입*/
     @Autowired
     CustDao custDao;
+//
+//    /*겟맵핑으로 로그인폼 이동*/
+//    @GetMapping("/login")
+//    public String loginForm() {
+//        return "loginForm";
+//    }
+//
+//    /*겟맵핑 로그아웃시 세션 삭제*/
+//    @GetMapping("/logout")
+//    public String logout(HttpSession session) {
+//        session.invalidate();
+//        return "redirect:/";
+//    }
+//
+//    @PostMapping("/login")
+//    public String login(String c_email, String c_pwd, String rememberEmail, HttpServletRequest request, HttpServletResponse response, RedirectAttributes msg) throws Exception {
+//        if (!validateLogin(c_email, c_pwd, request)) {
+//            /*RedirectAttributes의 속성 addFlashAttribute를 통해 로그인 실패시 출력할 수 있는 변수와 공간을 저장*/
+//            msg.addFlashAttribute("loginFail", "msg");
+//            return "redirect:/login";
+//        }
+//
+//        /*성공한 경우 세션에서 이전 URL을 가져옴*/
+//        HttpSession session = request.getSession();
+//        String toURL = (String) session.getAttribute("toURL");
+//
+//        /*이전 URL이 있으면 해당 페이지로 리다이렉트, 없으면 인덱스*/
+//        toURL = (toURL != null && !toURL.isEmpty()) ? toURL : "/";
+//
+//        /*로그인 후에는 이전 URL을 세션에서 삭제합니다.*/
+//        session.removeAttribute("toURL");
+//
+//        if (rememberEmail != null) {
+//            /*리멤버이메일 체크박스를 클릭시 c_email 쿠기 생성*/
+//            Cookie idcookie = new Cookie("c_email", c_email);
+//            /*7일 = 604800초*/
+//            idcookie.setMaxAge(7 * 24 * 3600);
+//            response.addCookie(idcookie);
+//        } else {
+//            Cookie idcookie = new Cookie("c_email", "");
+//            idcookie.setMaxAge(0);
+//            response.addCookie(idcookie);
+//        }
+//
+//        return "redirect:" + toURL;
+//    }
 
-    /*겟맵핑으로 로그인폼 이동*/
+
     @GetMapping("/login")
-    public String loginForm() {
+    public String loginForm(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("authToken".equals(cookie.getName())) {
+                    String token = cookie.getValue();
+                    try {
+                        Claims claims = Jwts.parser()
+                                .setSigningKey("your-256-bit-secret")
+                                .parseClaimsJws(token)
+                                .getBody();
+                        String c_email = claims.getSubject();
+                        Integer c_id = (Integer) claims.get("c_id");
+
+                        HttpSession session = request.getSession();
+                        session.setAttribute("c_id", c_id);
+                        session.setAttribute("c_email", c_email);
+
+                        return "redirect:/";
+                    } catch (Exception e) {
+                        // Token parsing or validation failed
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
         return "loginForm";
     }
 
-    /*겟맵핑 로그아웃시 세션 삭제*/
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/";
-    }
 
     @PostMapping("/login")
-    public String login(String c_email, String c_pwd, String rememberEmail, HttpServletRequest request, HttpServletResponse response, RedirectAttributes msg) throws Exception {
+    public String login(String c_email, String c_pwd, String rememberMe, HttpServletRequest request, HttpServletResponse response, RedirectAttributes msg) throws Exception {
         if (!validateLogin(c_email, c_pwd, request)) {
-            /*RedirectAttributes의 속성 addFlashAttribute를 통해 로그인 실패시 출력할 수 있는 변수와 공간을 저장*/
-            msg.addFlashAttribute("loginFail", "msg");
+            msg.addFlashAttribute("loginFail", "Invalid email or password.");
             return "redirect:/login";
         }
 
-        /*성공한 경우 세션에서 이전 URL을 가져옴*/
         HttpSession session = request.getSession();
-        String toURL = (String) session.getAttribute("toURL");
+        session.setAttribute("c_email", c_email);
 
-        /*이전 URL이 있으면 해당 페이지로 리다이렉트, 없으면 인덱스*/
-        toURL = (toURL != null && !toURL.isEmpty()) ? toURL : "/";
+        if (rememberMe != null) {
+            // JWT 생성
+            CustDto custDto = custDao.selectEmail(c_email);
+            String jwt = Jwts.builder()
+                    .setSubject(c_email)
+                    .claim("c_id", custDto.getC_id())
+                    .signWith(SignatureAlgorithm.HS256, "greensquatgood")
+                    .compact();
 
-        /*로그인 후에는 이전 URL을 세션에서 삭제합니다.*/
-        session.removeAttribute("toURL");
-
-        if (rememberEmail != null) {
-            /*리멤버이메일 체크박스를 클릭시 c_email 쿠기 생성*/
-            Cookie idcookie = new Cookie("c_email", c_email);
-            /*7일 = 604800초*/
-            idcookie.setMaxAge(7 * 24 * 3600);
-            response.addCookie(idcookie);
-        } else {
-            Cookie idcookie = new Cookie("c_email", "");
-            idcookie.setMaxAge(0);
-            response.addCookie(idcookie);
+            // 쿠키에 JWT 저장
+            Cookie jwtCookie = new Cookie("jwtToken", jwt);
+            jwtCookie.setMaxAge(7 * 24 * 3600); // 7 days
+            jwtCookie.setSecure(true); // HTTPS에서만 전송
+            jwtCookie.setHttpOnly(true); // 자바스크립트에서 접근 불가
+            response.addCookie(jwtCookie);
         }
 
-        return "redirect:" + toURL;
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session, HttpServletResponse response) {
+        session.invalidate();
+
+        // 쿠키 삭제
+        Cookie jwtCookie = new Cookie("jwtToken", "");
+        jwtCookie.setMaxAge(0);
+        jwtCookie.setSecure(true);
+        jwtCookie.setHttpOnly(true);
+        response.addCookie(jwtCookie);
+
+        return "redirect:/";
     }
 
 
