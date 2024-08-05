@@ -60,7 +60,7 @@
         SET   title = #{title}
           , content = #{content}
           , up_date = now()
-        WHERE bno = #{bno}
+        WHERE bno = #{bno} and writer = #{writer}
     </update>
 <!--    게시글 내용만 수정-->
     <update id="updateCommentCnt" parameterType="map">

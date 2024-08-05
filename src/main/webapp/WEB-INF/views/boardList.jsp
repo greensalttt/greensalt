@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 
 
 <head>
@@ -84,7 +86,9 @@
             <td>${boardDto.bno}</td>
             <td><a href="<c:url value='/board/read?bno=${boardDto.bno}&page=${page}&pageSize=${pageSize}'/>">${boardDto.title}</a></td>
             <td>${boardDto.writer}</td>
-            <td>${boardDto.reg_date}</td>
+            <td>
+                <fmt:formatDate value="${boardDto.reg_date}" pattern="yyyy-MM-dd HH:mm:ss" />
+            </td>
             <td>${boardDto.view_cnt}</td>
         </tr>
         </c:forEach>
