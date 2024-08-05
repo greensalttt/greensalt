@@ -1,6 +1,7 @@
 package greensalt.Board.dao;
 
 import greensalt.Board.domain.BoardDto;
+import greensalt.Board.domain.SearchCondition;
 import org.apache.ibatis.session.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -18,11 +19,7 @@ public class BoardDaoImpl implements BoardDao{
     @Override
     public int count() throws Exception {
         return session.selectOne(namespace + "count");
-    } // T selectOne(String statement)
-
-//    public BoardDto select(int bno) throws Exception{
-//        return session.selectOne(namespace + "select");
-//    }
+    }
 
     @Override
     public int deleteAll() {
@@ -67,4 +64,14 @@ public class BoardDaoImpl implements BoardDao{
         return session.update(namespace + "increaseViewCnt", bno);
     } // int update(String statement, Object parameter)
 
+
+    @Override
+    public List<BoardDto> searchSelectPage(SearchCondition sc) throws Exception {
+        return session.selectList(namespace + "searchSelectPage", sc);
+    }
+
+    @Override
+    public int searchResultCnt(SearchCondition sc) throws Exception {
+        return session.selectOne(namespace + "searchResultCnt", sc);
+    }
 }

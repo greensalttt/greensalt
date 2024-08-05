@@ -18,21 +18,6 @@
             margin-left: 75px;
 
         }
-
-        /*#Communitytitle {*/
-        /*    margin-top: 20px;*/
-        /*    font-size: 20px;*/
-        /*    font-family: 'IBM Plex Sans', sans-serif;*/
-        /*    display: inline-block;*/
-        /*}*/
-
-        /*.writeColor {*/
-        /*    color: grey;*/
-        /*    font-size: 15px;*/
-        /*    font-weight: bold;*/
-        /*    margin-left: 20px;*/
-        /*}*/
-
         table {
             width: 100%;
             margin-bottom: 20px;

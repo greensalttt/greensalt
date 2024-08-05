@@ -22,13 +22,7 @@
     </properties>
 
     <dependencies>
-        <!--  junit  -->
-        <!--    <dependency>-->
-        <!--      <groupId>org.junit.jupiter</groupId>-->
-        <!--      <artifactId>junit-jupiter</artifactId>-->
-        <!--      <version>5.8.2</version>-->
-        <!--      <scope>test</scope>-->
-        <!--    </dependency>-->
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -253,7 +247,6 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.5</version>
         </dependency>
-
     </dependencies>
 
 

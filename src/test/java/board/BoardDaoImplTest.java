@@ -2,6 +2,7 @@ package board;
 
 import greensalt.Board.dao.BoardDao;
 import greensalt.Board.domain.BoardDto;
+import greensalt.Board.domain.SearchCondition;
 import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;
@@ -194,4 +195,35 @@ public class BoardDaoImplTest {
         assertTrue(boardDto!=null);
         assertTrue(boardDto.getView_cnt() == 2);
     }
+
+
+    @Test
+    public void searchSelectPageTest() throws Exception {
+        boardDao.deleteAll();
+        for (int i = 1; i <= 20; i++) {
+            BoardDto boardDto = new BoardDto("title"+i, "asdfasdfasdf", "asdf");
+            boardDao.insert(boardDto);
+        }
+
+        SearchCondition sc = new SearchCondition(1, 10, "title2", "T");
+        List<BoardDto> list = boardDao.searchSelectPage(sc);
+        System.out.println("list = " + list);
+        assertTrue(list.size()==2);
+    }
+
+    @Test
+    public void searchResultCntTest() throws Exception {
+        boardDao.deleteAll();
+        for (int i = 1; i <= 20; i++) {
+            BoardDto boardDto = new BoardDto("title"+i, "asdfasdfasdf", "asdf");
+            boardDao.insert(boardDto);
+        }
+
+        SearchCondition sc = new SearchCondition(1, 10, "title2", "T");
+        int cnt = boardDao.searchResultCnt(sc);
+        System.out.println("cnt = " + cnt);
+        assertTrue(cnt==2);
+    }
+
+
 }

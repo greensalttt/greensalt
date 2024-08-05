@@ -6,5 +6,6 @@
     <typeAliases>
         <typeAlias alias="BoardDto" type="greensalt.Board.domain.BoardDto"/>
         <typeAlias alias="CustDto" type="greensalt.customer.domain.CustDto"/>
+        <typeAlias alias="SearchCondition" type="greensalt.Board.domain.BoardDto"/>
     </typeAliases>
 </configuration>
