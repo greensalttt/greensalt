@@ -55,6 +55,9 @@ public class LoginController {
         /*로그인 후에는 이전 URL을 세션에서 삭제합니다.*/
         session.removeAttribute("toURL");
 
+        /*로그인 세션 유효시간 30분*/
+        session.setMaxInactiveInterval(3600);
+
         if (rememberEmail != null) {
             /*리멤버이메일 체크박스를 클릭시 c_email 쿠기 생성*/
             Cookie idcookie = new Cookie("c_email", c_email);
