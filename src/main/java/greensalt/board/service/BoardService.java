@@ -1,7 +1,7 @@
-package greensalt.Board.service;
+package greensalt.board.service;
 
-import greensalt.Board.domain.BoardDto;
-import greensalt.Board.domain.SearchCondition;
+import greensalt.board.domain.BoardDto;
+import greensalt.board.domain.SearchCondition;
 
 import java.util.List;
 import java.util.Map;

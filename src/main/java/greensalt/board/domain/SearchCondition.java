@@ -1,4 +1,4 @@
-package greensalt.Board.domain;
+package greensalt.board.domain;
 
 import org.springframework.web.util.UriComponentsBuilder;
 

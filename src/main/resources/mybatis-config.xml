@@ -4,8 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias alias="BoardDto" type="greensalt.Board.domain.BoardDto"/>
+        <typeAlias alias="BoardDto" type="greensalt.board.domain.BoardDto"/>
         <typeAlias alias="CustDto" type="greensalt.customer.domain.CustDto"/>
-        <typeAlias alias="SearchCondition" type="greensalt.Board.domain.BoardDto"/>
+        <typeAlias alias="CommentDto" type="greensalt.comment.domain.CommentDto"/>
+        <typeAlias alias="SearchCondition" type="greensalt.board.domain.SearchCondition"/>
     </typeAliases>
 </configuration>

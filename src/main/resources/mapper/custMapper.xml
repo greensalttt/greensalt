@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="greensalt.customer.dao.CustDao">
+<mapper namespace="green.mapper.custMapper">
 
 
 <!-- 회원가입   -->

@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="true"%>
-<%--<c:set var="loginId" value="${sessionScope.id}"/>--%>
 
 <head>
     <title>Green Salt</title>
@@ -12,54 +11,12 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<%--    <style>--%>
-<%--        #Communitysection {--%>
-<%--            max-width: 1000px;--%>
-<%--            margin-top: 70px;--%>
-<%--            margin-left: 75px;--%>
-
-<%--        }--%>
-
-<%--        #Communitytitle {--%>
-<%--            margin-top: 20px;--%>
-<%--            font-size: 20px;--%>
-<%--            font-family: 'IBM Plex Sans', sans-serif;--%>
-<%--            display: inline-block;--%>
-<%--        }--%>
-
-<%--        .writeColor {--%>
-<%--            color: grey;--%>
-<%--            font-size: 15px;--%>
-<%--            font-weight: bold;--%>
-<%--            margin-left: 20px;--%>
-<%--            cursor: pointer;--%>
-<%--        }--%>
-
-<%--        table {--%>
-<%--            width: 100%;--%>
-<%--            margin-bottom: 20px;--%>
-<%--        }--%>
-
-<%--        th {--%>
-<%--            font-size: 14px;--%>
-<%--            text-align: center;--%>
-<%--            font-weight: bold;--%>
-
-<%--        }--%>
-
-<%--        #mid {--%>
-<%--            max-width: 1130px;--%>
-<%--            margin: 0 auto;--%>
-<%--            margin-bottom: 400px;--%>
-<%--        }--%>
-<%--    </style>--%>
 
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            /*font-family: "Noto Sans KR", sans-serif;*/
         }
 
         a {
@@ -74,7 +31,7 @@
 
         .board-container {
             width: 60%;
-            height: 1200px;
+            /*height: 1200px;*/
             margin: 0 auto;
             /* border: 1px solid black; */
         }
@@ -178,17 +135,16 @@
             padding: 6px;
             margin-right: 10px;
         }
-        .paging-active {
-            background-color: rgb(216, 216, 216);
-            border-radius: 5px;
-            color: rgb(24, 24, 24);
-        }
+        /*.paging-active {*/
+        /*    background-color: rgb(216, 216, 216);*/
+        /*    border-radius: 5px;*/
+        /*    color: rgb(24, 24, 24);*/
+        /*}*/
 
         .paging-container {
             width:100%;
-            height: 70px;
+            /*height: 70px;*/
             display: flex;
-            margin-top: 50px;
             margin : auto;
         }
         .btn-write {
@@ -210,7 +166,7 @@
 <body>
 <header id="top">
     <jsp:include page="header.jsp"/>
-</header>
+</header><br><br><br>
 
 <script>
     let msg = "${msg}";
@@ -282,9 +238,10 @@
                 </c:if>
             </div>
         </div>
+        <footer>
+            <jsp:include page="footer.jsp"/>
+        </footer>
     </div>
-    <footer>
-        <jsp:include page="footer.jsp"/>
-    </footer>
 </div>
+
 </body>

@@ -12,7 +12,7 @@ public class CustDaoImpl implements CustDao {
     @Autowired
     private SqlSession session;
 
-    private static String namespace = "greensalt.customer.dao.CustDao.";
+    private static String namespace = "green.mapper.custMapper.";
 
     @Override
     public int deleteCust(String c_email)throws Exception {

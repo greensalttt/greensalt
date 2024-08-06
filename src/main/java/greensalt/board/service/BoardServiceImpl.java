@@ -1,8 +1,8 @@
-package greensalt.Board.service;
+package greensalt.board.service;
 
-import greensalt.Board.dao.BoardDao;
-import greensalt.Board.domain.BoardDto;
-import greensalt.Board.domain.SearchCondition;
+import greensalt.board.dao.BoardDao;
+import greensalt.board.domain.BoardDto;
+import greensalt.board.domain.SearchCondition;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 

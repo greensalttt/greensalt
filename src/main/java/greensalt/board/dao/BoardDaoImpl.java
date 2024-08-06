@@ -1,7 +1,7 @@
-package greensalt.Board.dao;
+package greensalt.board.dao;
 
-import greensalt.Board.domain.BoardDto;
-import greensalt.Board.domain.SearchCondition;
+import greensalt.board.domain.BoardDto;
+import greensalt.board.domain.SearchCondition;
 import org.apache.ibatis.session.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -13,7 +13,7 @@ public class BoardDaoImpl implements BoardDao{
 
     @Autowired
     private SqlSession session;
-    private static String namespace = "com.example.green.dao.BoardMapper.";
+    private static String namespace = "green.mapper.boardMapper.";
 
 
     @Override

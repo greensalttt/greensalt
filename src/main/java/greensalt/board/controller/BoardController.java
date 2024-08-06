@@ -1,9 +1,9 @@
-package greensalt.Board.controller;
+package greensalt.board.controller;
 
-import greensalt.Board.domain.PageHandler;
-import greensalt.Board.domain.BoardDto;
-import greensalt.Board.domain.SearchCondition;
-import greensalt.Board.service.BoardService;
+import greensalt.board.domain.PageHandler;
+import greensalt.board.domain.BoardDto;
+import greensalt.board.domain.SearchCondition;
+import greensalt.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,22 +11,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/board")
-public class boardController {
+public class BoardController {
     @Autowired
     BoardService boardService;
-
 
     @PostMapping("/remove")
     public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr) {
@@ -139,17 +134,4 @@ public class boardController {
 
         return "boardList"; // 로그인을 한 상태이면, 게시판 화면으로 이동
     }
-
-
-
-
-
-
 }
-
-
-
-
-
-
-

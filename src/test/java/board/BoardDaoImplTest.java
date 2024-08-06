@@ -1,8 +1,8 @@
 package board;
 
-import greensalt.Board.dao.BoardDao;
-import greensalt.Board.domain.BoardDto;
-import greensalt.Board.domain.SearchCondition;
+import greensalt.board.dao.BoardDao;
+import greensalt.board.domain.BoardDto;
+import greensalt.board.domain.SearchCondition;
 import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;

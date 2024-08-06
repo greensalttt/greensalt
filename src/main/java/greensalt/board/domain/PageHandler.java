@@ -1,6 +1,4 @@
-package greensalt.Board.domain;
-
-import org.springframework.web.util.UriComponentsBuilder;
+package greensalt.board.domain;
 
 public class PageHandler {
 
