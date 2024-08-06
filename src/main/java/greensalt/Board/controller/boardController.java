@@ -2,6 +2,7 @@ package greensalt.Board.controller;
 
 import greensalt.Board.domain.PageHandler;
 import greensalt.Board.domain.BoardDto;
+import greensalt.Board.domain.SearchCondition;
 import greensalt.Board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,28 +118,25 @@ public class boardController {
 }
 
     @GetMapping("/list")
-    public String board(Integer page, Integer pageSize, Model m, HttpServletRequest request) {
-
-        if(page==null) page=1;
-        if(pageSize==null) pageSize=10;
-
+    public String list(Model m, SearchCondition sc) {
         try {
-            int totalCnt = boardService.getCount();
-            PageHandler pageHandler = new PageHandler(totalCnt, page, pageSize);
+            int totalCnt = boardService.getSearchResultCnt(sc);
+            m.addAttribute("totalCnt", totalCnt);
 
-            Map map = new HashMap();
-            map.put("offset", (page-1)*pageSize);
-            map.put("pageSize", pageSize);
+            PageHandler pageHandler = new PageHandler(totalCnt, sc);
 
-            List<BoardDto> list = boardService.getPage(map);
+            List<BoardDto> list = boardService.getSearchResultPage(sc);
             m.addAttribute("list", list);
             m.addAttribute("ph", pageHandler);
-            m.addAttribute("page",page);
-            m.addAttribute("pageSize",pageSize);
 
+            Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
+            m.addAttribute("startOfToday", startOfToday.toEpochMilli());
         } catch (Exception e) {
             e.printStackTrace();
+            m.addAttribute("msg", "LIST_ERR");
+            m.addAttribute("totalCnt", 0);
         }
+
         return "boardList"; // 로그인을 한 상태이면, 게시판 화면으로 이동
     }
 

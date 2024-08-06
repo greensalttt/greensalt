@@ -2,6 +2,7 @@ package greensalt.Board.service;
 
 import greensalt.Board.dao.BoardDao;
 import greensalt.Board.domain.BoardDto;
+import greensalt.Board.domain.SearchCondition;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -48,5 +49,15 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public int modify(BoardDto boardDto) throws Exception {
         return boardDao.update(boardDto);
+    }
+
+    @Override
+    public List<BoardDto> getSearchResultPage(SearchCondition sc) throws Exception {
+        return boardDao.searchSelectPage(sc);
+    }
+
+    @Override
+    public int getSearchResultCnt(SearchCondition sc) throws Exception {
+        return boardDao.searchResultCnt(sc);
     }
 }

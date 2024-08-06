@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
-
+<%@ page session="true"%>
+<%--<c:set var="loginId" value="${sessionScope.id}"/>--%>
 
 <head>
     <title>Green Salt</title>
@@ -11,106 +11,280 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<%--    <style>--%>
+<%--        #Communitysection {--%>
+<%--            max-width: 1000px;--%>
+<%--            margin-top: 70px;--%>
+<%--            margin-left: 75px;--%>
+
+<%--        }--%>
+
+<%--        #Communitytitle {--%>
+<%--            margin-top: 20px;--%>
+<%--            font-size: 20px;--%>
+<%--            font-family: 'IBM Plex Sans', sans-serif;--%>
+<%--            display: inline-block;--%>
+<%--        }--%>
+
+<%--        .writeColor {--%>
+<%--            color: grey;--%>
+<%--            font-size: 15px;--%>
+<%--            font-weight: bold;--%>
+<%--            margin-left: 20px;--%>
+<%--            cursor: pointer;--%>
+<%--        }--%>
+
+<%--        table {--%>
+<%--            width: 100%;--%>
+<%--            margin-bottom: 20px;--%>
+<%--        }--%>
+
+<%--        th {--%>
+<%--            font-size: 14px;--%>
+<%--            text-align: center;--%>
+<%--            font-weight: bold;--%>
+
+<%--        }--%>
+
+<%--        #mid {--%>
+<%--            max-width: 1130px;--%>
+<%--            margin: 0 auto;--%>
+<%--            margin-bottom: 400px;--%>
+<%--        }--%>
+<%--    </style>--%>
+
     <style>
-        #Communitysection {
-            max-width: 1000px;
-            margin-top: 70px;
-            margin-left: 75px;
-
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            /*font-family: "Noto Sans KR", sans-serif;*/
         }
 
-        #Communitytitle {
-            margin-top: 20px;
-            font-size: 20px;
-            font-family: 'IBM Plex Sans', sans-serif;
-            display: inline-block;
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        button,
+        input {
+            border: none;
+            outline: none;
         }
 
-        .writeColor {
-            color: grey;
+        .board-container {
+            width: 60%;
+            height: 1200px;
+            margin: 0 auto;
+            /* border: 1px solid black; */
+        }
+        .search-container {
+            background-color: rgb(253, 253, 250);
+            width: 100%;
+            height: 110px;
+            border: 1px solid #ddd;
+            margin-top : 10px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .search-form {
+            height: 37px;
+            display: flex;
+        }
+        .search-option {
+            width: 100px;
+            height: 100%;
+            outline: none;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+            color: gray;
+        }
+
+        .search-option > option {
+            text-align: center;
+        }
+
+        .search-input {
+            color: gray;
+            background-color: white;
+            border: 1px solid #ccc;
+            height: 100%;
+            width: 300px;
             font-size: 15px;
-            font-weight: bold;
-            margin-left: 20px;
-            cursor: pointer;
+            padding: 5px 7px;
+        }
+        .search-input::placeholder {
+            color: gray;
+        }
+
+        .search-button {
+            /* 메뉴바의 검색 버튼 아이콘  */
+            width: 20%;
+            height: 100%;
+            background-color: rgb(22, 22, 22);
+            color: rgb(209, 209, 209);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+        .search-button:hover {
+            color: rgb(165, 165, 165);
         }
 
         table {
+            border-collapse: collapse;
             width: 100%;
-            margin-bottom: 20px;
+            border-top: 2px solid rgb(39, 39, 39);
         }
 
-        th {
-            font-size: 14px;
+        tr:nth-child(even) {
+            background-color: #f0f0f070;
+        }
+
+        th,
+        td {
+            width:300px;
             text-align: center;
-            font-weight: bold;
-
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
         }
 
-        #mid {
-            max-width: 1130px;
-            margin: 0 auto;
-            margin-bottom: 400px;
+        td {
+            color: rgb(53, 53, 53);
+        }
+
+        .no      { width:150px;}
+        .title   { width:50%;  }
+
+        td.title   { text-align: left;  }
+        td.writer  { text-align: left;  }
+        td.viewcnt { text-align: right; }
+
+        td.title:hover {
+            text-decoration: underline;
+        }
+
+        .paging {
+            color: black;
+            width: 100%;
+            align-items: center;
+        }
+
+        .page {
+            color: black;
+            padding: 6px;
+            margin-right: 10px;
+        }
+        .paging-active {
+            background-color: rgb(216, 216, 216);
+            border-radius: 5px;
+            color: rgb(24, 24, 24);
+        }
+
+        .paging-container {
+            width:100%;
+            height: 70px;
+            display: flex;
+            margin-top: 50px;
+            margin : auto;
+        }
+        .btn-write {
+            background-color: rgb(236, 236, 236); /* Blue background */
+            border: none; /* Remove borders */
+            color: black; /* White text */
+            padding: 6px 12px; /* Some padding */
+            font-size: 16px; /* Set a font size */
+            cursor: pointer; /* Mouse pointer on hover */
+            border-radius: 5px;
+            margin-left: 30px;
+        }
+
+        .btn-write:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
-
-<script>
-    let msg = "${msg}"
-    if(msg=="WRT_OK") alert("등록되었습니다.");
-    // if(msg=="WRT_ERR") alert("등록에 실패했습니다.");
-    if(msg=="DEL_OK") alert("삭제되었습니다.");
-    if(msg=="DEL_ERR") alert("삭제에 실패했습니다.");
-</script>
-
 <body>
 <header id="top">
     <jsp:include page="header.jsp"/>
 </header>
 
-<div id="mid">
-<h1 id="Communitytitle">Community</h1>
-<a id="writeBtn" class="writeColor" onclick="location.href='<c:url value="/board/write"/>'">글쓰기</a>
-<a href="#" class="writeColor">검색</a>
+<script>
+    let msg = "${msg}";
+    if(msg=="LIST_ERR")  alert("게시물 목록을 가져오는데 실패했습니다. 다시 시도해 주세요.");
+    if(msg=="READ_ERR")  alert("삭제되었거나 없는 게시물입니다.");
+    if(msg=="DEL_ERR")   alert("삭제되었거나 없는 게시물입니다.");
 
-<section id="Communitysection" style="text-align: center">
-    <table border="1">
-        <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>글쓴이</th>
-            <th>등록일</th>
-            <th>조회수</th>
-        </tr>
-        <c:forEach var="boardDto" items="${list}">
-        <tr>
-            <td>${boardDto.bno}</td>
-            <td><a href="<c:url value='/board/read?bno=${boardDto.bno}&page=${page}&pageSize=${pageSize}'/>">${boardDto.title}</a></td>
-            <td>${boardDto.writer}</td>
-            <td>
-                <fmt:formatDate value="${boardDto.reg_date}" pattern="yyyy-MM-dd HH:mm:ss" />
-            </td>
-            <td>${boardDto.view_cnt}</td>
-        </tr>
-        </c:forEach>
-    </table>
-    <br>
-    <div>
-        <c:if test="${ph.showPrev}">
-            <a href="<c:url value='/board/list?page=${ph.beginPage-1}&pageSize=${ph.pageSize}'/>">&lt;</a>
-        </c:if>
+    if(msg=="DEL_OK")    alert("성공적으로 삭제되었습니다.");
+    if(msg=="WRT_OK")    alert("성공적으로 등록되었습니다.");
+    if(msg=="MOD_OK")    alert("성공적으로 수정되었습니다.");
+</script>
+<div style="text-align:center">
+    <div class="board-container">
+        <div class="search-container">
+            <form action="<c:url value="/board/list"/>" class="search-form" method="get">
+                <select class="search-option" name="option">
+                    <option value="A" ${ph.sc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+내용</option>
+                    <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목만</option>
+                    <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option>
+                </select>
 
-        <c:forEach var ="i" begin="${ph.beginPage}" end="${ph.endPage}">
-            <a href="<c:url value='/board/list?page=${i}&pageSize=${ph.pageSize}'/>">${i}</a>
-        </c:forEach>
+                <input type="text" name="keyword" class="search-input" type="text" value="${ph.sc.keyword}" placeholder="검색어를 입력해주세요">
+                <input type="submit" class="search-button" value="검색">
+            </form>
+            <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/board/write"/>'"><i class="fa fa-pencil"></i> 글쓰기</button>
+        </div>
 
-        <c:if test="${ph.showNext}">
-            <a href="<c:url value='/board/list?page=${ph.endPage+1}&pageSize=${ph.pageSize}'/>">&gt;</a>
-        </c:if>
+        <table>
+            <tr>
+                <th class="no">번호</th>
+                <th class="title">제목</th>
+                <th class="writer">이름</th>
+                <th class="regdate">등록일</th>
+                <th class="viewcnt">조회수</th>
+            </tr>
+            <c:forEach var="boardDto" items="${list}">
+                <tr>
+                    <td class="no">${boardDto.bno}</td>
+                    <td class="title"><a href="<c:url value="/board/read${ph.sc.queryString}&bno=${boardDto.bno}"/>"><c:out value="${boardDto.title}"/></a></td>
+                    <td class="writer">${boardDto.writer}</td>
+                    <c:choose>
+                        <c:when test="${boardDto.reg_date.time >= startOfToday}">
+                            <td class="regdate"><fmt:formatDate value="${boardDto.reg_date}" pattern="HH:mm" type="time"/></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td class="regdate"><fmt:formatDate value="${boardDto.reg_date}" pattern="yyyy-MM-dd" type="date"/></td>
+                        </c:otherwise>
+                    </c:choose>
+                    <td class="viewcnt">${boardDto.view_cnt}</td>
+                </tr>
+            </c:forEach>
+        </table>
+        <br>
+        <div class="paging-container">
+            <div class="paging">
+                <c:if test="${totalCnt==null || totalCnt==0}">
+                    <div> 게시물이 없습니다. </div>
+                </c:if>
+                <c:if test="${totalCnt!=null && totalCnt!=0}">
+                    <c:if test="${ph.showPrev}">
+                        <a class="page" href="<c:url value="/board/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
+                    </c:if>
+                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                        <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/board/list${ph.sc.getQueryString(i)}"/>">${i}</a>
+                    </c:forEach>
+                    <c:if test="${ph.showNext}">
+                        <a class="page" href="<c:url value="/board/list${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
+                    </c:if>
+                </c:if>
+            </div>
+        </div>
     </div>
-
-</section>
+    <footer>
+        <jsp:include page="footer.jsp"/>
+    </footer>
 </div>
-<footer>
-    <jsp:include page="footer.jsp"/>
-</footer>
 </body>

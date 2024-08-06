@@ -1,9 +1,11 @@
 package greensalt.Board.domain;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class SearchCondition {
     private Integer page = 1;
     private Integer pageSize = 10;
-    private Integer offset = 0;
+//    private Integer offset = 0;
     private String keyword = "";
     private String option = "";
 
@@ -15,6 +17,21 @@ public class SearchCondition {
         this.keyword = keyword;
         this.option = option;
     }
+
+    public String getQueryString() {
+        return getQueryString(page);
+    }
+
+    public String getQueryString(Integer page) {
+        // ?page=10&pageSize=10&option=A&keyword=title
+        return UriComponentsBuilder.newInstance()
+                .queryParam("page",     page)
+                .queryParam("pageSize", pageSize)
+                .queryParam("option",   option)
+                .queryParam("keyword",  keyword)
+                .build().toString();
+    }
+
 
     public Integer getPage() {
         return page;
@@ -33,12 +50,12 @@ public class SearchCondition {
     }
 
     public Integer getOffset() {
-        return offset;
+        return (page-1) * pageSize;
     }
 
-    public void setOffset(Integer offset) {
-        this.offset = offset;
-    }
+//    public void setOffset(Integer offset) {
+//        this.offset = offset;
+//    }
 
     public String getKeyword() {
         return keyword;
@@ -54,5 +71,17 @@ public class SearchCondition {
 
     public void setOption(String option) {
         this.option = option;
+    }
+
+
+    @Override
+    public String toString() {
+        return "SearchCondition{" +
+                "page=" + page +
+                ", pageSize=" + pageSize +
+                ", offset=" + getOffset() +
+                ", keyword='" + keyword + '\'' +
+                ", option='" + option + '\'' +
+                '}';
     }
 }
