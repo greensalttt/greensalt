@@ -10,7 +10,6 @@ import java.util.*;
 
 @Repository
 public class BoardDaoImpl implements BoardDao{
-
     @Autowired
     private SqlSession session;
     private static String namespace = "green.mapper.boardMapper.";
@@ -73,5 +72,13 @@ public class BoardDaoImpl implements BoardDao{
     @Override
     public int searchResultCnt(SearchCondition sc) throws Exception {
         return session.selectOne(namespace + "searchResultCnt", sc);
+    }
+
+    @Override
+    public int updateCommentCnt(Integer bno, int cnt) {
+        Map map = new HashMap();
+        map.put("cnt", cnt);
+        map.put("bno", bno);
+        return session.update(namespace+"updateCommentCnt", map);
     }
 }
