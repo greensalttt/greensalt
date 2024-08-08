@@ -31,41 +31,51 @@
             border-bottom: 1px solid #323232;
         }
 
-        .boardTitle {
+        .boardTitle, textarea {
             width: 100%;
-            height: 35px;
+            background: #f8f8f8;
             margin: 5px 0px 10px 0px;
             border: 1px solid #e9e8e8;
             padding: 8px;
-            background: #f8f8f8;
             outline-color: #e6e6e6;
         }
 
         textarea {
-            width: 100%;
-            background: #f8f8f8;
-            margin: 5px 0px 10px 0px;
-            border: 1px solid #e9e8e8;
             resize: none;
-            padding: 8px;
-            outline-color: #e6e6e6;
         }
 
         .frm {
-            width:100%;
+            width: 100%;
         }
         .btn {
-            background-color: rgb(236, 236, 236); /* Blue background */
-            border: none; /* Remove borders */
-            color: black; /* White text */
-            padding: 6px 12px; /* Some padding */
-            font-size: 16px; /* Set a font size */
-            cursor: pointer; /* Mouse pointer on hover */
+            background-color: rgb(236, 236, 236);
+            border: none;
+            color: black;
+            padding: 6px 12px;
+            font-size: 16px;
+            cursor: pointer;
             border-radius: 5px;
         }
 
         .btn:hover {
             text-decoration: underline;
+        }
+
+        .comment-container {
+            margin-top: 40px;
+        }
+
+        .commentList ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .commentList li {
+            margin-bottom: 10px;
+        }
+
+        #replyForm {
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -81,6 +91,7 @@
     if(msg=="WRT_ERR") alert("게시물 등록에 실패하였습니다. 다시 시도해 주세요.");
     if(msg=="MOD_ERR") alert("게시물 수정에 실패하였습니다. 다시 시도해 주세요.");
 </script>
+
 <div class="container">
     <h2 class="writing-header">게시판 ${mode=="new" ? "글쓰기" : "읽기"}</h2>
     <form id="form" class="frm" action="" method="post">
@@ -102,12 +113,30 @@
         </c:if>
         <button type="button" id="listBtn" class="btn btn-list"><i class="fa fa-bars"></i> 목록</button>
     </form>
+
+    <!-- 댓글 기능 추가, 읽기 모드일 때만 보이도록 수정 -->
+    <c:if test="${mode ne 'new'}">
+        <div class="comment-container" id="commentSection">
+            <h2>댓글</h2>
+            comment: <input type="text" name="comment"><br>
+            <button id="sendBtn" type="button">SEND</button>
+            <button id="modBtn" type="button">수정</button>
+
+            <div id="commentList"></div>
+            <div id="replyForm" style="display:none">
+                <input type="text" name="replyComment">
+                <button id="wrtRepBtn" type="button">등록</button>
+            </div>
+        </div>
+    </c:if>
 </div><br><br>
 
 <footer>
     <jsp:include page="footer.jsp"/>
 </footer>
+
 <script>
+    // 게시글 관련 스크립트
     $(document).ready(function(){
         let formCheck = function() {
             let form = document.getElementById("form");
@@ -139,10 +168,10 @@
         });
 
         $("#modifyBtn").on("click", function(){
+            $("#commentSection").hide();
             let form = $("#form");
             let isReadonly = $("input[name=title]").attr('readonly');
 
-            // 1. 읽기 상태이면, 수정 상태로 변경
             if(isReadonly=='readonly') {
                 $(".writing-header").html("게시판 수정");
                 $("input[name=title]").attr('readonly', false);
@@ -151,7 +180,6 @@
                 return;
             }
 
-            // 2. 수정 상태이면, 수정된 내용을 서버로 전송
             form.attr("action", "<c:url value='/board/modify${searchCondition.queryString}'/>");
             form.attr("method", "post");
             if(formCheck())
@@ -170,6 +198,144 @@
         $("#listBtn").on("click", function(){
             location.href="<c:url value='/board/list${searchCondition.queryString}'/>";
         });
+    });
+
+</script>
+
+<script>
+        // 댓글 관련 스크립트
+        $(document).ready(function(){
+        if ("${mode}" !== "new") {
+            let bno = ${boardDto.bno};
+
+            let showList = function (bno){
+                $.ajax({
+                    type:'GET',
+                    url: '/comments?bno='+bno,
+                    success : function(result){
+                        $("#commentList").html(toHtml(result));
+                    },
+                    error   : function(){ alert("error") }
+                });
+            }
+
+            showList(bno);
+
+            $("#sendBtn").click(function(){
+                let comment = $("input[name=comment]").val();
+                if(comment.trim()==''){
+                    alert("댓글을 입력해주세요.");
+                    $("input[name=comment]").focus()
+                    return;
+                }
+                $.ajax({
+                    type:'POST',
+                    url: '/comments?bno='+bno,
+                    headers : { "content-type": "application/json"},
+                    data : JSON.stringify({bno:bno, comment:comment}),
+                    success : function(result){
+                        alert(result);
+                        showList(bno);
+                    },
+                    error   : function(){ alert("error") }
+                });
+            });
+
+            $("#commentList").on("click", ".modBtn", function () {
+                let cno = $(this).parent().attr("data-cno");
+                let comment = $("span.comment", $(this).parent()).text();
+
+                $("input[name=comment]").val(comment);
+                $("#modBtn").attr("data-cno", cno);
+            });
+
+            $("#modBtn").click(function(){
+                let cno = $(this).attr("data-cno");
+                let comment = $("input[name=comment]").val();
+
+                if(comment.trim()==''){
+                    alert("댓글을 입력해주세요.");
+                    $("input[name=comment]").focus()
+                    return;
+                }
+                $.ajax({
+                    type:'PATCH',
+                    url: '/comments/'+cno,
+                    headers : { "content-type": "application/json"},
+                    data : JSON.stringify({cno:cno, comment:comment}),
+                    success : function(result){
+                        alert(result);
+                        showList(bno);
+                    },
+                    error   : function(){ alert("error") }
+                });
+            });
+
+            $("#wrtRepBtn").click(function(){
+                let comment = $("input[name=replyComment]").val();
+                let pcno = $("#replyForm").parent().attr("data-pcno");
+
+                if(comment.trim()==''){
+                    alert("댓글을 입력해 주세요.");
+                    $("input[name=replyComment]").focus()
+                    return;
+                }
+                $.ajax({
+                    type:'POST',
+                    url: '/comments?bno='+bno,
+                    headers : { "content-type": "application/json"},
+                    data : JSON.stringify({pcno:pcno, bno:bno, comment:comment}),
+                    success : function(result){
+                        alert(result);
+                        showList(bno);
+                    },
+                    error   : function(){ alert("error") }
+                });
+
+                $("#replyForm").css("display", "none")
+                $("input[name=replyComment]").val('')
+                $("#replyForm").appendTo("body");
+            });
+
+            $("#commentList").on("click", ".replyBtn", function () {
+                $("#replyForm").appendTo($(this).parent());
+                $("#replyForm").css("display", "block");
+            });
+
+            $("#commentList").on("click", ".delBtn", function (){
+                let cno = $(this).parent().attr("data-cno");
+
+                $.ajax({
+                    type:'DELETE',
+                    url: '/comments/'+cno+'?bno='+bno,
+                    success : function(result){
+                        alert(result)
+                        showList(bno);
+                    },
+                    error   : function(){ alert("error") }
+                });
+            });
+
+            let toHtml = function (comments) {
+                let tmp = "<ul>";
+
+                comments.forEach(function(comment){
+                    tmp +=  '<li data-cno=' + comment.cno
+                    tmp +=  ' data-pcno=' + comment.pcno
+                    tmp +=  ' data-bno=' + comment.bno + '>'
+                    if(comment.cno != comment.pcno)
+                        tmp += 'ㄴ'
+                    tmp +=  ' commenter=<span class="commenter">' + comment.commenter + '</span>'
+                    tmp +=  ' comment=<span class="comment">' + comment.comment + '</span>'
+                    tmp +=  ' up_date='+comment.up_date
+                    tmp += '<button class="delBtn">삭제</button>'
+                    tmp += '<button class="modBtn">수정</button>'
+                    tmp += '<button class="replyBtn">답글</button>'
+                    tmp += '</li>'
+                })
+                return tmp + "</ul>";
+            }
+        }
     });
 </script>
 </body>
