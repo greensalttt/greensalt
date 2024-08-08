@@ -135,11 +135,6 @@
             padding: 6px;
             margin-right: 10px;
         }
-        /*.paging-active {*/
-        /*    background-color: rgb(216, 216, 216);*/
-        /*    border-radius: 5px;*/
-        /*    color: rgb(24, 24, 24);*/
-        /*}*/
 
         .paging-container {
             width:100%;
