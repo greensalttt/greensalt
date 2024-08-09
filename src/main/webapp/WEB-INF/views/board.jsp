@@ -118,8 +118,10 @@
     <c:if test="${mode ne 'new'}">
         <div class="comment-container" id="commentSection">
             <h2>댓글</h2>
-            comment: <input type="text" name="comment"><br>
-            <button id="sendBtn" type="button">SEND</button>
+<%--            comment: <input type="text" name="comment"><br>--%>
+
+            <%=session.getAttribute("c_id")%>: <input type="text" name="comment">
+            <button id="sendBtn" type="button">작성</button>
             <button id="modBtn" type="button">수정</button>
 
             <div id="commentList"></div>

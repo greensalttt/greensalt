@@ -41,7 +41,7 @@
         FROM board
     </sql>
 
-<!--    단일 게시글 검색(selectFromBoard를 인클루드로 사용)-->
+<!--    단일 게시글 보기(selectFromBoard를 인클루드로 사용)-->
     <select id="select" parameterType="int" resultType="BoardDto">
         <include refid="selectFromBoard"/>
         WHERE bno = #{bno}
@@ -75,6 +75,7 @@
         WHERE bno = #{bno}
     </update>
 
+<!--검색 조건-->
     <sql id="searchCondition">
     <choose>
         <when test='option=="T"'>
@@ -90,6 +91,8 @@
     </choose>
 </sql>
 
+
+<!--검색 게시글 조회-->
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="BoardDto">
         SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
         FROM  board
@@ -99,6 +102,8 @@
         LIMIT #{offset}, #{pageSize}
     </select>
 
+
+<!--검색 게시글 갯수 조회-->
     <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
         SELECT count(*)
         FROM  board
@@ -106,9 +111,4 @@
         <include refid="searchCondition"/>
     </select>
 
-<!--    <update id="updateCommentCnt">-->
-<!--        UPDATE board-->
-<!--        SET comment_cnt = comment_cnt + #{cnt}-->
-<!--        WHERE bno = #{bno}-->
-<!--    </update>-->
 </mapper>

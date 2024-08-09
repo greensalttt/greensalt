@@ -193,7 +193,7 @@
             <tr>
                 <th class="no">번호</th>
                 <th class="title">제목</th>
-                <th class="writer">이름</th>
+                <th class="writer">회원번호</th>
                 <th class="regdate">등록일</th>
                 <th class="viewcnt">조회수</th>
             </tr>
