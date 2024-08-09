@@ -77,6 +77,10 @@
         #replyForm {
             margin-top: 10px;
         }
+
+        #commenter{
+            margin-top: 15px;
+        }
     </style>
 </head>
 
@@ -117,18 +121,25 @@
     <!-- 댓글 기능 추가, 읽기 모드일 때만 보이도록 수정 -->
     <c:if test="${mode ne 'new'}">
         <div class="comment-container" id="commentSection">
+
             <h2>댓글</h2>
-<%--            comment: <input type="text" name="comment"><br>--%>
-
-            <%=session.getAttribute("c_id")%>: <input type="text" name="comment">
-            <button id="sendBtn" type="button">작성</button>
-            <button id="modBtn" type="button">수정</button>
-
             <div id="commentList"></div>
             <div id="replyForm" style="display:none">
                 <input type="text" name="replyComment">
                 <button id="wrtRepBtn" type="button">등록</button>
             </div>
+
+            <div id="commenter">
+            <%=session.getAttribute("c_id")%>: <input type="text" name="comment">
+            <button id="sendBtn" type="button">작성</button>
+            <button id="modBtn" type="button">수정</button>
+            </div>
+
+<%--            <div id="commentList"></div>--%>
+<%--            <div id="replyForm" style="display:none">--%>
+<%--                <input type="text" name="replyComment">--%>
+<%--                <button id="wrtRepBtn" type="button">등록</button>--%>
+<%--            </div>--%>
         </div>
     </c:if>
 </div><br><br>
@@ -327,9 +338,11 @@
                     tmp +=  ' data-bno=' + comment.bno + '>'
                     if(comment.cno != comment.pcno)
                         tmp += 'ㄴ'
-                    tmp +=  ' commenter=<span class="commenter">' + comment.commenter + '</span>'
-                    tmp +=  ' comment=<span class="comment">' + comment.comment + '</span>'
-                    tmp +=  ' up_date='+comment.up_date
+
+                    tmp +=  '<span class="commenter">' + comment.commenter + "=" + '</span>'
+                    tmp +=  '<span class="comment">' + comment.comment + " " +'</span>'
+
+                    // tmp +=  ' up_date='+comment.up_date
                     tmp += '<button class="delBtn">삭제</button>'
                     tmp += '<button class="modBtn">수정</button>'
                     tmp += '<button class="replyBtn">답글</button>'
