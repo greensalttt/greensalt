@@ -1,16 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page session="true"%>
-
 <head>
     <title>Green Salt</title>
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/15439/15439306.png">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <style>
         * {
@@ -235,10 +235,10 @@
                 </c:if>
             </div>
         </div>
-        <footer>
-            <jsp:include page="footer.jsp"/>
-        </footer>
     </div>
 </div>
+<footer>
+    <jsp:include page="footer.jsp"/>
+</footer>
 
 </body>
