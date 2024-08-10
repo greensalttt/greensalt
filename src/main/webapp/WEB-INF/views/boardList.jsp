@@ -30,10 +30,8 @@
         }
 
         .board-container {
-            width: 60%;
-            /*height: 1200px;*/
+            width: 70%;
             margin: 0 auto;
-            /* border: 1px solid black; */
         }
         .search-container {
             background-color: rgb(253, 253, 250);
@@ -103,7 +101,7 @@
 
         th,
         td {
-            width:300px;
+            width:400px;
             text-align: center;
             padding: 10px 12px;
             border-bottom: 1px solid #ddd;
@@ -115,6 +113,10 @@
 
         .no      { width:150px;}
         .title   { width:50%;  }
+        .regdate {
+            width: 500px;
+        }
+
 
         td.title   { text-align: left;  }
         td.writer  { text-align: left;  }
