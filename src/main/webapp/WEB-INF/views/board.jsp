@@ -63,6 +63,19 @@
 
         .comment-container {
             margin-top: 40px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        /* 댓글 목록 스타일링 */
+        #commentList {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            border-radius: 8px;
         }
 
         .commentList ul {
@@ -72,14 +85,51 @@
 
         .commentList li {
             margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
         }
 
+        .commentList li:last-child {
+            border-bottom: none;
+        }
+
+        /* 답글 작성 폼 */
         #replyForm {
-            margin-top: 10px;
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f1f1f1;
+            border-radius: 8px;
         }
 
-        #commenter{
-            margin-top: 15px;
+        /* 댓글 작성 섹션 스타일링 */
+        #commenter {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            border-radius: 8px;
+        }
+
+        #commenter input[type="text"] {
+            width: 80%;
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #commenter button {
+            padding: 8px 12px;
+            background-color: darkgreen;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #commenter button:hover {
+            background-color: darkolivegreen;
         }
     </style>
 </head>
@@ -134,12 +184,6 @@
             <button id="sendBtn" type="button">작성</button>
             <button id="modBtn" type="button">수정</button>
             </div>
-
-<%--            <div id="commentList"></div>--%>
-<%--            <div id="replyForm" style="display:none">--%>
-<%--                <input type="text" name="replyComment">--%>
-<%--                <button id="wrtRepBtn" type="button">등록</button>--%>
-<%--            </div>--%>
         </div>
     </c:if>
 </div><br><br>
