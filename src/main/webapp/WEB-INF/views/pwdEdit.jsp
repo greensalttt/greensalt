@@ -6,7 +6,6 @@
 <head>
   <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
   <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
-  <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -91,7 +90,7 @@
 <body>
 
 <header id="top">
-  <jsp:include page="header.jsp"/></header>
+  <jsp:include page="header.jsp"/></header><br><br>
 
 <jsp:include page="myPageHeader.jsp"/>
 

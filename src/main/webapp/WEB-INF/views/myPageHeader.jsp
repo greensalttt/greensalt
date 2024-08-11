@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <head>
-
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -57,7 +56,6 @@
         #title1 {
             text-align: center;
             font-weight: bold;
-            /*margin-bottom: 20px;*/
         }
 
         #title2{
@@ -81,38 +79,34 @@
                 </span>
         </div>
         <div class="sp">
-            <span class="date">누적 금액</span>
+            <span class="date">포인트</span>
             <span class="ma2">
-                    <%=session.getAttribute("tot_amt")%>원
+                    <%=session.getAttribute("tot_amt")%>p
                 </span>
         </div>
         <div class="sp">
-            <span class="date">찜</span>
-            <span class="ma2">0개</span>
+            <span class="date">방문</span>
+            <span class="ma2">0회</span>
         </div>
         <div class="sp">
-            <span class="date">쿠폰</span>
-            <span class="ma2">0개</span>
-        </div>
-        <div class="sp">
-            <span class="date">적립금</span>
-            <span class="ma2">0원</span>
+            <span class="date">가입일</span>
+            <span class="ma2"><%=session.getAttribute("reg_dt")%></span>
         </div>
     </div>
 
     <div class="one2">
         <div class="sp">
-            <span><a class="none" href="/orderDetail">주문 목록</a></span>
+            <span><a class="none" href="/orderDetail">작성 게시글</a></span>
         </div>
         <div class="sp">
-            <span><a class="none" onclick="test()">찜 목록</a></span>
+            <span><a class="none" onclick="test()">작성 댓글</a></span>
         </div>
         <div class="sp">
-            <span><a class="none" onclick="test()">리뷰 목록</a></span>
+            <span><a class="none" onclick="test()">좋아요</a></span>
         </div>
-        <div class="sp">
-            <span><a class="none" onclick="test()">배송지 목록</a></span>
-        </div>
+<%--        <div class="sp">--%>
+<%--            <span><a class="none" onclick="test()">배송지 목록</a></span>--%>
+<%--        </div>--%>
         <div class="sp">
             <span><a class="none" href="/mypage/info">개인정보 수정</a></span>
         </div>

@@ -45,15 +45,14 @@ public class MyPageController {
                 session.setAttribute("tot_amt", custDto.getTot_amt());
 
                 Date regDate = custDto.getReg_dt();
-                DateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                 String regDateStr = dateFormat.format(regDate);
                 session.setAttribute("reg_dt", regDateStr);
 
-
-                Date loginDate = custDto.getLogin_dt(); // 현재 시간을 가져옴
-                DateFormat dateFormat2 = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분"); // 원하는 형식으로 포맷 설정
-                String loginDateStr = dateFormat2.format(loginDate); // 날짜를 원하는 형식으로 변환
-                session.setAttribute("login_dt", loginDateStr); // 세션에 날짜를 설정
+//                Date loginDate = custDto.getLogin_dt(); // 현재 시간을 가져옴
+//                DateFormat dateFormat2 = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분"); // 원하는 형식으로 포맷 설정
+//                String loginDateStr = dateFormat2.format(loginDate); // 날짜를 원하는 형식으로 변환
+//                session.setAttribute("login_dt", loginDateStr); // 세션에 날짜를 설정
 
             }
 
