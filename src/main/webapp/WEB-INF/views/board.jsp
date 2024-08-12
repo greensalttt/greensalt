@@ -385,8 +385,6 @@
 
                     tmp +=  '<span class="commenter">' + comment.commenter + "=" + '</span>'
                     tmp +=  '<span class="comment">' + comment.comment + " " +'</span>'
-
-                    // tmp +=  ' up_date='+comment.up_date
                     tmp += '<button class="delBtn">삭제</button>'
                     tmp += '<button class="modBtn">수정</button>'
                     tmp += '<button class="replyBtn">답글</button>'

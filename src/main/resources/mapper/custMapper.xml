@@ -69,4 +69,6 @@
         WHERE c.c_id = #{c_id}
     </select>
 
+    <!--방문횟수 쿼리 만들기-->
+
 </mapper>

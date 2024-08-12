@@ -51,6 +51,7 @@
     <select id="selectPage" parameterType="map" resultType="BoardDto">
         <include refid="selectFromBoard"/>
         ORDER BY reg_date DESC, bno DESC
+--         pageSize를 10으로 설정했기에 한페이지에 10개의 게시글만 표시
         LIMIT #{offset}, #{pageSize}
     </select>
 
@@ -101,7 +102,6 @@
         ORDER BY reg_date DESC, bno DESC
         LIMIT #{offset}, #{pageSize}
     </select>
-
 
 <!--검색 게시글 갯수 조회-->
     <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
