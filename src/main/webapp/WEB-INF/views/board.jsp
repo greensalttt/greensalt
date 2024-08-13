@@ -10,7 +10,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
 
     <style>
         * {
@@ -290,8 +289,8 @@
                     url: '/comments?bno='+bno,
                     headers : { "content-type": "application/json"},
                     data : JSON.stringify({bno:bno, comment:comment}),
-                    success : function(result){
-                        alert(result);
+                    success : function(){
+                        alert("댓글이 등록되었습니다.");
                         showList(bno);
                     },
                     error   : function(){ alert("error") }
@@ -320,8 +319,8 @@
                     url: '/comments/'+cno,
                     headers : { "content-type": "application/json"},
                     data : JSON.stringify({cno:cno, comment:comment}),
-                    success : function(result){
-                        alert(result);
+                    success : function(){
+                        alert("댓글이 수정됐습니다.");
                         showList(bno);
                     },
                     error   : function(){ alert("error") }
@@ -342,8 +341,8 @@
                     url: '/comments?bno='+bno,
                     headers : { "content-type": "application/json"},
                     data : JSON.stringify({pcno:pcno, bno:bno, comment:comment}),
-                    success : function(result){
-                        alert(result);
+                    success : function(){
+                        alert("답글이 등록되었습니다");
                         showList(bno);
                     },
                     error   : function(){ alert("error") }
@@ -362,14 +361,19 @@
             $("#commentList").on("click", ".delBtn", function (){
                 let cno = $(this).parent().attr("data-cno");
 
+                if (!confirm("정말로 삭제하시겠습니까?")) {
+                    return;
+                }
                 $.ajax({
-                    type:'DELETE',
+                    type: 'DELETE',
                     url: '/comments/'+cno+'?bno='+bno,
-                    success : function(result){
-                        alert(result)
-                        showList(bno);
+                    success: function() {
+                        alert("삭제에 성공했습니다.");  // 성공 메시지를 알림으로 표시
+                        showList(bno);  // 댓글 목록 갱신
                     },
-                    error   : function(){ alert("error") }
+                    error: function() {
+                        alert("댓글 삭제 중 오류가 발생했습니다.");
+                    }
                 });
             });
 

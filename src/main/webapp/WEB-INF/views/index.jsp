@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
 
 </head>
 
@@ -296,7 +295,7 @@
 
                         <div class="three">
                             <p>Dawn FM</p>
-                        </div>
+                        </div></a>
 
                         <li class="one"><a href="#">
                             <div>

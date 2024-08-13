@@ -117,8 +117,6 @@
 
 
         td.title   { text-align: left;  }
-        td.writer  { text-align: left;  }
-        td.viewcnt { text-align: right; }
 
         td.title:hover {
             text-decoration: underline;

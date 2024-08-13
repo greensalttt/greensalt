@@ -1,12 +1,9 @@
 package greensalt.comment.controller;
-
-
 import greensalt.comment.domain.CommentDto;
 import greensalt.comment.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -20,12 +17,10 @@ public class CommentController {
     CommentService service;
 
     // 댓글을 수정하는 메서드
-    @PatchMapping("/comments/{cno}")   // /ch4/comments/26  PATCH
+    @PatchMapping("/comments/{cno}")
     public ResponseEntity<String> modify(@PathVariable Integer cno, @RequestBody CommentDto dto, HttpSession session) {
         Integer commenter = (Integer) session.getAttribute("c_id");
         dto.setCommenter(String.valueOf(commenter));
-//        String commenter = "asdf";
-//        dto.setCommenter(commenter);
         dto.setCno(cno);
         System.out.println("dto = " + dto);
 
@@ -41,12 +36,10 @@ public class CommentController {
     }
 
     // 댓글을 등록하는 메서드
-    @PostMapping("/comments")   // /ch4/comments?bno=1085  POST
+    @PostMapping("/comments")
     public ResponseEntity<String> write(@RequestBody CommentDto dto, Integer bno, HttpSession session) {
         Integer commenter = (Integer) session.getAttribute("c_id");
         dto.setCommenter(String.valueOf(commenter));
-//        String commenter = "asdf";
-//        dto.setCommenter(commenter);
         dto.setBno(bno);
         System.out.println("dto = " + dto);
 
@@ -61,12 +54,10 @@ public class CommentController {
     }
 
     // 지정된 댓글을 삭제하는 메서드
-    @DeleteMapping("/comments/{cno}")  // DELETE /comments/1?bno=1085  <-- 삭제할 댓글 번호
+    @DeleteMapping("/comments/{cno}")
     public ResponseEntity<String> remove(@PathVariable Integer cno, Integer bno, HttpSession session) {
 
-//        String commenter = "asdf";
         Integer commenter = (Integer) session.getAttribute("c_id");
-//        dto.setCommenter(String.valueOf(commenter));
 
         try {
             int rowCnt = service.remove(cno, bno, String.valueOf(commenter));
@@ -82,7 +73,7 @@ public class CommentController {
     }
 
     // 지정된 게시물의 모든 댓글을 가져오는 메서드
-    @GetMapping("/comments")  // /comments?bno=1080   GET
+    @GetMapping("/comments")
     public ResponseEntity<List<CommentDto>> list(Integer bno) {
         List<CommentDto> list = null;
         try {
