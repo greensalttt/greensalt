@@ -130,6 +130,11 @@
         #commenter button:hover {
             background-color: darkolivegreen;
         }
+
+        .deleted {
+            color: #721c24; /* 삭제된 댓글을 강조하는 글자색 */
+            font-size: 12px;
+        }
     </style>
 </head>
 
@@ -259,8 +264,8 @@
 </script>
 
 <script>
-        // 댓글 관련 스크립트
-        $(document).ready(function(){
+    // 댓글 관련 스크립트
+    $(document).ready(function(){
         if ("${mode}" !== "new") {
             let bno = ${boardDto.bno};
 
@@ -332,7 +337,7 @@
                 let pcno = $("#replyForm").parent().attr("data-pcno");
 
                 if(comment.trim()==''){
-                    alert("댓글을 입력해 주세요.");
+                    alert("답글을 입력해 주세요.");
                     $("input[name=replyComment]").focus()
                     return;
                 }
@@ -358,18 +363,29 @@
                 $("#replyForm").css("display", "block");
             });
 
+            // 댓글 삭제 버튼 클릭 시
             $("#commentList").on("click", ".delBtn", function (){
-                let cno = $(this).parent().attr("data-cno");
+                let commentElement = $(this).parent(); // 클릭된 버튼의 부모(li 요소)
+                let cno = commentElement.attr("data-cno"); // 댓글의 고유 번호
 
                 if (!confirm("정말로 삭제하시겠습니까?")) {
                     return;
                 }
+
                 $.ajax({
                     type: 'DELETE',
-                    url: '/comments/'+cno+'?bno='+bno,
+                    url: '/comments/' + cno + '?bno=' + bno,
                     success: function() {
-                        alert("삭제에 성공했습니다.");  // 성공 메시지를 알림으로 표시
-                        showList(bno);  // 댓글 목록 갱신
+                        // 댓글 삭제 성공 시 처리
+                        alert("삭제에 성공했습니다."); // 성공 메시지를 알림으로 표시
+
+                        // 댓글 내용만 "삭제된 댓글입니다"로 변경
+                        commentElement.find(".commenter").text("삭제된 댓글입니다");
+                        commentElement.find(".comment").text(""); // 댓글 내용 제거
+                        commentElement.find(".modBtn, .replyBtn, .delBtn").hide(); // 수정, 답글, 삭제 버튼 숨김
+
+                        // 삭제된 상태를 시각적으로 표시하기 위한 클래스 추가 (CSS 적용 가능)
+                        commentElement.addClass("deleted");
                     },
                     error: function() {
                         alert("댓글 삭제 중 오류가 발생했습니다.");
@@ -377,18 +393,19 @@
                 });
             });
 
+// 댓글을 HTML로 변환하는 함수
             let toHtml = function (comments) {
                 let tmp = "<ul>";
 
                 comments.forEach(function(comment){
-                    tmp +=  '<li data-cno=' + comment.cno
-                    tmp +=  ' data-pcno=' + comment.pcno
-                    tmp +=  ' data-bno=' + comment.bno + '>'
+                    tmp += '<li data-cno="' + comment.cno
+                    tmp += '" data-pcno="' + comment.pcno
+                    tmp += '" data-bno="' + comment.bno + '">'
                     if(comment.cno != comment.pcno)
                         tmp += 'ㄴ'
 
-                    tmp +=  '<span class="commenter">' + comment.commenter + "=" + '</span>'
-                    tmp +=  '<span class="comment">' + comment.comment + " " +'</span>'
+                    tmp += '<span class="commenter">' + comment.commenter + "=" + '</span>'
+                    tmp += '<span class="comment">' + comment.comment + " " + '</span>'
                     tmp += '<button class="delBtn">삭제</button>'
                     tmp += '<button class="modBtn">수정</button>'
                     tmp += '<button class="replyBtn">답글</button>'
