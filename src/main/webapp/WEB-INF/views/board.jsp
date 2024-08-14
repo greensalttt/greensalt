@@ -274,9 +274,17 @@
                     type:'GET',
                     url: '/comments?bno='+bno,
                     success : function(result){
-                        $("#commentList").html(toHtml(result));
+                        if (result.length === 0) {
+                            // 댓글이 없을 때 "등록된 댓글이 없습니다" 메시지 표시
+                            $("#commentList").html("<p>등록된 댓글이 없습니다</p>");
+                        } else {
+                            // 댓글이 있을 때 댓글 목록 표시
+                            $("#commentList").html(toHtml(result));
+                        }
                     },
-                    error   : function(){ alert("error") }
+                    error: function(){
+                        alert("error");
+                    }
                 });
             }
 
