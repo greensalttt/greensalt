@@ -118,22 +118,45 @@
             border-radius: 4px;
         }
 
-        #commenter button {
-            padding: 8px 12px;
-            background-color: darkgreen;
-            color: #ffffff;
+        #sendBtn {
+            background-color: darkgreen; /* 녹색 */
+            color: white;
+            padding: 10px 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
+            margin-right: 10px;
         }
 
-        #commenter button:hover {
-            background-color: darkolivegreen;
+        #sendBtn:hover {
+            background-color: darkolivegreen; /* hover 시 약간 어두운 녹색 */
         }
+
+        #modBtn {
+
+            background-color: saddlebrown; /* 파란색 */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #commenter input[type="text"] > #modBtn{
+            float: right;
+        }
+
+        #modBtn:hover {
+            background-color: brown; /* hover 시 약간 어두운 파란색 */
+        }
+
 
         .deleted {
-            color: #721c24; /* 삭제된 댓글을 강조하는 글자색 */
-            font-size: 12px;
+            color: #999; /* 회색으로 텍스트 색상 변경 */
+            text-decoration: line-through; /* 텍스트에 취소선 추가 */
+            background-color: #f0f0f0; /* 배경색을 밝은 회색으로 변경 */
         }
     </style>
 </head>
@@ -186,7 +209,7 @@
             <div id="commenter">
             <%=session.getAttribute("c_id")%>: <input type="text" name="comment">
             <button id="sendBtn" type="button">작성</button>
-            <button id="modBtn" type="button">수정</button>
+            <button id="modBtn" type="button" style="display: none;">수정</button>
             </div>
         </div>
     </c:if>
@@ -264,142 +287,144 @@
 </script>
 
 <script>
-    // 댓글 관련 스크립트
-    $(document).ready(function(){
+        $(document).ready(function(){
         if ("${mode}" !== "new") {
-            let bno = ${boardDto.bno};
+        let bno = ${boardDto.bno};
 
-            let showList = function (bno){
-                $.ajax({
-                    type:'GET',
-                    url: '/comments?bno='+bno,
-                    success : function(result){
-                        if (result.length === 0) {
-                            // 댓글이 없을 때 "등록된 댓글이 없습니다" 메시지 표시
-                            $("#commentList").html("<p>등록된 댓글이 없습니다</p>");
-                        } else {
-                            // 댓글이 있을 때 댓글 목록 표시
-                            $("#commentList").html(toHtml(result));
-                        }
-                    },
-                    error: function(){
-                        alert("error");
-                    }
-                });
-            }
+        let showList = function (bno){
+        $.ajax({
+        type:'GET',
+        url: '/comments?bno=' + bno,
+        success: function(result){
+        if (result.length === 0) {
+        $("#commentList").html("<p>등록된 댓글이 없습니다</p>");
+    } else {
+        $("#commentList").html(toHtml(result));
+    }
+    },
+        error: function(){
+        alert("error");
+    }
+    });
+    }
 
-            showList(bno);
+        showList(bno);
 
-            $("#sendBtn").click(function(){
-                let comment = $("input[name=comment]").val();
-                if(comment.trim()==''){
-                    alert("댓글을 입력해주세요.");
-                    $("input[name=comment]").focus()
-                    return;
+        $("#sendBtn").click(function(){
+        let comment = $("input[name=comment]").val();
+        if(comment.trim() == ''){
+        alert("댓글을 입력해주세요.");
+        $("input[name=comment]").focus();
+        return;
+    }
+        $.ajax({
+        type: 'POST',
+        url: '/comments?bno=' + bno,
+        headers: {"content-type": "application/json"},
+        data: JSON.stringify({bno: bno, comment: comment}),
+        success: function(){
+        alert("댓글이 등록되었습니다.");
+        showList(bno);
+    },
+        error: function(){
+        alert("error");
+    }
+    });
+    });
+
+        $("#commentList").on("click", ".modBtn", function () {
+        let cno = $(this).parent().attr("data-cno");
+            let comment = $("span.comment", $(this).parent()).text();
+        $("input[name=comment]").val(comment);
+            // $("#sendBtn").hide();
+            $("#modBtn").show();
+            $("#modBtn").attr("data-cno", cno);
+    });
+
+        $("#modBtn").click(function(){
+        let cno = $(this).attr("data-cno");
+        let comment = $("input[name=comment]").val();
+
+        if(comment.trim() == ''){
+        alert("댓글을 입력해주세요.");
+        $("input[name=comment]").focus();
+        return;
+    }
+        $.ajax({
+        type: 'PATCH',
+        url: '/comments/' + cno,
+        headers: {"content-type": "application/json"},
+        data: JSON.stringify({cno: cno, comment: comment}),
+        success: function(){
+        alert("댓글이 수정됐습니다.");
+        showList(bno);
+    },
+        error: function(){
+        alert("error");
+    }
+    });
+    });
+
+        $("#wrtRepBtn").click(function(){
+        let comment = $("input[name=replyComment]").val();
+        let pcno = $("#replyForm").parent().attr("data-pcno");
+
+        if(comment.trim() == ''){
+        alert("답글을 입력해 주세요.");
+        $("input[name=replyComment]").focus();
+        return;
+    }
+        $.ajax({
+        type: 'POST',
+        url: '/comments?bno=' + bno,
+        headers: {"content-type": "application/json"},
+        data: JSON.stringify({pcno: pcno, bno: bno, comment: comment}),
+        success: function(){
+        alert("답글이 등록되었습니다");
+        showList(bno);
+    },
+        error: function(){
+        alert("error");
+    }
+    });
+
+        $("#replyForm").css("display", "none");
+        $("input[name=replyComment]").val('');
+        $("#replyForm").appendTo("body");
+    });
+
+        $("#commentList").on("click", ".replyBtn", function () {
+        $("#replyForm").appendTo($(this).parent());
+        $("#replyForm").css("display", "block");
+    });
+
+        $("#commentList").on("click", ".delBtn", function (){
+        let commentElement = $(this).parent(); // 클릭된 버튼의 부모(li 요소)
+        let cno = commentElement.attr("data-cno"); // 댓글의 고유 번호
+
+        if (!confirm("정말로 삭제하시겠습니까?")) {
+        return;
+    }
+            $.ajax({
+                type: 'DELETE',
+                url: '/comments/' + cno + '?bno=' + bno,
+                success: function() {
+                    // 댓글 삭제 성공 시 처리
+                    alert("삭제에 성공했습니다."); // 성공 메시지를 알림으로 표시
+
+                    // 댓글 내용만 "삭제된 댓글입니다"로 변경
+                    commentElement.find(".commenter").text("삭제된 댓글입니다");
+                    commentElement.find(".comment").text(""); // 댓글 내용 제거
+                    commentElement.find(".modBtn, .replyBtn, .delBtn").hide(); // 수정, 답글, 삭제 버튼 숨김
+
+                    // 삭제된 상태를 시각적으로 표시하기 위한 클래스 추가 (CSS 적용 가능)
+                    commentElement.addClass("deleted");
+                },
+                error: function() {
+                    alert("댓글 삭제 중 오류가 발생했습니다.");
                 }
-                $.ajax({
-                    type:'POST',
-                    url: '/comments?bno='+bno,
-                    headers : { "content-type": "application/json"},
-                    data : JSON.stringify({bno:bno, comment:comment}),
-                    success : function(){
-                        alert("댓글이 등록되었습니다.");
-                        showList(bno);
-                    },
-                    error   : function(){ alert("error") }
-                });
             });
-
-            $("#commentList").on("click", ".modBtn", function () {
-                let cno = $(this).parent().attr("data-cno");
-                let comment = $("span.comment", $(this).parent()).text();
-
-                $("input[name=comment]").val(comment);
-                $("#modBtn").attr("data-cno", cno);
-            });
-
-            $("#modBtn").click(function(){
-                let cno = $(this).attr("data-cno");
-                let comment = $("input[name=comment]").val();
-
-                if(comment.trim()==''){
-                    alert("댓글을 입력해주세요.");
-                    $("input[name=comment]").focus()
-                    return;
-                }
-                $.ajax({
-                    type:'PATCH',
-                    url: '/comments/'+cno,
-                    headers : { "content-type": "application/json"},
-                    data : JSON.stringify({cno:cno, comment:comment}),
-                    success : function(){
-                        alert("댓글이 수정됐습니다.");
-                        showList(bno);
-                    },
-                    error   : function(){ alert("error") }
-                });
-            });
-
-            $("#wrtRepBtn").click(function(){
-                let comment = $("input[name=replyComment]").val();
-                let pcno = $("#replyForm").parent().attr("data-pcno");
-
-                if(comment.trim()==''){
-                    alert("답글을 입력해 주세요.");
-                    $("input[name=replyComment]").focus()
-                    return;
-                }
-                $.ajax({
-                    type:'POST',
-                    url: '/comments?bno='+bno,
-                    headers : { "content-type": "application/json"},
-                    data : JSON.stringify({pcno:pcno, bno:bno, comment:comment}),
-                    success : function(){
-                        alert("답글이 등록되었습니다");
-                        showList(bno);
-                    },
-                    error   : function(){ alert("error") }
-                });
-
-                $("#replyForm").css("display", "none")
-                $("input[name=replyComment]").val('')
-                $("#replyForm").appendTo("body");
-            });
-
-            $("#commentList").on("click", ".replyBtn", function () {
-                $("#replyForm").appendTo($(this).parent());
-                $("#replyForm").css("display", "block");
-            });
-
-            // 댓글 삭제 버튼 클릭 시
-            $("#commentList").on("click", ".delBtn", function (){
-                let commentElement = $(this).parent(); // 클릭된 버튼의 부모(li 요소)
-                let cno = commentElement.attr("data-cno"); // 댓글의 고유 번호
-
-                if (!confirm("정말로 삭제하시겠습니까?")) {
-                    return;
-                }
-
-                $.ajax({
-                    type: 'DELETE',
-                    url: '/comments/' + cno + '?bno=' + bno,
-                    success: function() {
-                        // 댓글 삭제 성공 시 처리
-                        alert("삭제에 성공했습니다."); // 성공 메시지를 알림으로 표시
-
-                        // 댓글 내용만 "삭제된 댓글입니다"로 변경
-                        commentElement.find(".commenter").text("삭제된 댓글입니다");
-                        commentElement.find(".comment").text(""); // 댓글 내용 제거
-                        commentElement.find(".modBtn, .replyBtn, .delBtn").hide(); // 수정, 답글, 삭제 버튼 숨김
-
-                        // 삭제된 상태를 시각적으로 표시하기 위한 클래스 추가 (CSS 적용 가능)
-                        commentElement.addClass("deleted");
-                    },
-                    error: function() {
-                        alert("댓글 삭제 중 오류가 발생했습니다.");
-                    }
-                });
-            });
+        });
 
 // 댓글을 HTML로 변환하는 함수
             let toHtml = function (comments) {
@@ -414,14 +439,14 @@
 
                     tmp += '<span class="commenter">' + comment.commenter + "=" + '</span>'
                     tmp += '<span class="comment">' + comment.comment + " " + '</span>'
-                    tmp += '<button class="delBtn">삭제</button>'
-                    tmp += '<button class="modBtn">수정</button>'
                     tmp += '<button class="replyBtn">답글</button>'
+                    tmp += '<button class="modBtn">수정</button>'
+                    tmp += '<button class="delBtn">삭제</button>'
                     tmp += '</li>'
                 })
                 return tmp + "</ul>";
             }
         }
-    });
+        });
 </script>
 </body>

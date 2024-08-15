@@ -23,6 +23,7 @@
         ORDER BY pcno asc, cno asc;
     </select>
 
+
     <select id="select" parameterType="int" resultType="CommentDto">
         SELECT cno, bno, pcno, comment, commenter, reg_date, up_date
         FROM comment
