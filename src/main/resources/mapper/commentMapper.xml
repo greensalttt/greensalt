@@ -4,20 +4,10 @@
 
 <mapper namespace="green.mapper.commentMapper">
 
-
-<!--    <delete id="deleteAll" parameterType="int">-->
-<!--        DELETE FROM comment-->
-<!--        WHERE  bno = #{bno}-->
-<!--    </delete>-->
-
     <select id="count" parameterType="int" resultType="int">
         SELECT count(*) FROM comment
         WHERE  bno = #{bno}
     </select>
-
-<!--    <delete id="delete" parameterType="map">-->
-<!--        DELETE FROM comment WHERE cno = #{cno} AND commenter = #{commenter}-->
-<!--    </delete>-->
 
     <insert id="insert" parameterType="CommentDto">
         INSERT INTO comment

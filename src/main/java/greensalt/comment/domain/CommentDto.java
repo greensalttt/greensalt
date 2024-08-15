@@ -22,14 +22,6 @@ public class CommentDto {
         this.deleted = deleted;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        CommentDto that = (CommentDto) o;
-//        return Objects.equals(cno, that.cno) && Objects.equals(bno, that.bno) && Objects.equals(pcno, that.pcno) && Objects.equals(comment, that.comment) && Objects.equals(commenter, that.commenter);
-//    }
-
     @Override
     public int hashCode() {
         return Objects.hash(cno, bno, pcno, comment, commenter);

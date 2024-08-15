@@ -23,14 +23,6 @@ public class CommentDaoImpl implements CommentDao {
         return session.delete(namespace+"deleteAll", bno);
     } // int delete(String statement)
 
-//    @Override
-//    public int delete(Integer cno, String commenter) throws Exception {
-//        Map map = new HashMap();
-//        map.put("cno", cno);
-//        map.put("commenter", commenter);
-//        return session.delete(namespace+"delete", map);
-//    } // int delete(String statement, Object parameter)
-
     @Override
     public int insert(CommentDto dto) throws Exception {
         return session.insert(namespace+"insert", dto);
