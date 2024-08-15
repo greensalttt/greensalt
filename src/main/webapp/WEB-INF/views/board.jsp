@@ -101,6 +101,57 @@
             border-radius: 8px;
         }
 
+        /*!* 댓글 작성 섹션 스타일링 *!*/
+        /*#commenter {*/
+        /*    margin-top: 20px;*/
+        /*    padding: 15px;*/
+        /*    border: 1px solid #e0e0e0;*/
+        /*    background-color: #ffffff;*/
+        /*    border-radius: 8px;*/
+        /*}*/
+
+        /*#commenter input[type="text"] {*/
+        /*    width: 80%;*/
+        /*    padding: 8px;*/
+        /*    margin-right: 10px;*/
+        /*    border: 1px solid #ccc;*/
+        /*    border-radius: 4px;*/
+        /*}*/
+
+        /*#sendBtn {*/
+        /*    background-color: darkgreen; !* 녹색 *!*/
+        /*    color: white;*/
+        /*    padding: 10px 20px;*/
+        /*    border: none;*/
+        /*    border-radius: 5px;*/
+        /*    cursor: pointer;*/
+        /*    font-weight: bold;*/
+        /*    margin-right: 10px;*/
+        /*}*/
+
+        /*#sendBtn:hover {*/
+        /*    background-color: darkolivegreen; !* hover 시 약간 어두운 녹색 *!*/
+        /*}*/
+
+        /*#modBtn {*/
+
+        /*    background-color: saddlebrown; !* 파란색 *!*/
+        /*    color: white;*/
+        /*    padding: 10px 20px;*/
+        /*    border: none;*/
+        /*    border-radius: 5px;*/
+        /*    cursor: pointer;*/
+        /*    font-weight: bold;*/
+        /*}*/
+
+        /*#commenter input[type="text"] > #modBtn{*/
+        /*    float: right;*/
+        /*}*/
+
+        /*#modBtn:hover {*/
+        /*    background-color: brown; !* hover 시 약간 어두운 파란색 *!*/
+        /*}*/
+
         /* 댓글 작성 섹션 스타일링 */
         #commenter {
             margin-top: 20px;
@@ -111,11 +162,17 @@
         }
 
         #commenter input[type="text"] {
-            width: 80%;
+            width: 100%;
             padding: 8px;
-            margin-right: 10px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
+        }
+
+        #buttonContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         #sendBtn {
@@ -126,7 +183,6 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-            margin-right: 10px;
         }
 
         #sendBtn:hover {
@@ -134,8 +190,7 @@
         }
 
         #modBtn {
-
-            background-color: saddlebrown; /* 파란색 */
+            background-color: saddlebrown; /* 갈색 */
             color: white;
             padding: 10px 20px;
             border: none;
@@ -144,13 +199,10 @@
             font-weight: bold;
         }
 
-        #commenter input[type="text"] > #modBtn{
-            float: right;
+        #modBtn:hover {
+            background-color: brown; /* hover 시 약간 어두운 갈색 */
         }
 
-        #modBtn:hover {
-            background-color: brown; /* hover 시 약간 어두운 파란색 */
-        }
 
 
         .deleted {
@@ -207,10 +259,12 @@
             </div>
 
             <div id="commenter">
-            <%=session.getAttribute("c_id")%>: <input type="text" name="comment">
-            <button id="sendBtn" type="button">작성</button>
-            <button id="modBtn" type="button" style="display: none;">수정</button>
-            </div>
+<%--            <%=session.getAttribute("c_id")%>: --%>
+                <input type="text" name="comment" placeholder="댓글을 남겨보세요.">
+                <div id="buttonContainer">
+                    <button id="sendBtn" type="button">작성</button>
+                    <button id="modBtn" type="button" style="display: none;">수정</button>
+                </div>
         </div>
     </c:if>
 </div><br><br>
