@@ -35,7 +35,7 @@ public class CommentServiceImplTest {
         System.out.println("bno = " + bno);
 
         commentDao.deleteAll(bno);
-        CommentDto commentDto = new CommentDto(bno,0,"hi","qwer");
+        CommentDto commentDto = new CommentDto(bno,0,"hi","qwer",0);
 
         assertTrue(boardDao.select(bno).getComment_cnt() == 0);
         assertTrue(commentService.write(commentDto)==1);
@@ -59,7 +59,7 @@ public class CommentServiceImplTest {
         System.out.println("bno = " + bno);
 
         commentDao.deleteAll(bno);
-        CommentDto commentDto = new CommentDto(bno,0,"hi","qwer");
+        CommentDto commentDto = new CommentDto(bno,0,"hi","qwer",0);
 
         assertTrue(boardDao.select(bno).getComment_cnt() == 0);
         assertTrue(commentService.write(commentDto)==1);

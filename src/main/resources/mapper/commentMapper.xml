@@ -5,19 +5,19 @@
 <mapper namespace="green.mapper.commentMapper">
 
 
-    <delete id="deleteAll" parameterType="int">
-        DELETE FROM comment
-        WHERE  bno = #{bno}
-    </delete>
+<!--    <delete id="deleteAll" parameterType="int">-->
+<!--        DELETE FROM comment-->
+<!--        WHERE  bno = #{bno}-->
+<!--    </delete>-->
 
     <select id="count" parameterType="int" resultType="int">
         SELECT count(*) FROM comment
         WHERE  bno = #{bno}
     </select>
 
-    <delete id="delete" parameterType="map">
-        DELETE FROM comment WHERE cno = #{cno} AND commenter = #{commenter}
-    </delete>
+<!--    <delete id="delete" parameterType="map">-->
+<!--        DELETE FROM comment WHERE cno = #{cno} AND commenter = #{commenter}-->
+<!--    </delete>-->
 
     <insert id="insert" parameterType="CommentDto">
         INSERT INTO comment
@@ -29,7 +29,7 @@
     <select id="selectAll" parameterType="int" resultType="CommentDto">
         SELECT cno, bno, ifnull(pcno, cno) as pcno, comment, commenter, reg_date, up_date
         FROM comment
-        WHERE bno = #{bno}
+        WHERE bno = #{bno} AND deleted = 0
         ORDER BY pcno asc, cno asc;
     </select>
 
@@ -45,4 +45,12 @@
           , up_date = now()
         WHERE cno = #{cno} and commenter = #{commenter}
     </update>
+
+    <!--    댓글을 DB에 남기고 컬럼을 통해 뷰에 표시하기-->
+    <update id="deleted" parameterType="map">
+        UPDATE comment
+        SET deleted = 1
+        WHERE cno = #{cno} AND commenter = #{commenter}
+    </update>
+
 </mapper>

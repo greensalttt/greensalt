@@ -10,22 +10,25 @@ public class CommentDto {
     private String  commenter;
     private Date    reg_date;
     private Date    up_date;
+    private Integer deleted;
 
-    public CommentDto() {}
-    public CommentDto(Integer bno, Integer pcno, String comment, String commenter) {
+    public CommentDto(){}
+
+    public CommentDto(Integer bno, Integer pcno, String comment, String commenter, Integer deleted) {
         this.bno = bno;
         this.pcno = pcno;
         this.comment = comment;
         this.commenter = commenter;
+        this.deleted = deleted;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CommentDto that = (CommentDto) o;
-        return Objects.equals(cno, that.cno) && Objects.equals(bno, that.bno) && Objects.equals(pcno, that.pcno) && Objects.equals(comment, that.comment) && Objects.equals(commenter, that.commenter);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        CommentDto that = (CommentDto) o;
+//        return Objects.equals(cno, that.cno) && Objects.equals(bno, that.bno) && Objects.equals(pcno, that.pcno) && Objects.equals(comment, that.comment) && Objects.equals(commenter, that.commenter);
+//    }
 
     @Override
     public int hashCode() {
@@ -88,6 +91,14 @@ public class CommentDto {
         this.cno = cno;
     }
 
+    public Integer isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
+    }
+
     @Override
     public String toString() {
         return "CommentDto{" +
@@ -98,6 +109,7 @@ public class CommentDto {
                 ", commenter='" + commenter + '\'' +
                 ", reg_date=" + reg_date +
                 ", up_date=" + up_date +
+                ", deleted=" + deleted +
                 '}';
     }
 }
