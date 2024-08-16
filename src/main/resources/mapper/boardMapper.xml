@@ -16,16 +16,20 @@
     </delete>
 
 <!--    단일 게시글 삭제-->
+<!--    <delete id="delete" parameterType="BoardDto">-->
+<!--            DELETE FROM board WHERE bno = #{bno} and c_id = #{c_id}-->
+<!--    </delete>-->
+
     <delete id="delete" parameterType="map">
-        DELETE FROM board WHERE bno = #{bno} and writer = #{writer}
+        DELETE FROM board WHERE bno = #{bno} AND c_id = #{c_id}
     </delete>
 
 <!--    게시글 추가-->
     <insert id="insert" parameterType="BoardDto">
         INSERT INTO board
-            (title, content, writer)
+            (title, content, writer, c_id)
         VALUES
-            (#{title}, #{content}, #{writer})
+            (#{title}, #{content}, #{writer}, #{c_id})
     </insert>
 
 <!--    최근 게시글 표시-->
@@ -37,7 +41,7 @@
 
 <!--    게시글 정보의 조각 sql문-->
     <sql id="selectFromBoard">
-        SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
+        SELECT bno, c_id, title, content, writer, view_cnt, comment_cnt, reg_date
         FROM board
     </sql>
 
@@ -61,9 +65,9 @@
         SET   title = #{title}
           , content = #{content}
           , up_date = now()
-        WHERE bno = #{bno} and writer = #{writer}
+        WHERE bno = #{bno} and c_id = #{c_id}
     </update>
-<!--    게시글 내용만 수정-->
+<!--    게시글 댓글 수-->
     <update id="updateCommentCnt" parameterType="map">
         UPDATE board
         SET   comment_cnt = comment_cnt + #{cnt}
