@@ -13,10 +13,6 @@
   <title>pweEdit</title>
 
   <style>
-    body {
-      font-size: 12px;
-      font-family: "IBM Plex Sans KR", sans-serif;
-    }
 
     .container {
       width: 635px;
@@ -75,7 +71,6 @@
     #pp{
       font-size: 12px;
       margin-top: 15px;
-      /*margin-left: 20px;*/
     }
     #check-newPwd{
       font-size: 11px;
@@ -91,9 +86,9 @@
 
 <header id="top">
   <jsp:include page="header.jsp"/></header><br><br>
-
 <jsp:include page="myPageHeader.jsp"/>
 
+<div id="pwdForm">
     <form action="/mypage/pwdEdit" method="POST" onsubmit="return pwdEditCheck()">
     <div class="container">
       <h1 id="pwdTitle">비밀번호 변경</h1><br><br>
@@ -110,6 +105,7 @@
       <button id="continue">변경</button>
     </div>
   </form>
+</div>
 
 <footer>
   <jsp:include page="footer.jsp" flush="false" />

@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        /** {*/
+        /*    box-sizing: border-box;*/
+        /*    margin: 0;*/
+        /*    padding: 0;*/
+        /*}*/
 
         a {
             text-decoration: none;
@@ -29,7 +29,8 @@
 
         .board-container {
             width: 70%;
-            margin: 0 auto;
+            text-align:center;
+            margin: 0 auto 100px;
         }
         .search-container {
             background-color: rgb(253, 253, 250);
@@ -88,7 +89,6 @@
         }
 
         table {
-            border-collapse: collapse;
             width: 100%;
             border-top: 2px solid rgb(39, 39, 39);
         }
@@ -171,7 +171,6 @@
     if(msg=="WRT_OK")    alert("성공적으로 등록되었습니다.");
     if(msg=="MOD_OK")    alert("성공적으로 수정되었습니다.");
 </script>
-<div style="text-align:center">
     <div class="board-container">
         <div class="search-container">
             <form action="<c:url value="/board/list"/>" class="search-form" method="get">
@@ -191,7 +190,7 @@
             <tr>
                 <th class="no">번호</th>
                 <th class="title">제목</th>
-                <th class="writer">회원번호</th>
+                <th class="writer">닉네임</th>
                 <th class="regdate">등록일</th>
                 <th class="viewcnt">조회수</th>
             </tr>
@@ -200,6 +199,7 @@
                     <td class="no">${boardDto.bno}</td>
                     <td class="title"><a href="<c:url value="/board/read${ph.sc.queryString}&bno=${boardDto.bno}"/>"><c:out value="${boardDto.title}"/></a></td>
                     <td class="writer">${boardDto.writer}</td>
+<%--                    <td class="writer"><%=session.getAttribute("c_nm")%></td>--%>
                     <c:choose>
                         <c:when test="${boardDto.reg_date.time >= startOfToday}">
                             <td class="regdate"><fmt:formatDate value="${boardDto.reg_date}" pattern="HH:mm" type="time"/></td>
@@ -232,9 +232,7 @@
             </div>
         </div>
     </div>
-</div>
 <footer>
     <jsp:include page="footer.jsp"/>
 </footer>
-
 </body>

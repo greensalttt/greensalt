@@ -101,57 +101,6 @@
             border-radius: 8px;
         }
 
-        /*!* 댓글 작성 섹션 스타일링 *!*/
-        /*#commenter {*/
-        /*    margin-top: 20px;*/
-        /*    padding: 15px;*/
-        /*    border: 1px solid #e0e0e0;*/
-        /*    background-color: #ffffff;*/
-        /*    border-radius: 8px;*/
-        /*}*/
-
-        /*#commenter input[type="text"] {*/
-        /*    width: 80%;*/
-        /*    padding: 8px;*/
-        /*    margin-right: 10px;*/
-        /*    border: 1px solid #ccc;*/
-        /*    border-radius: 4px;*/
-        /*}*/
-
-        /*#sendBtn {*/
-        /*    background-color: darkgreen; !* 녹색 *!*/
-        /*    color: white;*/
-        /*    padding: 10px 20px;*/
-        /*    border: none;*/
-        /*    border-radius: 5px;*/
-        /*    cursor: pointer;*/
-        /*    font-weight: bold;*/
-        /*    margin-right: 10px;*/
-        /*}*/
-
-        /*#sendBtn:hover {*/
-        /*    background-color: darkolivegreen; !* hover 시 약간 어두운 녹색 *!*/
-        /*}*/
-
-        /*#modBtn {*/
-
-        /*    background-color: saddlebrown; !* 파란색 *!*/
-        /*    color: white;*/
-        /*    padding: 10px 20px;*/
-        /*    border: none;*/
-        /*    border-radius: 5px;*/
-        /*    cursor: pointer;*/
-        /*    font-weight: bold;*/
-        /*}*/
-
-        /*#commenter input[type="text"] > #modBtn{*/
-        /*    float: right;*/
-        /*}*/
-
-        /*#modBtn:hover {*/
-        /*    background-color: brown; !* hover 시 약간 어두운 파란색 *!*/
-        /*}*/
-
         /* 댓글 작성 섹션 스타일링 */
         #commenter {
             margin-top: 20px;
@@ -240,7 +189,8 @@
             <button type="button" id="writeNewBtn" class="btn btn-write"><i class="fa fa-pencil"></i> 글쓰기</button>
         </c:if>
 
-        <c:if test="${boardDto.writer eq c_id.toString()}">
+<%--        <c:if test="${boardDto.c_id eq c_id.toString()}">--%>
+        <c:if test="${boardDto.c_id == c_id}">
             <button type="button" id="modifyBtn" class="btn btn-modify"><i class="fa fa-edit"></i> 수정</button>
             <button type="button" id="removeBtn" class="btn btn-remove"><i class="fa fa-trash"></i> 삭제</button>
         </c:if>
@@ -259,7 +209,6 @@
             </div>
 
             <div id="commenter">
-<%--            <%=session.getAttribute("c_id")%>: --%>
                 <input type="text" name="comment" placeholder="댓글을 남겨보세요.">
                 <div id="buttonContainer">
                     <button id="sendBtn" type="button">작성</button>

@@ -222,10 +222,9 @@
 
 <header id="top">
     <jsp:include page="header.jsp"/></header><br><br>
-
 <jsp:include page="myPageHeader.jsp"/>
 
-<div id="myform">
+<div id="infoForm">
     <form action="/mypage/info" method="POST" onsubmit="return formCheck()">
         <div class="container">
             <h1 id="loginTitle">개인정보 수정</h1>

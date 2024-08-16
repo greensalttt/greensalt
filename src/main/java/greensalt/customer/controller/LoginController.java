@@ -93,6 +93,8 @@ public class LoginController {
             HttpSession session = request.getSession();
             /*session 변수에 DB에 있는 c_id(custDto.getC_id())를 c_id 이름으로 저장*/
             session.setAttribute("c_id", custDto.getC_id());
+            session.setAttribute("c_nm", custDto.getC_nm());
+
             /*예외 발생시 로그인 실패*/
         } catch (Exception e) {
             e.printStackTrace();
