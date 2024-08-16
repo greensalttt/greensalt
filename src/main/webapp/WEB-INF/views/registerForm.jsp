@@ -233,6 +233,8 @@
                 <input class="special-class" type="password" id="c_pwd2" name="c_pwd2" placeholder="비밀번호를 다시 한번 입력해주세요." maxlength="15" oninput="pwd2Check(this.form)" disabled><br>
                 <label>이름</label>
                 <input class="special-class" type="text" id="c_name" name="c_name" maxlength="15" disabled>
+                <label>닉네임</label>
+                <input class="special-class" type="text" id="c_nm" name="c_nm" placeholder="2자 이상 10자 이하" maxlength="10" disabled>
                 <label>주소</label>
                 <div id="ad">
                     <input type="text" id="zip" name="c_zip" placeholder="우편번호" readonly disabled>
@@ -551,6 +553,7 @@
             document.getElementById('c_pwd').disabled = false;
             document.getElementById('c_pwd2').disabled = false;
             document.getElementById('c_name').disabled = false;
+            document.getElementById('c_nm').disabled = false;
             document.getElementById('zip').disabled = false;
             document.querySelector('[onclick="sample4_execDaumPostcode()"]').disabled = false;
             document.getElementById('roadAddress').disabled = false;
@@ -618,7 +621,7 @@
             var isPwd = pwdCheck(frm);
             var isPwd2 = pwd2Check(frm);
             var isName = nameCheck(frm);
-            /*var isZip = zipCheck(frm);*/
+            var isNm = nmCheck(frm);
             var isPhn = phnCheck(frm);
             var isGen = genCheck(frm);
             var isTou = touCheck(frm)
@@ -628,6 +631,7 @@
             var pwd = frm.c_pwd.value;
             var pwd2 = frm.c_pwd2.value;
             var name = frm.c_name.value;
+            var nm = frm.c_nm.value;
             var zip = frm.c_zip.value;
             var road = frm.c_road_a.value;
             var det = frm.c_det_a.value;
@@ -656,12 +660,15 @@
             } else if (!isName) {
                 alert("이름은 최대 15자 이하로 작성하셔야 합니다.");
                 return false;
+            } else if (!nm) {
+                alert('닉네임을을 입력해주세요.');
+                return false;
+            } else if (!isNm) {
+                alert("닉네임은 최대 10자 이하로 작성하셔야 합니다.");
+                return false;
             } else if (!zip) {
                 alert('우편번호를 입력해주세요.');
                 return false;
-                /*} else if (!isZip) {
-                    alert("우편번호는 최대 6자 이하로 작성하셔야 합니다.");
-                    return false;*/
             } else if (!road) {
                 alert('도로명주소를 입력해주세요.');
                 return false;
@@ -765,6 +772,14 @@
         function nameCheck(frm) {
             var name = frm.c_name.value;
             if (name.length >= 15) {
+                return false;
+            }
+            return true;
+        }
+
+        function nmCheck(frm) {
+            var nm = frm.c_nm.value;
+            if (nm.length < 2 || nm.length > 10) {
                 return false;
             }
             return true;

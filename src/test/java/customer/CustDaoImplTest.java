@@ -29,7 +29,7 @@ public class CustDaoImplTest {
     @Test
     public void insert() throws Exception{
         custDao.deleteAll();
-        CustDto custDto = new CustDto("asdf", "1234", "홍길동", "1990-01-01", "M", "0100100100", "123456", "서울특별시 강남구 테헤란로", "123번지", "101동 202호", "Y", "Y");
+        CustDto custDto = new CustDto("asdf", "1234", "홍길동", "홍홍홍", "1990-01-01", "M", "0100100100", "123456", "서울특별시 강남구 테헤란로", "123번지", "101동 202호", "Y", "Y");
         int rowCnt = custDao.insert(custDto);
         assertTrue(rowCnt==1);
     }

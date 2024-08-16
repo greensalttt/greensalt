@@ -73,6 +73,12 @@
     <p id="title1"><a id="title2" href="/mypage/list"><%=session.getAttribute("c_name")%>님의 MY PAGE</a></p>
     <div class="one1">
         <div class="sp">
+            <span class="date">닉네임</span>
+            <span class="ma2">
+                    <%=session.getAttribute("c_nm")%>
+                </span>
+        </div>
+        <div class="sp">
             <span class="date">등급</span>
             <span class="ma2">
                     <%=session.getAttribute("grd_name")%>

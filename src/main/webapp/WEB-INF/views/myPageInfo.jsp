@@ -234,6 +234,8 @@
             <input class="special-class" type="text" id="c_email" name="c_email" value="<%= session.getAttribute("c_email")%>" disabled>
             <label class="infoLabel">이름*</label>
             <input class="special-class" type="text" name="c_name" value="<%= session.getAttribute("c_name")%>"disabled>
+            <label class="infoLabel">닉네임</label>
+            <input class="special-class" type="text" id="c_nm" name="c_nm" value="<%= session.getAttribute("c_nm")%>" maxlength="10">
             <label class="infoLabel">주소</label>
             <div id="ad">
                 <input type="text" id="zip" name="c_zip" value="<%= session.getAttribute("c_zip")%>" readonly>
@@ -322,11 +324,26 @@
     }
 
     function formCheck() {
+        var isNm = newNmCheck();
+        if (!isNm) {
+            return false;
+        }
+
         var isPhn = newPhnCheck();
         if (!isPhn) {
             return false;
         }
         return confirm("변경사항을 마무리하시고 적용하시겠습니까?")
+    }
+
+    function newNmCheck() {
+        var newNm = document.getElementById("c_nm").value;
+
+        if (newNm.length < 2 || newNm.length > 10){
+            alert("닉네임은 2자 이상 10자 이하로 가능합니다")
+            return false;
+        }
+        return true;
     }
 
     function newPhnCheck() {

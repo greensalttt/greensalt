@@ -3,7 +3,6 @@
 
 <head>
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
 
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
