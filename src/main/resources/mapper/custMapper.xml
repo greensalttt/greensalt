@@ -8,8 +8,8 @@
 
 <!-- 회원가입   -->
     <insert id="insert" parameterType="CustDto">
-        insert into cust(c_email, c_pwd, c_name, c_birth, c_gnd, c_phn, c_zip, c_road_a, c_jibun_a, c_det_a, sms_agr, email_agr, c_adr_list_id)
-        values (#{c_email}, #{c_pwd}, #{c_name}, #{c_birth}, #{c_gnd}, #{c_phn}, #{c_zip}, #{c_road_a}, #{c_jibun_a}, #{c_det_a}, #{sms_agr}, #{email_agr}, 1)
+        insert into cust(c_email, c_pwd, c_name, c_nm, c_birth, c_gnd, c_phn, c_zip, c_road_a, c_jibun_a, c_det_a, sms_agr, email_agr, c_adr_list_id)
+        values (#{c_email}, #{c_pwd}, #{c_name}, #{c_nm}, #{c_birth}, #{c_gnd}, #{c_phn}, #{c_zip}, #{c_road_a}, #{c_jibun_a}, #{c_det_a}, #{sms_agr}, #{email_agr}, 1)
 
     </insert>
 
@@ -25,7 +25,7 @@
 
 <!-- 고객번호로 고객 조회-->
         <select id="selectID" resultType="CustDto" parameterType="int">
-            select cust.c_email, cust.c_pwd, cust.c_name, cust.c_zip, cust.c_road_a, cust.c_jibun_a, cust.c_det_a, cust.c_phn, cust.c_gnd, cust.c_birth, cust.sms_agr, cust.email_agr
+            select cust.c_email, cust.c_pwd, cust.c_name, cust.c_nm, cust.c_zip, cust.c_road_a, cust.c_jibun_a, cust.c_det_a, cust.c_phn, cust.c_gnd, cust.c_birth, cust.sms_agr, cust.email_agr
             from cust
             where c_id= #{c_id}
         </select>
@@ -33,7 +33,7 @@
 <!--고객 정보 변경-->
     <update id="updateAll" parameterType="CustDto">
         update cust
-        set  c_phn = #{c_phn}, c_birth = #{c_birth}, c_zip = #{c_zip}, c_road_a = #{c_road_a}, c_jibun_a = #{c_jibun_a}, c_det_a = #{c_det_a}, sms_agr = #{sms_agr}, email_agr = #{email_agr}
+        set  c_nm = #{c_nm}, c_phn = #{c_phn}, c_birth = #{c_birth}, c_zip = #{c_zip}, c_road_a = #{c_road_a}, c_jibun_a = #{c_jibun_a}, c_det_a = #{c_det_a}, sms_agr = #{sms_agr}, email_agr = #{email_agr}
         where c_id = #{c_id}
     </update>
 
@@ -63,7 +63,7 @@
 
     <!--고객과 등급을 조인해서 고객의 등급 이름을 찾기-->
     <select id="grdNameJoin" resultType="CustDto" parameterType="int">
-        SELECT c.c_name, CUST_GRD.grd_name, c.tot_amt ,c.login_dt, c.visit_cnt, c.reg_dt
+        SELECT c.c_name, c.c_nm, CUST_GRD.grd_name, c.tot_amt ,c.login_dt, c.visit_cnt, c.reg_dt
         FROM CUST c
         JOIN CUST_GRD ON c.c_grd_cd = CUST_GRD.c_grd_cd
         WHERE c.c_id = #{c_id}
