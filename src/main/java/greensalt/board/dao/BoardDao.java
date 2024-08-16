@@ -12,9 +12,6 @@ public interface BoardDao {
 
     int deleteAll() // int delete(String statement)
     ;
-    // 이름 SQL문과 안맞춰도됨
-    int delete(Integer bno, String writer) throws Exception // int delete(String statement, Object parameter)
-    ;
 
     int insert(BoardDto dto) throws Exception // int insert(String statement, Object parameter)
     ;
@@ -41,4 +38,9 @@ public interface BoardDao {
     int searchResultCnt(SearchCondition sc) throws Exception;
 
     int updateCommentCnt(Integer bno, int cnt);
+
+//    int delete(BoardDto boardDto) throws Exception;
+
+    // 이름 SQL문과 안맞춰도됨
+    int delete(Integer bno, Integer c_id) throws Exception;
 }

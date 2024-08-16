@@ -19,9 +19,14 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public int remove(Integer bno, String writer) throws Exception {
-        return boardDao.delete(bno, writer);
+    public int remove(Integer bno, Integer c_id) throws Exception {
+        return boardDao.delete(bno, c_id);
     }
+
+//    @Override
+//    public int remove(BoardDto boardDto) throws Exception {
+//        return boardDao.delete(boardDto);
+//    }
 
     @Override
     public int write(BoardDto boardDto) throws Exception {

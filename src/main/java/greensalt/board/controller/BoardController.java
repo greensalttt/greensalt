@@ -23,14 +23,34 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
+//    @PostMapping("/remove")
+//    public String remove(BoardDto boardDto, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr) {
+//        Integer c_id = (Integer) session.getAttribute("c_id");
+//        boardDto.setC_id(c_id);
+//        try {
+//            m.addAttribute("page", page);
+//            m.addAttribute("pageSize", pageSize);
+//
+//            int rowCnt = boardService.remove(boardDto);
+//            if (rowCnt != 1) {
+//                throw new Exception("board remove error");
+//            }
+//            rattr.addFlashAttribute("msg", "DEL_OK");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            rattr.addFlashAttribute("msg", "DEL_ERR");
+//        }
+//        return "redirect:/board/list";
+//    }
+
     @PostMapping("/remove")
     public String remove(Integer bno, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr) {
-        Integer writer = (Integer) session.getAttribute("c_id");
+        Integer c_id = (Integer) session.getAttribute("c_id");
         try {
             m.addAttribute("page", page);
             m.addAttribute("pageSize", pageSize);
 
-            int rowCnt = boardService.remove(bno, String.valueOf(writer));
+            int rowCnt = boardService.remove(bno, c_id);
             if (rowCnt != 1) {
                 throw new Exception("board remove error");
             }
@@ -51,8 +71,10 @@ public class BoardController {
 
     @PostMapping("/write")
     public String write(BoardDto boardDto, Model m, HttpSession session, RedirectAttributes rattr) {
-        Integer writer = (Integer) session.getAttribute("c_id");
-        boardDto.setWriter(String.valueOf(writer));
+
+        Integer c_id = (Integer) session.getAttribute("c_id");
+        boardDto.setC_id(c_id);
+        boardDto.setWriter((String) session.getAttribute("c_nm"));
 
         try {
             int rowCnt = boardService.write(boardDto);
@@ -75,9 +97,8 @@ public class BoardController {
 
     @PostMapping("/modify")
     public String modify(BoardDto boardDto, Model m, HttpSession session, RedirectAttributes rattr) {
-        Integer writer = (Integer) session.getAttribute("c_id");
-        boardDto.setWriter(String.valueOf(writer));
-
+        Integer c_id = (Integer) session.getAttribute("c_id");
+        boardDto.setC_id(c_id);
         try {
             int rowCnt = boardService.modify(boardDto);
 

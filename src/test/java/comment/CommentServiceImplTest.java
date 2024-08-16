@@ -29,7 +29,7 @@ public class CommentServiceImplTest {
     public void remove() throws Exception {
         boardDao.deleteAll();
 
-        BoardDto boardDto = new BoardDto("hello", "hello", "asdf");
+        BoardDto boardDto = new BoardDto("hello", 12341234,"hello", "asdf");
         assertTrue(boardDao.insert(boardDto) == 1);
         Integer bno = boardDao.selectAll().get(0).getBno();
         System.out.println("bno = " + bno);
@@ -53,7 +53,7 @@ public class CommentServiceImplTest {
     public void write() throws  Exception {
         boardDao.deleteAll();
 
-        BoardDto boardDto = new BoardDto("hello", "hello", "asdf");
+        BoardDto boardDto = new BoardDto("hello", 12341234,"hello", "asdf");
         assertTrue(boardDao.insert(boardDto) == 1);
         Integer bno = boardDao.selectAll().get(0).getBno();
         System.out.println("bno = " + bno);

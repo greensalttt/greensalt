@@ -9,8 +9,6 @@ import java.util.Map;
 public interface BoardService {
     int getCount() throws Exception;
 
-    int remove(Integer bno, String writer) throws Exception;
-
     int write(BoardDto boardDto) throws Exception;
 
     List<BoardDto> getList() throws Exception;
@@ -25,4 +23,7 @@ public interface BoardService {
 
     int getSearchResultCnt(SearchCondition sc) throws Exception;
 
+//    int remove(BoardDto boardDto) throws Exception;
+
+        int remove(Integer bno, Integer c_id) throws Exception;
 }
