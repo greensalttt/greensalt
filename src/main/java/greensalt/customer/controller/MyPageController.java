@@ -43,6 +43,7 @@ public class MyPageController {
                 session.setAttribute("c_name", custDto.getC_name());
                 session.setAttribute("grd_name", custDto.getGrd_name());
                 session.setAttribute("tot_amt", custDto.getTot_amt());
+                session.setAttribute("visit_cnt", custDto.getVisit_cnt());
 
                 Date regDate = custDto.getReg_dt();
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");

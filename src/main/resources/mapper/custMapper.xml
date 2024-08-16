@@ -63,12 +63,18 @@
 
     <!--고객과 등급을 조인해서 고객의 등급 이름을 찾기-->
     <select id="grdNameJoin" resultType="CustDto" parameterType="int">
-        SELECT c.c_name, CUST_GRD.grd_name, c.tot_amt ,c.login_dt, c.reg_dt
+        SELECT c.c_name, CUST_GRD.grd_name, c.tot_amt ,c.login_dt, c.visit_cnt, c.reg_dt
         FROM CUST c
         JOIN CUST_GRD ON c.c_grd_cd = CUST_GRD.c_grd_cd
         WHERE c.c_id = #{c_id}
     </select>
 
     <!--방문횟수 쿼리 만들기-->
+    <update id="visitCnt">
+        UPDATE cust
+        SET visit_cnt = visit_cnt + 1,
+            login_dt = NOW()
+        WHERE c_email = #{c_email}
+    </update>
 
 </mapper>

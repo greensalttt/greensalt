@@ -22,4 +22,6 @@ public interface CustDao {
 
     CustDto grdNameJoin(int c_id) throws Exception;
 
+    int visitCnt(String c_email) throws Exception;
+
 }

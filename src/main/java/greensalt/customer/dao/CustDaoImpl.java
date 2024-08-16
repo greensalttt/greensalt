@@ -53,10 +53,14 @@ public class CustDaoImpl implements CustDao {
         return session.update(namespace + "updateLoginDt", c_email);
     }
 
-
     @Override
     public CustDto grdNameJoin(int c_id) throws Exception
     {return session.selectOne(namespace+ "grdNameJoin", c_id);}
+
+    @Override
+    public int visitCnt(String c_email)throws Exception{
+        return session.update(namespace + "visitCnt", c_email);
+    }
 
 
 }

@@ -88,6 +88,7 @@ public class LoginController {
 
             /*로그인 성공시 updateLoginDate 메서드 실행*/
             custDao.updateLoginDt(c_email);
+            custDao.visitCnt(c_email);
             /*새로운 세션 생성*/
             HttpSession session = request.getSession();
             /*session 변수에 DB에 있는 c_id(custDto.getC_id())를 c_id 이름으로 저장*/

@@ -21,6 +21,7 @@ public class CustDto {
     private String email_agr;
     private Date reg_dt;
     private Date login_dt;
+    private int visit_cnt;
     private String tot_amt;
     private Date frst_reg_dt;
     private String frst_reg_id;
@@ -45,11 +46,12 @@ public class CustDto {
         this.email_agr = email_agr;
     }
 
-    public CustDto(String c_name, String grd_name, String tot_amt, Date login_dt, Date reg_dt){
+    public CustDto(String c_name, String grd_name, String tot_amt, Date login_dt, int visit_cnt, Date reg_dt){
         this.c_name = c_name;
         this.grd_name = grd_name;
         this.tot_amt = tot_amt;
         this.login_dt = login_dt;
+        this.visit_cnt = visit_cnt;
         this.reg_dt = reg_dt;
     }
 
@@ -74,6 +76,7 @@ public class CustDto {
                 ", email_agr='" + email_agr + '\'' +
                 ", reg_dt=" + reg_dt +
                 ", login_dt=" + login_dt +
+                ", visit_cnt=" + visit_cnt +
                 ", tot_amt='" + tot_amt + '\'' +
                 ", first_reg_dt=" + frst_reg_dt +
                 ", first_reg_id='" + frst_reg_id + '\'' +
@@ -247,6 +250,15 @@ public class CustDto {
     public void setLogin_dt(Date login_dt) {
         this.login_dt = login_dt;
     }
+
+    public int getVisit_cnt() {
+        return visit_cnt;
+    }
+
+    public void setVisit_cnt(int visit_cnt) {
+        this.visit_cnt = visit_cnt;
+    }
+
 
     public String getTot_amt() {
         return tot_amt;

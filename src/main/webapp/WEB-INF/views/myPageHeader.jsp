@@ -86,7 +86,7 @@
         </div>
         <div class="sp">
             <span class="date">방문</span>
-            <span class="ma2">0회</span>
+            <span class="ma2"><%=session.getAttribute("visit_cnt")%>회</span>
         </div>
         <div class="sp">
             <span class="date">가입일</span>
