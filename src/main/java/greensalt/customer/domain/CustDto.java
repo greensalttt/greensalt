@@ -9,6 +9,7 @@ public class CustDto {
     private String c_email;
     private String c_pwd;
     private String c_name;
+    private String c_nm;
     private String c_birth;
     private String c_gnd;
     private String c_phn;
@@ -31,10 +32,11 @@ public class CustDto {
 
     public CustDto(){}
 
-    public CustDto(String c_email, String c_pwd, String c_name, String c_birth, String c_gnd, String c_phn, String c_zip, String c_road_a, String c_jibun_a, String c_det_a, String sms_agr, String email_agr) {
+    public CustDto(String c_email, String c_pwd, String c_name, String c_nm, String c_birth, String c_gnd, String c_phn, String c_zip, String c_road_a, String c_jibun_a, String c_det_a, String sms_agr, String email_agr) {
         this.c_email = c_email;
         this.c_pwd = c_pwd;
         this.c_name = c_name;
+        this.c_nm = c_nm;
         this.c_birth = c_birth;
         this.c_gnd = c_gnd;
         this.c_phn = c_phn;
@@ -46,8 +48,9 @@ public class CustDto {
         this.email_agr = email_agr;
     }
 
-    public CustDto(String c_name, String grd_name, String tot_amt, Date login_dt, int visit_cnt, Date reg_dt){
+    public CustDto(String c_name, String c_nm, String grd_name, String tot_amt, Date login_dt, int visit_cnt, Date reg_dt){
         this.c_name = c_name;
+        this.c_nm = c_nm;
         this.grd_name = grd_name;
         this.tot_amt = tot_amt;
         this.login_dt = login_dt;
@@ -64,6 +67,7 @@ public class CustDto {
                 ", c_email='" + c_email + '\'' +
                 ", c_pwd='" + c_pwd + '\'' +
                 ", c_name='" + c_name + '\'' +
+                ", c_nm='" + c_nm + '\'' +
                 ", c_birth='" + c_birth + '\'' +
                 ", c_gnd='" + c_gnd + '\'' +
                 ", c_phn='" + c_phn + '\'' +
@@ -88,6 +92,7 @@ public class CustDto {
     public String toStringV1() {
         return "고객 아이디 " +c_id+"번님의 수정 후 정보는" +
                 "{" +
+                "c_nm='" + c_nm + '\'' +
                 "c_pwd='" + c_pwd + '\'' +
                 ", c_phn='" + c_phn + '\'' +
                 ", c_zip='" + c_zip + '\'' +
@@ -153,6 +158,14 @@ public class CustDto {
 
     public void setC_name(String c_name) {
         this.c_name = c_name;
+    }
+
+    public String getC_nm() {
+        return c_nm;
+    }
+
+    public void setC_nm(String c_nm) {
+        this.c_nm = c_nm;
     }
 
     public String getC_birth() {

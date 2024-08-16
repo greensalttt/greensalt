@@ -46,15 +46,15 @@ public class RegisterController {
     @ResponseBody
     public String mailCheck(String email, HttpServletRequest request) {
      try{
-        System.out.println("[dev]이메일 인증 요청이 들어옴!");
-        System.out.println("[dev]이메일 인증 이메일 : " + email + "[dev]이메일 END==");
+        System.out.println("이메일 인증 요청이 들어옴!");
+        System.out.println("이메일 인증 이메일 : " + email + "이메일:");
 
         String verificationCode = custService.joinEmail(email); // 이메일로 인증번호 발송
-        System.out.println("[dev]자바로 받아온 인증번호:  " + verificationCode);
+        System.out.println("자바로 받아온 인증번호:  " + verificationCode);
 
         HttpSession session = request.getSession();
         session.setAttribute("verificationCode", verificationCode); // 세션에 인증번호 저장
-        System.out.println("[dev]검증용 저장 인증번호: " + session.getAttribute("verificationCode"));
+        System.out.println("검증용 저장 인증번호: " + session.getAttribute("verificationCode"));
 
         return verificationCode;
      } catch (Exception e) {

@@ -41,6 +41,7 @@ public class MyPageController {
             /*세션 속성 설정*/
             if (custDto != null) {
                 session.setAttribute("c_name", custDto.getC_name());
+                session.setAttribute("c_nm", custDto.getC_nm());
                 session.setAttribute("grd_name", custDto.getGrd_name());
                 session.setAttribute("tot_amt", custDto.getTot_amt());
                 session.setAttribute("visit_cnt", custDto.getVisit_cnt());
@@ -49,12 +50,6 @@ public class MyPageController {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                 String regDateStr = dateFormat.format(regDate);
                 session.setAttribute("reg_dt", regDateStr);
-
-//                Date loginDate = custDto.getLogin_dt(); // 현재 시간을 가져옴
-//                DateFormat dateFormat2 = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분"); // 원하는 형식으로 포맷 설정
-//                String loginDateStr = dateFormat2.format(loginDate); // 날짜를 원하는 형식으로 변환
-//                session.setAttribute("login_dt", loginDateStr); // 세션에 날짜를 설정
-
             }
 
             return "myPage";
@@ -74,6 +69,7 @@ public class MyPageController {
             if (custDto != null) {
                 session.setAttribute("c_email", custDto.getC_email());
                 session.setAttribute("c_name", custDto.getC_name());
+                session.setAttribute("c_nm", custDto.getC_nm());
                 session.setAttribute("c_zip", custDto.getC_zip());
                 session.setAttribute("c_road_a", custDto.getC_road_a());
                 session.setAttribute("c_jibun_a", custDto.getC_jibun_a());
@@ -98,7 +94,7 @@ public class MyPageController {
     }
 
     @PostMapping("/info")
-    public String modify(@Validated @ModelAttribute("myPageInfoValidator") CustDto custDto, BindingResult result, HttpServletRequest request, String c_zip, String c_road_a, String c_jibun_a, String c_det_a, String c_phn, String c_birth, String sms_agr, String email_agr) {
+    public String modify(@Validated @ModelAttribute("myPageInfoValidator") CustDto custDto, BindingResult result, HttpServletRequest request, String c_nm, String c_zip, String c_road_a, String c_jibun_a, String c_det_a, String c_phn, String c_birth, String sms_agr, String email_agr) {
         try {
             System.out.println("자스를 통과한 에러가 있나요?! = " + result);
             if (result.hasErrors()) {
@@ -108,6 +104,7 @@ public class MyPageController {
             int c_id = (int) session.getAttribute("c_id");
 
             custDto.setC_id(c_id);
+            custDto.setC_nm(c_nm);
             custDto.setC_zip(c_zip);
             custDto.setC_road_a(c_road_a);
             custDto.setC_jibun_a(c_jibun_a);
