@@ -289,6 +289,7 @@
 
 </script>
 
+<%--    댓글--%>
 <script>
         $(document).ready(function(){
         if ("${mode}" !== "new") {
@@ -339,7 +340,6 @@
         let cno = $(this).parent().attr("data-cno");
             let comment = $("span.comment", $(this).parent()).text();
         $("input[name=comment]").val(comment);
-            // $("#sendBtn").hide();
             $("#modBtn").show();
             $("#modBtn").attr("data-cno", cno);
     });
