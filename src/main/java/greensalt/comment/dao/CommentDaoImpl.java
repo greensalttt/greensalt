@@ -44,10 +44,10 @@ public class CommentDaoImpl implements CommentDao {
     } // int update(String statement, Object parameter)
 
     @Override
-    public int deleted(Integer cno, String commenter) throws Exception {
+    public int deleted(Integer cno, Integer c_id) throws Exception {
         Map<String, Object> map = new HashMap<>();
         map.put("cno", cno);
-        map.put("commenter", commenter);
+        map.put("c_id", c_id);
         return session.update(namespace + "deleted", map);
     }
 }

@@ -27,7 +27,7 @@ public class CommentDaoImplTest {
     @Test
     public void delete() throws Exception {
         commentDao.deleteAll(1);
-        CommentDto commentDto = new CommentDto(1, 0, "comment", "asdf", 0);
+        CommentDto commentDto = new CommentDto(1, 1,0, "comment", "asdf", 0);
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==1);
     }
@@ -35,11 +35,11 @@ public class CommentDaoImplTest {
     @Test
     public void insert() throws Exception {
         commentDao.deleteAll(1);
-        CommentDto commentDto = new CommentDto(1, 0, "comment", "asdf", 0);
+        CommentDto commentDto = new CommentDto(1, 1, 0, "comment", "asdf", 0);
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==1);
 
-        commentDto = new CommentDto(1, 0, "comment", "asdf", 0);
+        commentDto = new CommentDto(1, 0, 1, "comment", "asdf", 0);
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==2);
     }
@@ -47,14 +47,14 @@ public class CommentDaoImplTest {
     @Test
     public void selectAll() throws Exception {
         commentDao.deleteAll(1);
-        CommentDto commentDto = new CommentDto(1, 0, "comment", "asdf" ,0);
+        CommentDto commentDto = new CommentDto(1, 1, 0, "comment", "asdf" ,0);
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==1);
 
         List<CommentDto> list = commentDao.selectAll(1);
         assertTrue(list.size()==1);
 
-        commentDto = new CommentDto(1, 0, "comment", "asdf" ,0);
+        commentDto = new CommentDto(1, 1, 0, "comment", "asdf" ,0);
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==2);
 
@@ -65,7 +65,7 @@ public class CommentDaoImplTest {
     @Test
     public void select() throws Exception {
         commentDao.deleteAll(1);
-        CommentDto commentDto = new CommentDto(1, 0, "comment", "asdf",0);
+        CommentDto commentDto = new CommentDto(1, 1, 0, "comment", "asdf",0);
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==1);
 
@@ -79,7 +79,7 @@ public class CommentDaoImplTest {
     @Test
     public void update() throws Exception {
         commentDao.deleteAll(1);
-        CommentDto commentDto = new CommentDto(1, 0, "comment", "asdf",0);
+        CommentDto commentDto = new CommentDto(1, 1, 0, "comment", "asdf",0);
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==1);
 

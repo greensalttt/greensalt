@@ -4,6 +4,7 @@ import java.util.*;
 
 public class CommentDto {
     private Integer cno;
+    private Integer c_id;
     private Integer bno;
     private Integer pcno;
     private String  comment;
@@ -14,7 +15,8 @@ public class CommentDto {
 
     public CommentDto(){}
 
-    public CommentDto(Integer bno, Integer pcno, String comment, String commenter, Integer deleted) {
+    public CommentDto(Integer c_id, Integer bno, Integer pcno, String comment, String commenter, Integer deleted) {
+        this.c_id = c_id;
         this.bno = bno;
         this.pcno = pcno;
         this.comment = comment;
@@ -22,11 +24,13 @@ public class CommentDto {
         this.deleted = deleted;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(cno, bno, pcno, comment, commenter);
+    public Integer getC_id() {
+        return c_id;
     }
 
+    public void setC_id(Integer c_id) {
+        this.c_id = c_id;
+    }
     public Integer getBno() {
         return bno;
     }
@@ -95,6 +99,7 @@ public class CommentDto {
     public String toString() {
         return "CommentDto{" +
                 "cno=" + cno +
+                ", c_id=" + c_id +
                 ", bno=" + bno +
                 ", pcno=" + pcno +
                 ", comment='" + comment + '\'' +

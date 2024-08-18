@@ -9,7 +9,7 @@ public interface CommentService {
     int getCount(Integer bno) throws Exception;
 
     @Transactional(rollbackFor = Exception.class)
-    int remove(Integer cno, Integer bno, String commenter) throws Exception;
+    int remove(Integer cno, Integer bno, Integer c_id) throws Exception;
 
     @Transactional(rollbackFor = Exception.class)
     int write(CommentDto commentDto) throws Exception;

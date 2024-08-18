@@ -35,7 +35,7 @@ public class CommentServiceImplTest {
         System.out.println("bno = " + bno);
 
         commentDao.deleteAll(bno);
-        CommentDto commentDto = new CommentDto(bno,0,"hi","qwer",0);
+        CommentDto commentDto = new CommentDto(bno,0,1, "hi","qwer",0);
 
         assertTrue(boardDao.select(bno).getComment_cnt() == 0);
         assertTrue(commentService.write(commentDto)==1);
@@ -44,7 +44,7 @@ public class CommentServiceImplTest {
         Integer cno = commentDao.selectAll(bno).get(0).getCno();
 
         // 일부러 예외를 발생시키고 Tx가 취소되는지 확인해야.
-        int rowCnt = commentService.remove(cno, bno, commentDto.getCommenter());
+        int rowCnt = commentService.remove(cno, bno, commentDto.getC_id());
         assertTrue(rowCnt==1);
         assertTrue(boardDao.select(bno).getComment_cnt() == 0);
     }
@@ -59,7 +59,7 @@ public class CommentServiceImplTest {
         System.out.println("bno = " + bno);
 
         commentDao.deleteAll(bno);
-        CommentDto commentDto = new CommentDto(bno,0,"hi","qwer",0);
+        CommentDto commentDto = new CommentDto(1, 0,1, "hi","qwer",0);
 
         assertTrue(boardDao.select(bno).getComment_cnt() == 0);
         assertTrue(commentService.write(commentDto)==1);
