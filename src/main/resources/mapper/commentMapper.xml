@@ -11,9 +11,9 @@
 
     <insert id="insert" parameterType="CommentDto">
         INSERT INTO comment
-            (bno, pcno, comment, commenter, reg_date, up_date)
+            (c_id, bno, pcno, comment, commenter, reg_date, up_date)
         VALUES
-            (#{bno}, #{pcno}, #{comment}, #{commenter}, now(), now())
+            (#{c_id}, #{bno}, #{pcno}, #{comment}, #{commenter}, now(), now())
     </insert>
 
     <select id="selectAll" parameterType="int" resultType="CommentDto">
@@ -25,7 +25,7 @@
 
 
     <select id="select" parameterType="int" resultType="CommentDto">
-        SELECT cno, bno, pcno, comment, commenter, reg_date, up_date
+        SELECT cno, c_id, bno, pcno, comment, commenter, reg_date, up_date
         FROM comment
         WHERE cno = #{cno}
     </select>
@@ -34,14 +34,14 @@
         UPDATE comment
         SET comment = #{comment}
           , up_date = now()
-        WHERE cno = #{cno} and commenter = #{commenter}
+        WHERE cno = #{cno} and c_id = #{c_id}
     </update>
 
-    <!--    댓글을 DB에 남기고 컬럼을 통해 뷰에 표시하기-->
+    <!--    삭제 여부 확인-->
     <update id="deleted" parameterType="map">
         UPDATE comment
         SET deleted = 1
-        WHERE cno = #{cno} AND commenter = #{commenter}
+        WHERE cno = #{cno} AND c_id = #{c_id}
     </update>
 
 </mapper>
