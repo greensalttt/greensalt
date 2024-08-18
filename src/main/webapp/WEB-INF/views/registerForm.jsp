@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
 
 
 
@@ -18,7 +17,7 @@
             body {
                 font-size: 11px;
                 font-family: "IBM Plex Sans KR", sans-serif;
-                font-style: normal;
+                /*font-style: normal;*/
             }
 
             .container {
@@ -96,7 +95,9 @@
                 padding: 20px;
                 border: 1px solid #888;
                 width: 50%;
+                box-sizing: border-box;
             }
+
 
             #touModal {
                 color: black;
@@ -112,10 +113,8 @@
 
             #close,
             #close2 {
-                /*font-size: 22px;*/
                 font-size: 30px;
                 float: right;
-                /*text-align: center;*/
                 cursor: pointer;
             }
 
@@ -147,6 +146,7 @@
 
             #zipBtn {
                 float: right;
+                width: 100px;
             }
 
             #birth {
@@ -156,15 +156,17 @@
                 font-size: 1em;
                 width: 100%;
                 box-sizing: border-box;
-                /*font-family: 'IBM Plex Sans', sans-serif;*/
             }
 
             #email, #verify{
                 display: inline;
+
             }
             #verify{
                 float: right;
                 margin-bottom: 5px;
+                width: 100px;
+                /*height: 25px;*/
             }
 
             #sms_agr, #smsLabel{
@@ -221,7 +223,7 @@
             <div class="container">
                 <p id="check-result"></p>
                 <label id="email">이메일</label>
-                <input id="verify" type="button" value="인증번호 받기" disabled><br>
+                <input id="verify" type="button" value="인증번호 받기" disabled>
                 <input class="special-class" type="text" id="c_email" name="c_email" maxlength="30" onblur="emailCheck()" placeholder="green@salt.com">
                 <p id="mail-check-warn"></p>
                 <label>인증번호</label>
@@ -258,9 +260,14 @@
                 <input type="date" id="birth" name="c_birth" min="1900-01-01" max="2023-12-31" disabled><br><br>
 
                 <input type="checkbox" id="touBox" onclick="openModal()" name="touBox" value="Y" disabled>
+<%--                <input type="checkbox" id="touBox" onclick="openModal()" name="touBox" value="Y">--%>
+
+
                 <label for="touBox" id="touLabel">[필수] 이용약관</label><br>
 
                 <input type="checkbox" id="piiBox" onclick="openModal2()" name="piiBox" value="Y" disabled>
+<%--                <input type="checkbox" id="piiBox" onclick="openModal2()" name="piiBox" value="Y">--%>
+
                 <label for="piiBox" id="piiLabel">[필수] 개인정보 및 이용</label><br>
 
                 <input type="checkbox" id="sms_agr" name="sms_agr" value="Y" disabled>
@@ -431,6 +438,7 @@
             <p>3. 외설 또는 폭력적인 메시지, 화상, 음성, 기타 공서양속에 반하는 정보를 몰에 공개 또는 게시하는 행위</p>
 
             <p>(부칙) 2024년 04월 22일부터 시행합니다. (2024.04.22 개정) <span id="close" onclick="closeModal()" >&times;</span> </p>
+            <br>
 
         </div>
     </div>
@@ -842,15 +850,6 @@
             };
         }
 
-        function openModal() {
-            var modal = document.getElementById("myModal");
-            // var touBox = document.getElementById('touBox');
-            modal.style.display = "block";
-            document.body.style.overflow = "hidden";
-            modalSeen = true; // 모달을 본 것으로 표시
-            enableTouBox(); // touBox 활성화
-        }
-
         function enablePiiBox() {
             var piiBox = document.getElementById("piiBox");
             piiBox.disabled = false;
@@ -862,39 +861,91 @@
                 piiBox.checked = true;
             };
         }
+        //
+        // function openModal() {
+        //     var modal = document.getElementById("myModal");
+        //     modal.style.display = "block";
+        //     document.body.style.overflow = "hidden";
+        //     modalSeen = true; // 모달을 본 것으로 표시
+        //     enableTouBox(); // touBox 활성화
+        // }
+        //
+        // function openModal2(){
+        //     var modal = document.getElementById("myModal2");
+        //     modal.style.display = "block";
+        //     document.body.style.overflow = "hidden";
+        //     modalSeen2 = true; // 모달을 본 것으로 표시
+        //     enablePiiBox(); // touBox 활성화
+        // }
+        //
+        //
+        // function closeModal() {
+        //     var modal = document.getElementById("myModal");
+        //     modal.style.display = "none";
+        //     document.body.style.overflow = "auto";
+        // }
+        //
+        // function closeModal2() {
+        //     var modal = document.getElementById("myModal2");
+        //     modal.style.display = "none";
+        //     document.body.style.overflow = "auto";
+        // }
 
-        function openModal2(){
-            var modal = document.getElementById("myModal2");
+        function openModal() {
+            var modal = document.getElementById("myModal");
             modal.style.display = "block";
-            document.body.style.overflow = "hidden";
-            modalSeen2 = true; // 모달을 본 것으로 표시
-            enablePiiBox(); // touBox 활성화
-        }
 
+            // 스크롤바 너비 계산
+            var scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.paddingRight = scrollBarWidth + "px"; // 스크롤바 너비만큼 패딩 추가
+
+            document.body.style.overflowY = "hidden"; // 스크롤 숨기기
+            document.body.style.overflowX = "hidden";
+        }
 
         function closeModal() {
             var modal = document.getElementById("myModal");
             modal.style.display = "none";
-            document.body.style.overflow = "auto";
+
+            // 패딩 제거
+            document.body.style.paddingRight = "";
+            document.body.style.overflowY = "auto"; // 스크롤 복구
+            document.body.style.overflowX = "";
+        }
+
+        function openModal2() {
+            var modal = document.getElementById("myModal2");
+            modal.style.display = "block";
+
+            var scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.paddingRight = scrollBarWidth + "px";
+            // document.body.style.overflow = "hidden";
+
+            document.body.style.overflowY = "hidden"; // 스크롤 숨기기
+            document.body.style.overflowX = "hidden";
         }
 
         function closeModal2() {
             var modal = document.getElementById("myModal2");
             modal.style.display = "none";
-            document.body.style.overflow = "auto";
+
+            document.body.style.paddingRight = "";
+            document.body.style.overflowY = "auto"; // 스크롤 복구
+            document.body.style.overflowX = "";
         }
 
-        document.addEventListener("keydown", function(event) {
-            if (event.key === "Escape") {
-                closeModal();
-            }
-        });
 
-        document.addEventListener("keydown", function(event) {
-            if (event.key === "Escape") {
-                closeModal2();
-            }
-        });
+        // document.addEventListener("keydown", function(event) {
+        //     if (event.key === "Escape") {
+        //         closeModal();
+        //     }
+        // });
+
+        // document.addEventListener("keydown", function(event) {
+        //     if (event.key === "Escape") {
+        //         closeModal2();
+        //     }
+        // });
 
         /*페이지 로드시 이벤트 리스너 등록*/
         document.addEventListener('DOMContentLoaded', function () {

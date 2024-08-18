@@ -155,7 +155,7 @@
                     <li class="one">
                         <a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 0)"
+                                <img class="albumAll" onclick="moveAll(event, 0)"
                                      src="../../album_img/SilicaGelalbum.webp" style="width:100%" height="170" />
                             </div>
                             <div class="three">
@@ -167,7 +167,7 @@
                     <li class="one">
                         <a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 1)" src="../../album_img/orange.webp"
+                                <img class="albumAll" onclick="moveAll(event, 1)" src="../../album_img/orange.webp"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -180,7 +180,7 @@
                     <li class="one">
                         <a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 2)" src="../../album_img/omg.jpg"
+                                <img class="albumAll" onclick="moveAll(event, 2)" src="../../album_img/omg.jpg"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -193,7 +193,7 @@
                     <li class="one">
                         <a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 3)"
+                                <img class="albumAll" onclick="moveAll(event, 3)"
                                      src="../../album_img/Let's_Start_Here.jpg" style="width:100%" height="170" />
                             </div>
                             <div class="three">
@@ -205,7 +205,7 @@
                     <li class="one">
                         <a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 4)" src="../../album_img/magic.jpg"
+                                <img class="albumAll" onclick="moveAll(event, 4)" src="../../album_img/magic.jpg"
                                      style="width:100%" height="170" />
                             </div>
                             <div class="three">
@@ -217,7 +217,7 @@
                     <li class="one">
                         <a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 9)" src="../../album_img/never.png"
+                                <img class="albumAll" onclick="moveAll(event, 9)" src="../../album_img/never.png"
                                      style="width:100%" height="170" />
                             </div>
                             <div class="three">
@@ -229,7 +229,7 @@
                     <li class="one">
                         <a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 6)" src="../../album_img/choiyuri.jpg"
+                                <img class="albumAll" onclick="moveAll(event, 6)" src="../../album_img/choiyuri.jpg"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -242,7 +242,7 @@
                     <li class="one">
                         <a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 7)" src="../../album_img/thirsty.webp"
+                                <img class="albumAll" onclick="moveAll(event, 7)" src="../../album_img/thirsty.webp"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -255,7 +255,7 @@
                     <li class="one">
                         <a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 8)" src="../../album_img/proverb.jpg"
+                                <img class="albumAll" onclick="moveAll(event, 8)" src="../../album_img/proverb.jpg"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -268,7 +268,7 @@
                     <li class="one">
                         <a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 5)" src="../../album_img/teambaby.webp"
+                                <img class="albumAll" onclick="moveAll(event, 5)" src="../../album_img/teambaby.webp"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -289,7 +289,7 @@
                 <ul>
                     <li class="one"><a href="#">
                         <div>
-                            <img class="albumAll1" onclick="moveAll(event, 10)" src="../../album_img/dawnfm.jpg"
+                            <img class="albumAll" onclick="moveAll(event, 10)" src="../../album_img/dawnfm.jpg"
                                  style="width:100%" height="170" />
                         </div>
 
@@ -299,7 +299,7 @@
 
                         <li class="one"><a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 11)" src="../../album_img/teambaby.webp"
+                                <img class="albumAll" onclick="moveAll(event, 11)" src="../../album_img/teambaby.webp"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -310,7 +310,7 @@
 
                         <li class="one"><a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 12)" src="../../album_img/love.webp"
+                                <img class="albumAll" onclick="moveAll(event, 12)" src="../../album_img/love.webp"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -321,7 +321,7 @@
 
                         <li class="one"><a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 13)" src="../../album_img/choiyuri.jpg"
+                                <img class="albumAll" onclick="moveAll(event, 13)" src="../../album_img/choiyuri.jpg"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -332,7 +332,7 @@
 
                         <li class="one"><a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 14)" src="../../album_img/teen.jpeg"
+                                <img class="albumAll" onclick="moveAll(event, 14)" src="../../album_img/teen.jpeg"
                                      style="width:100%" height="170" />
                             </div>
                             <div class="three">
@@ -342,7 +342,7 @@
 
                         <li class="one"><a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 15)" src="../../album_img/thirsty.webp"
+                                <img class="albumAll" onclick="moveAll(event, 15)" src="../../album_img/thirsty.webp"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -354,7 +354,7 @@
 
                         <li class="one"><a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 16)" src="../../album_img/starboy.webp"
+                                <img class="albumAll" onclick="moveAll(event, 16)" src="../../album_img/starboy.webp"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -366,7 +366,7 @@
 
                         <li class="one"><a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 17)" src="../../album_img/formyangel.jpg"
+                                <img class="albumAll" onclick="moveAll(event, 17)" src="../../album_img/formyangel.jpg"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -378,7 +378,7 @@
 
                         <li class="one"><a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 18)"
+                                <img class="albumAll" onclick="moveAll(event, 18)"
                                      src="../../album_img/flaws%20and%20all.png" style="width:100%" height="170" />
                             </div>
 
@@ -390,7 +390,7 @@
 
                         <li class="one"><a href="#">
                             <div>
-                                <img class="albumAll1" onclick="moveAll(event, 19)" src="../../album_img/nwjns.jpg"
+                                <img class="albumAll" onclick="moveAll(event, 19)" src="../../album_img/nwjns.jpg"
                                      style="width:100%" height="170" />
                             </div>
 
@@ -500,7 +500,7 @@
 
 <script>
     // 히스토리
-    const albumAll = document.getElementsByClassName("albumAll1");
+    const albumAll = document.getElementsByClassName("albumAll");
     const boxMore = document.getElementsByClassName("new");
 
     let newAlbumAll = [];
@@ -510,7 +510,7 @@
         const storedData = JSON.parse(localStorage.getItem("albums"));
         if (storedData) {
             const currentTime = new Date().getTime();
-            const oneDay = 24 * 60 * 60 * 1000; // 24시간을 밀리초로 계산
+            const oneDay = 24 * 60 * 60 * 1000; // 24시간
 
             newAlbumAll = storedData.filter(album => currentTime - album.timestamp < oneDay)
                 .map(album => {
@@ -521,7 +521,6 @@
                     return { element: img, timestamp: album.timestamp };
                 });
             updateAlbumsDisplay();
-            // 만료된 데이터 삭제
             saveAlbumsToLocalStorage();
         }
     });
@@ -570,12 +569,13 @@
         }));
 
         // albumDataArray 배열을 JSON 문자열로 변환하여
-        // 로컬 스토리지에 'albums'라는 키로 저장
+        // 로컬 스토리지에 albums 키로 저장
         localStorage.setItem("albums", JSON.stringify(albumDataArray));
     }
+
     // 검색창 엔터키 호환
     function handleKeyPress(event) {
-        // Enter 키의 keyCode는 13
+        // Enter 키의 키코드는 13
         if (event.keyCode === 13) {
             // 엔터 키를 눌렀을 때 검색 함수 호출
             var searchValue = document.getElementById('search').value;
