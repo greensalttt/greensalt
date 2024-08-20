@@ -237,14 +237,10 @@
             <input class="special-class" type="text" id="c_nm" name="c_nm" value="<%= session.getAttribute("c_nm")%>" maxlength="10">
             <label class="infoLabel">주소</label>
             <div id="ad">
-                <input type="text" id="zip" name="c_zip" value="<%= session.getAttribute("c_zip")%>">
+                <input type="text" id="zip" name="c_zip" value="<%= session.getAttribute("c_zip")%>" readonly>
                 <input type="button" id="zipBtn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" ></div>
-            <input type="text" id="roadAddress" name="c_road_a" value="<%= session.getAttribute("c_road_a")%>">
-            <input type="text" id="jibunAddress" name="c_jibun_a" maxlength="30" value="<%= session.getAttribute("c_jibun_a")%>">
-<%--                <input type="text" id="zip" name="c_zip" value="<%= session.getAttribute("c_zip")%>" readonly>--%>
-<%--                <input type="button" id="zipBtn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" ></div>--%>
-<%--            <input type="text" id="roadAddress" name="c_road_a" value="<%= session.getAttribute("c_road_a")%>" readonly>--%>
-<%--            <input type="text" id="jibunAddress" name="c_jibun_a" maxlength="30" value="<%= session.getAttribute("c_jibun_a")%>" readonly>--%>
+            <input type="text" id="roadAddress" name="c_road_a" value="<%= session.getAttribute("c_road_a")%>" readonly>
+            <input type="text" id="jibunAddress" name="c_jibun_a" maxlength="30" value="<%= session.getAttribute("c_jibun_a")%>" readonly>
             <span id="guide" style="color:#999;display:none"></span>
             <div class="oneLine"><input type="text" id="detailAddress" name="c_det_a" maxlength="30" value="<%= session.getAttribute("c_det_a")%>"><p id="det">건물명 + 상세주소</p></div><br>
             <label class="infoLabel">휴대폰</label>
