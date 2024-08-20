@@ -90,8 +90,24 @@ public class BoardDaoImplTest {
         BoardDto boardDto = new BoardDto("no title", 12341234,"no content","asdf");
         assertTrue(boardDao.insert(boardDto) == 1);
 
+
         // 추가한 게시글의 수가 1 증가했는지 확인합니다.
         assertTrue(boardDao.count() == initialPostCount + 1);
+    }
+
+    @Test
+    public void insertMultiplePostsTest() throws Exception {
+        // 현재 게시글의 수를 저장합니다.
+        int initialPostCount = boardDao.count();
+
+        // 10개의 새로운 게시글을 추가
+        for (int i = 1; i < 101; i++) {
+            BoardDto boardDto = new BoardDto("test" + i, 100118, "content " + i, "greensalt");
+            assertTrue(boardDao.insert(boardDto) == 1);
+        }
+
+        // 추가한 게시글의 수가 20개 증가했는지 확인합니다.
+        assertTrue(boardDao.count() == initialPostCount + 100);
     }
 
     @Test
