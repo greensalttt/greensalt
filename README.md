@@ -1,4 +1,4 @@
-### 인디음악 커뮤니티 녹색소금
+## 인디음악 커뮤니티 녹색소금  
 
 ![메인페이지](https://github.com/user-attachments/assets/6af207dc-411e-4174-b308-098587b8d834)
 ![메인 히스토리](https://github.com/user-attachments/assets/aa58e739-4fcc-48f7-97db-e867d57d9b82)
@@ -11,8 +11,7 @@
 ![게시판 검색](https://github.com/user-attachments/assets/2b4e14d1-5c63-492c-8eeb-b5bd6ef69a12)
 ![게시글 및 댓글](https://github.com/user-attachments/assets/2283f7d9-0212-4bdc-8190-9c31be65f6a4)
 
-### 개발기능(~ing)
-
+## 개발기능(~ing)
 
 #### 인덱스
    + 앨범 History
