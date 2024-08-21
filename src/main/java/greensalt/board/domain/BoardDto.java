@@ -12,31 +12,16 @@ public class BoardDto {
     private  int view_cnt;
     private  int comment_cnt;
     private Date reg_date;
+    private Date up_date;
+    private Integer deleted;
     public BoardDto(){}
-    public BoardDto(String title, Integer c_id, String content, String writer) {
+    public BoardDto(Integer c_id, String title, String content, String writer, Integer deleted) {
         this.c_id = c_id;
         this.title = title;
         this.content = content;
         this.writer = writer;
+        this.deleted = deleted;
     }
-
-//    public BoardDto(Integer bno, Integer c_id) {
-//        this.bno = bno;
-//        this.c_id = c_id;
-//    }
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        BoardDto boardDto = (BoardDto) o;
-//        return Objects.equals(bno, boardDto.bno) && Objects.equals(title, boardDto.title) && Objects.equals(content, boardDto.content) && Objects.equals(writer, boardDto.writer);
-//    }
-
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(bno, c_id, title, content, writer);
-//    }
 
     @Override
     public String toString() {
@@ -49,6 +34,8 @@ public class BoardDto {
                 ", view_cnt=" + view_cnt +
                 ", comment_cnt=" + comment_cnt +
                 ", reg_date=" + reg_date +
+                ", up_date=" + up_date +
+                ", deleted=" + deleted +
                 '}';
     }
 
@@ -111,4 +98,19 @@ public class BoardDto {
     public void setReg_date(Date reg_date) {
         this.reg_date = reg_date;
     }
+
+
+    public Date getUp_date() {
+        return up_date;
+    }
+
+    public void setUp_date(Date up_date) { this.up_date = up_date; }
+
+        public Integer isDeleted() {
+            return deleted;
+        }
+
+        public void setDeleted(Integer deleted){
+            this.deleted = deleted;
+        }
 }

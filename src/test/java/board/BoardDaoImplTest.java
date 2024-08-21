@@ -23,7 +23,7 @@ public class BoardDaoImplTest {
     public void insertTestData() throws Exception{
         boardDao.deleteAll();
         for(int i = 1; i<= 100; i++){
-            BoardDto boardDto = new BoardDto("title" + 1, 12341234,"no content",  "닉네임");
+            BoardDto boardDto = new BoardDto(12341234,"title"+i, "asdfasdfasdf", "asdf"+i,0);
             boardDao.insert(boardDto);
         }
     }
@@ -38,7 +38,7 @@ public class BoardDaoImplTest {
         boardDao.deleteAll();
         assertTrue(boardDao.count()==0);
 
-        BoardDto boardDto = new BoardDto("no title", 12341234,"no content","asdf");
+        BoardDto boardDto = new BoardDto(12341234, "title" + 1, "no content",  "닉네임", 0);
         assertTrue(boardDao.insert(boardDto)==1);
         assertTrue(boardDao.count()==1);
 
@@ -50,13 +50,13 @@ public class BoardDaoImplTest {
     public void deleteAllTest() throws Exception {
         boardDao.deleteAll();
         assertTrue(boardDao.count()==0);
+        BoardDto boardDto = new BoardDto(12341234, "title" + 1, "no content",  "닉네임", 0);
 
-        BoardDto boardDto = new BoardDto("no title", 12341234,"no content", "asdf");
         assertTrue(boardDao.insert(boardDto)==1);
         assertTrue(boardDao.deleteAll()==1);
         assertTrue(boardDao.count()==0);
 
-        boardDto = new BoardDto("no title", 12341234,"no content","asdf");
+       boardDto = new BoardDto(12341234, "title" + 1, "no content",  "닉네임", 0);
         assertTrue(boardDao.insert(boardDto)==1);
         assertTrue(boardDao.insert(boardDto)==1);
         assertTrue(boardDao.deleteAll()==2);
@@ -67,15 +67,15 @@ public class BoardDaoImplTest {
     @Test
     public void insertTest() throws Exception {
         boardDao.deleteAll();
-        BoardDto boardDto = new BoardDto("no title", 12341234,"no content", "asdf");
+        BoardDto boardDto = new BoardDto(12341234, "title" + 1, "no content",  "닉네임", 0);
         assertTrue(boardDao.insert(boardDto)==1);
 
-        boardDto = new BoardDto("no title2", 12341234,"no content", "asdf");
+        boardDto = new BoardDto(12341234, "title" + 1, "no content",  "닉네임", 0);
         assertTrue(boardDao.insert(boardDto)==1);
         assertTrue(boardDao.count()==2);
 
         boardDao.deleteAll();
-        boardDto = new BoardDto("no title3", 12341234,"no content","asdf");
+        boardDto = new BoardDto(12341234, "title" + 1, "no content",  "닉네임", 0);
         assertTrue(boardDao.insert(boardDto)==1);
         assertTrue(boardDao.count()==1);
     }
@@ -87,7 +87,7 @@ public class BoardDaoImplTest {
         int initialPostCount = boardDao.count();
 
         // 새로운 게시글 추가
-        BoardDto boardDto = new BoardDto("no title", 12341234,"no content","asdf");
+        BoardDto boardDto = new BoardDto(12341234, "title" + 1, "no content",  "닉네임", 0);
         assertTrue(boardDao.insert(boardDto) == 1);
 
 
@@ -102,7 +102,7 @@ public class BoardDaoImplTest {
 
         // 10개의 새로운 게시글을 추가
         for (int i = 1; i < 101; i++) {
-            BoardDto boardDto = new BoardDto("test" + i, 100118, "content " + i, "greensalt");
+            BoardDto boardDto = new BoardDto(12341234, "title" + 1, "no content",  "닉네임", 0);
             assertTrue(boardDao.insert(boardDto) == 1);
         }
 
@@ -118,7 +118,7 @@ public class BoardDaoImplTest {
         List<BoardDto> list = boardDao.selectAll();
         assertTrue(list.size() == 0);
 
-        BoardDto boardDto = new BoardDto("no title5", 12341234,"no content","asdf");
+        BoardDto boardDto = new BoardDto(12341234, "title" + 1, "no content",  "닉네임", 0);
         assertTrue(boardDao.insert(boardDto)==1);
 
         list = boardDao.selectAll();
@@ -144,7 +144,7 @@ public class BoardDaoImplTest {
         boardDao.deleteAll();
 
         for (int i = 1; i <= 10; i++) {
-            BoardDto boardDto = new BoardDto(""+i, 12341234,"no content"+i,"asdf");
+            BoardDto boardDto = new BoardDto(12341234, "title" + 1, "no content",  "닉네임", 0);
             boardDao.insert(boardDto);
         }
 
@@ -177,7 +177,7 @@ public class BoardDaoImplTest {
     @Test
     public void updateTest() throws Exception {
         boardDao.deleteAll();
-        BoardDto boardDto = new BoardDto("no title", 12341234,"no content", "asdf");
+        BoardDto boardDto = new BoardDto(12341234, "title" + 1, "no content",  "닉네임", 0);
         assertTrue(boardDao.insert(boardDto)==1);
 
         Integer bno = boardDao.selectAll().get(0).getBno();
@@ -195,7 +195,7 @@ public class BoardDaoImplTest {
         boardDao.deleteAll();
         assertTrue(boardDao.count()==0);
 
-        BoardDto boardDto = new BoardDto("no title", 12341234,"no content", "asdf");
+        BoardDto boardDto = new BoardDto(12341234, "title" + 1, "no content",  "닉네임", 0);
         assertTrue(boardDao.insert(boardDto)==1);
         assertTrue(boardDao.count()==1);
 
@@ -217,7 +217,7 @@ public class BoardDaoImplTest {
     public void searchSelectPageTest() throws Exception {
         boardDao.deleteAll();
         for (int i = 1; i <= 20; i++) {
-            BoardDto boardDto = new BoardDto("title"+i,12341234, "asdfasdfasdf", "asdf"+i);
+            BoardDto boardDto = new BoardDto(12341234,"title"+i, "asdfasdfasdf", "asdf"+i,0);
             boardDao.insert(boardDto);
         }
 
@@ -236,7 +236,7 @@ public class BoardDaoImplTest {
     public void searchResultCntTest() throws Exception {
         boardDao.deleteAll();
         for (int i = 1; i <= 20; i++) {
-            BoardDto boardDto = new BoardDto("title"+i, 12341234,"asdfasdfasdf","asdf"+i);
+            BoardDto boardDto = new BoardDto(12341234, "title" + i, "no content",  "닉네임", 0);
             boardDao.insert(boardDto);
         }
 

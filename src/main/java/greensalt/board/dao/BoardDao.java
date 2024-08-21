@@ -39,8 +39,9 @@ public interface BoardDao {
 
     int updateCommentCnt(Integer bno, int cnt);
 
-//    int delete(BoardDto boardDto) throws Exception;
 
     // 이름 SQL문과 안맞춰도됨
-    int delete(Integer bno, Integer c_id) throws Exception;
+
+    int deleted(Integer bno, Integer c_id) throws Exception;
+
 }

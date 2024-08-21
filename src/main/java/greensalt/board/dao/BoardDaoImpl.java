@@ -26,18 +26,12 @@ public class BoardDaoImpl implements BoardDao{
     }
 
     @Override
-    public int delete(Integer bno, Integer c_id) throws Exception {
-        Map map = new HashMap();
+    public int deleted(Integer bno, Integer c_id) throws Exception {
+        Map<String, Object> map = new HashMap<>();
         map.put("bno", bno);
         map.put("c_id", c_id);
-        return session.delete(namespace + "delete", map);
+        return session.update(namespace + "deleted", map);
     }
-
-
-//    @Override
-//    public int delete(BoardDto dto) throws Exception {
-//        return session.delete(namespace + "delete", dto);
-//    }
 
     @Override
     public int insert(BoardDto dto) throws Exception {

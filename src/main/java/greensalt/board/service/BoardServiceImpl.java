@@ -20,7 +20,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public int remove(Integer bno, Integer c_id) throws Exception {
-        return boardDao.delete(bno, c_id);
+        return boardDao.deleted(bno, c_id);
     }
 
 //    @Override
