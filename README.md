@@ -1,5 +1,4 @@
-## 인디음악 커뮤니티 녹색소금 개발중
-
+### 인디음악 커뮤니티 녹색소금
 
 ![메인페이지](https://github.com/user-attachments/assets/6af207dc-411e-4174-b308-098587b8d834)
 ![메인 히스토리](https://github.com/user-attachments/assets/aa58e739-4fcc-48f7-97db-e867d57d9b82)
@@ -12,29 +11,30 @@
 ![게시판 검색](https://github.com/user-attachments/assets/2b4e14d1-5c63-492c-8eeb-b5bd6ef69a12)
 ![게시글 및 댓글](https://github.com/user-attachments/assets/2283f7d9-0212-4bdc-8190-9c31be65f6a4)
 
-## 개발기능(~ing)
+### 개발기능(~ing)
 
-1. 인덱스
-   > 앨범 History
 
-2. 회원가입
-   > 587포트와 Ajax를 활용하여 이메일 인증
-   > Validator를 사용하여 서버와 클라이언트 2중 유효성 검사
-   > 카카오 API를 활용하여 주소 찾기
-   > Security를 활용하여 비밀번호 해시화
+#### 인덱스
+   + 앨범 History
 
-3. 로그인
-   > 로그인 Interceptor
-   > Cookie를 활용한 이메일 저장 체크박스
+#### 회원가입
+   + 587포트와 Ajax를 활용하여 이메일 인증
+   + Validator를 사용하여 서버와 클라이언트 2중 유효성 검사
+   + 카카오 API를 활용하여 주소 찾기
+   + Security를 활용하여 비밀번호 해시화
 
-4. 마이페이지
-   > 개인정보 수정
-   > 비밀번호 변경
+#### 로그인
+   + 로그인 Interceptor
+   + Cookie를 활용한 이메일 저장 체크박스
 
-5. 게시판
-   > SearchCondition를 사용하여 게시글 검색
-   > PageHandler를 사용한 페이징 네비게이션
-   > RESTful 방식으로 댓글 관리
+#### 마이페이지
+   + 개인정보 수정
+   + 비밀번호 변경
+
+#### 게시판
+   + SearchCondition를 사용하여 게시글 검색
+   + PageHandler를 사용한 페이징 네비게이션
+   + RESTful 방식으로 댓글 관리
    
    
 
