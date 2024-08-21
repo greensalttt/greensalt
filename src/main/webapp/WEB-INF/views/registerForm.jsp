@@ -239,9 +239,9 @@
                 <input class="special-class" type="text" id="c_nm" name="c_nm" placeholder="2자 이상 10자 이하" maxlength="10" disabled>
                 <label>주소</label>
                 <div id="ad">
-                    <input type="text" id="zip" name="c_zip" placeholder="우편번호" readonly disabled>
+                    <input type="text" id="zip" name="c_zip" placeholder="우편번호" disabled>
                     <input type="button" id="zipBtn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" readonly disabled></div>
-                <input type="text" id="roadAddress" name="c_road_a" placeholder="도로명주소" readonly disabled>
+                <input type="text" id="roadAddress" name="c_road_a" placeholder="도로명주소" disabled>
                 <input type="text" id="jibunAddress" name="c_jibun_a" maxlength="30" placeholder="지번주소는 선택사항입니다." disabled>
                 <span id="guide" style="color:#999;display:none"></span>
                 <input type="text" id="detailAddress" name="c_det_a" maxlength="30" placeholder="건물명+상세주소" disabled><br><br>
@@ -861,35 +861,6 @@
                 piiBox.checked = true;
             };
         }
-        //
-        // function openModal() {
-        //     var modal = document.getElementById("myModal");
-        //     modal.style.display = "block";
-        //     document.body.style.overflow = "hidden";
-        //     modalSeen = true; // 모달을 본 것으로 표시
-        //     enableTouBox(); // touBox 활성화
-        // }
-        //
-        // function openModal2(){
-        //     var modal = document.getElementById("myModal2");
-        //     modal.style.display = "block";
-        //     document.body.style.overflow = "hidden";
-        //     modalSeen2 = true; // 모달을 본 것으로 표시
-        //     enablePiiBox(); // touBox 활성화
-        // }
-        //
-        //
-        // function closeModal() {
-        //     var modal = document.getElementById("myModal");
-        //     modal.style.display = "none";
-        //     document.body.style.overflow = "auto";
-        // }
-        //
-        // function closeModal2() {
-        //     var modal = document.getElementById("myModal2");
-        //     modal.style.display = "none";
-        //     document.body.style.overflow = "auto";
-        // }
 
         function openModal() {
             var modal = document.getElementById("myModal");
