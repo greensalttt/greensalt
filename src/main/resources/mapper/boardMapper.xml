@@ -16,10 +16,6 @@
     </delete>
 
 <!--    단일 게시글 삭제-->
-<!--    <delete id="delete" parameterType="BoardDto">-->
-<!--            DELETE FROM board WHERE bno = #{bno} and c_id = #{c_id}-->
-<!--    </delete>-->
-
     <delete id="delete" parameterType="map">
         DELETE FROM board WHERE bno = #{bno} AND c_id = #{c_id}
     </delete>
@@ -36,6 +32,7 @@
     <select id="selectAll" resultType="BoardDto">
         SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
         FROM board
+        WHERE bno = #{bno} AND deleted = 0
         ORDER BY reg_date DESC, bno DESC
     </select>
 
@@ -48,7 +45,7 @@
 <!--    단일 게시글 보기(selectFromBoard를 인클루드로 사용)-->
     <select id="select" parameterType="int" resultType="BoardDto">
         <include refid="selectFromBoard"/>
-        WHERE bno = #{bno}
+        WHERE bno = #{bno} AND deleted = 0
     </select>
 
 <!--    한 페이지당 보여지는 게시글 숫자-->
@@ -101,7 +98,7 @@
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="BoardDto">
         SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
         FROM  board
-        WHERE true
+        WHERE true AND deleted = 0
         <include refid="searchCondition"/>
         ORDER BY reg_date DESC, bno DESC
         LIMIT #{offset}, #{pageSize}
@@ -111,8 +108,15 @@
     <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
         SELECT count(*)
         FROM  board
-        WHERE true
+        WHERE true AND deleted = 0
         <include refid="searchCondition"/>
     </select>
+
+    <!--    게시글 삭제 여부 확인-->
+    <update id="deleted" parameterType="map">
+        UPDATE board
+        SET deleted = 1
+        WHERE bno = #{bno} AND c_id = #{c_id}
+    </update>
 
 </mapper>

@@ -37,7 +37,7 @@
         WHERE cno = #{cno} and c_id = #{c_id}
     </update>
 
-    <!--    삭제 여부 확인-->
+    <!--    댓글 삭제 여부 확인-->
     <update id="deleted" parameterType="map">
         UPDATE comment
         SET deleted = 1

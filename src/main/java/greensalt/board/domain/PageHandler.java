@@ -20,8 +20,7 @@ public class PageHandler {
         doPaging(totalCnt, sc);
     }
 
-
-//    게시글 갯수에 따라 페이지수 늘어나는 메서드
+    //    게시글 갯수에 따라 페이지수 늘어나는 메서드
     public void doPaging(int totalCnt, SearchCondition sc){
         this.totalCnt = totalCnt;
 
