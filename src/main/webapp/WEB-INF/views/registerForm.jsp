@@ -160,13 +160,20 @@
 
             #email, #verify{
                 display: inline;
-
             }
             #verify{
                 float: right;
                 margin-bottom: 5px;
                 width: 100px;
-                /*height: 25px;*/
+            }
+
+            #nickName, #nmCheck{
+                display: inline;
+            }
+            #nmCheck{
+                float: right;
+                margin-bottom: 5px;
+                width: 115px;
             }
 
             #sms_agr, #smsLabel{
@@ -235,7 +242,8 @@
                 <input class="special-class" type="password" id="c_pwd2" name="c_pwd2" placeholder="비밀번호를 다시 한번 입력해주세요." maxlength="15" oninput="pwd2Check(this.form)" disabled><br>
                 <label>이름</label>
                 <input class="special-class" type="text" id="c_name" name="c_name" maxlength="15" disabled>
-                <label>닉네임</label>
+                <label id="nickName">닉네임</label>
+                <input id="nmCheck" type="button" value="닉네임 중복 확인" disabled>
                 <input class="special-class" type="text" id="c_nm" name="c_nm" placeholder="2자 이상 10자 이하" maxlength="10" disabled>
                 <label>주소</label>
                 <div id="ad">
@@ -561,6 +569,7 @@
             document.getElementById('c_pwd').disabled = false;
             document.getElementById('c_pwd2').disabled = false;
             document.getElementById('c_name').disabled = false;
+            document.getElementById('nmCheck').disabled = false;
             document.getElementById('c_nm').disabled = false;
             document.getElementById('zip').disabled = false;
             document.querySelector('[onclick="sample4_execDaumPostcode()"]').disabled = false;

@@ -11,12 +11,6 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/index.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
     <style>
-        /** {*/
-        /*    box-sizing: border-box;*/
-        /*    margin: 0;*/
-        /*    padding: 0;*/
-        /*}*/
-
         a {
             text-decoration: none;
             color: black;
