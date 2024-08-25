@@ -40,7 +40,7 @@
    + 게시글, 댓글 CRUD 구현
    + SearchCondition를 사용한 검색 필터
    + PageHandler를 사용한 페이징 네비게이션
-   + RestController를 활용한 RESTful 방식으로 댓글 관리
+   + RESTful API와 Ajax를 사용하여 비동기 통신으로 댓글 관리
    
    
 
