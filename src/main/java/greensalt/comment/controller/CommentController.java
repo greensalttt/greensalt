@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-//@Controller
-//@ResponseBody
+//RESTful은 HTTP 메서드(GET, POST, PUT, DELETE, PATCH)를 사용하여 클라이언트와 서버간의 데이터를 주고 받는 형식
 @RestController
 public class CommentController {
     @Autowired

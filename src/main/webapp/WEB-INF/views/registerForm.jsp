@@ -547,7 +547,6 @@
                 success: function (emailGood) {
                     console.log("요청성공", emailGood);
                     if (emailGood == "ok") {
-                        // console.log("적합한 이메일 양식입니다.");
                         checkResult.style.color = "green";
                         checkResult.innerHTML = "인증번호를 받기를 진행해주세요.";
                         verifyButton.prop('disabled', false); // 버튼 활성화
@@ -598,7 +597,7 @@
             const checkInput = $('#c_email2') // 인증번호 입력하는곳
             const url = '/register/mailCheck?email=' + email; // URL 생성
             $.ajax({
-                type: 'GET',
+                type: 'GET',  // 클라이언트에서 서버로 인증번호 요청
                 url: url, // 생성한 URL 사용
                 success: function(data) {
                     console.log("data : " + data);

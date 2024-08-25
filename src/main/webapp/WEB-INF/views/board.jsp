@@ -290,6 +290,7 @@
 </script>
 
 <%--    댓글--%>
+<%--    Ajax를 활용한 콜백 함수로 비동기통신 처리 방식--%>
 <script>
         $(document).ready(function(){
         if ("${mode}" !== "new") {
@@ -311,6 +312,33 @@
     }
     });
     }
+
+    <%--Ajax가 아닌 Promise 기반으로 동작하는 Fetch 비동기통신 처리 방식--%>
+    <%--document.addEventListener('DOMContentLoaded', function() {--%>
+    <%--    if ("${mode}" !== "new") {--%>
+    <%--        let bno = ${boardDto.bno};--%>
+
+    <%--        function showList(bno) {--%>
+    <%--            fetch('/comments?bno=' + bno)--%>
+    <%--                .then(response => {--%>
+    <%--                    if (!response.ok) {--%>
+    <%--                        throw new Error('Network response was not ok');--%>
+    <%--                    }--%>
+    <%--                    return response.json();--%>
+    <%--                })--%>
+    <%--                .then(result => {--%>
+    <%--                    if (result.length === 0) {--%>
+    <%--                        document.getElementById('commentList').innerHTML = "<p>등록된 댓글이 없습니다</p>";--%>
+    <%--                    } else {--%>
+    <%--                        document.getElementById('commentList').innerHTML = toHtml(result);--%>
+    <%--                    }--%>
+    <%--                })--%>
+    <%--                .catch(error => {--%>
+    <%--                    alert("error");--%>
+    <%--                    console.error('There was a problem with the fetch operation:', error);--%>
+    <%--                });--%>
+    <%--        }--%>
+
 
         showList(bno);
 
