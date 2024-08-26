@@ -58,6 +58,9 @@ public class CommentController {
     // 지정된 댓글을 삭제하는 메서드
     @DeleteMapping("/comments/{cno}")
     public ResponseEntity<String> remove(@PathVariable Integer cno, Integer bno, HttpSession session) {
+//    public ResponseEntity<String> remove(@PathVariable Integer cno,
+//                                         @RequestParam Integer bno,  // @RequestParam 추가
+//                                         HttpSession session) {
 
         Integer c_id = (Integer) session.getAttribute("c_id");
 

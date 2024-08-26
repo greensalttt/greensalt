@@ -41,10 +41,12 @@ public class CustServiceImpl implements CustService {
 
 
     public void makeRandomNumber() throws Exception{
-        // 난수의 범위 111111 ~ 999999 (6자리 난수)
+//        랜덤 객체 생성
         Random r = new Random();
+//        111111부터 999999까지 랜덤 난수 생성
         int checkNum = r.nextInt(888888) + 111111;
         System.out.println("인증번호 : " + checkNum);
+//        생성된 변수를 authNumber에 저장
         authNumber = checkNum;
     }
 
@@ -62,7 +64,6 @@ public class CustServiceImpl implements CustService {
     public void mailSend(String setFrom, String toMail, String title, String content) throws Exception{
         MimeMessage message = mailSender.createMimeMessage();
         // true 매개값을 전달하면 multipart 형식의 메세지 전달이 가능.문자 인코딩 설정도 가능하다.
-//        try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
             helper.setFrom(setFrom);
             helper.setTo(toMail);
@@ -71,8 +72,4 @@ public class CustServiceImpl implements CustService {
             helper.setText(content, true);
             mailSender.send(message);
         }
-//        catch (MessagingException e) {
-//            e.printStackTrace();
-//        }
     }
-//}
