@@ -92,7 +92,6 @@
             border-bottom: none;
         }
 
-        /* 답글 작성 폼 */
         #replyForm {
             margin-top: 15px;
             padding: 10px;
@@ -101,7 +100,6 @@
             border-radius: 8px;
         }
 
-        /* 댓글 작성 섹션 스타일링 */
         #commenter {
             margin-top: 20px;
             padding: 15px;
@@ -125,7 +123,7 @@
         }
 
         #sendBtn {
-            background-color: darkgreen; /* 녹색 */
+            background-color: darkgreen;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -135,11 +133,11 @@
         }
 
         #sendBtn:hover {
-            background-color: darkolivegreen; /* hover 시 약간 어두운 녹색 */
+            background-color: darkolivegreen;
         }
 
         #modBtn {
-            background-color: saddlebrown; /* 갈색 */
+            background-color: saddlebrown;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -149,15 +147,15 @@
         }
 
         #modBtn:hover {
-            background-color: brown; /* hover 시 약간 어두운 갈색 */
+            background-color: brown;
         }
 
 
 
         .deleted {
-            color: #999; /* 회색으로 텍스트 색상 변경 */
-            text-decoration: line-through; /* 텍스트에 취소선 추가 */
-            background-color: #f0f0f0; /* 배경색을 밝은 회색으로 변경 */
+            color: #999;
+            text-decoration: line-through;
+            background-color: #f0f0f0;
         }
     </style>
 </head>
@@ -290,16 +288,17 @@
 </script>
 
 <%--    댓글--%>
-<%--    Ajax를 활용한 콜백 함수로 비동기통신 처리 방식--%>
 <script>
         $(document).ready(function(){
         if ("${mode}" !== "new") {
         let bno = ${boardDto.bno};
-
         let showList = function (bno){
+
+<%--    제이쿼리 방식으로 Ajax를 활용한 콜백 함수로 비동기통신 처리 방식--%>
         $.ajax({
         type:'GET',
         url: '/comments?bno=' + bno,
+        // result: JSON 형식으로 응답된 데이터
         success: function(result){
         if (result.length === 0) {
         $("#commentList").html("<p>등록된 댓글이 없습니다</p>");

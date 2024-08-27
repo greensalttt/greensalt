@@ -135,12 +135,12 @@
             margin : auto;
         }
         .btn-write {
-            background-color: rgb(236, 236, 236); /* Blue background */
-            border: none; /* Remove borders */
-            color: black; /* White text */
-            padding: 6px 12px; /* Some padding */
-            font-size: 16px; /* Set a font size */
-            cursor: pointer; /* Mouse pointer on hover */
+            background-color: rgb(236, 236, 236);
+            border: none;
+            color: black;
+            padding: 6px 12px;
+            font-size: 16px;
+            cursor: pointer;
             border-radius: 5px;
             margin-left: 30px;
         }
@@ -193,7 +193,8 @@
                     <td class="no">${boardDto.bno}</td>
                     <td class="title"><a href="<c:url value="/board/read${ph.sc.queryString}&bno=${boardDto.bno}"/>"><c:out value="${boardDto.title}"/></a></td>
                     <td class="writer">${boardDto.writer}</td>
-<%--                    <td class="writer"><%=session.getAttribute("c_nm")%></td>--%>
+
+<%--                JSTL로 반복문,조건문,URL,날짜 형식화 등을 할 수 있다--%>
                     <c:choose>
                         <c:when test="${boardDto.reg_date.time >= startOfToday}">
                             <td class="regdate"><fmt:formatDate value="${boardDto.reg_date}" pattern="HH:mm" type="time"/></td>

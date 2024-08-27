@@ -39,8 +39,6 @@ public class CommentController {
     // 댓글을 등록하는 메서드
     @PostMapping("/comments")
     public ResponseEntity<String> write(@RequestBody CommentDto dto, Integer bno, HttpSession session) {
-//        Integer commenter = (Integer) session.getAttribute("c_id");
-//        dto.setCommenter(String.valueOf(commenter));
         Integer c_id = (Integer) session.getAttribute("c_id");
         dto.setC_id(c_id);
         dto.setCommenter((String) session.getAttribute("c_nm"));
@@ -57,22 +55,6 @@ public class CommentController {
         }
     }
 
-//    // 지정된 댓글을 삭제하는 메서드
-//    @DeleteMapping("/comments/{cno}")
-//    public ResponseEntity<String> remove(@PathVariable Integer cno, Integer bno, HttpSession session) {
-//        Integer c_id = (Integer) session.getAttribute("c_id");
-//        try {
-//            int rowCnt = service.remove(cno, bno, c_id);
-//
-//            if(rowCnt!=1)
-//                throw new Exception("Delete Failed");
-//
-//            return new ResponseEntity<>("DEL_OK", HttpStatus.OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<>("DEL_ERR", HttpStatus.BAD_REQUEST);
-//        }
-//    }
 
     // 지정된 댓글을 삭제하는 메서드
     @DeleteMapping("/comments/{cno}")
