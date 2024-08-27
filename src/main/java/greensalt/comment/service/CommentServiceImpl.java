@@ -35,15 +35,24 @@ public class CommentServiceImpl implements CommentService {
 //    }
 
 //    Map 객체 사용
+//    @Override
+//    @Transactional(rollbackFor = Exception.class)
+//    public int remove(Integer cno, Integer bno, Integer c_id) throws Exception {
+//        int rowCnt = boardDao.updateCommentCnt(bno, -1);
+//        System.out.println("updateCommentCnt - rowCnt = " + rowCnt);
+//        Map<String, Object> params = new HashMap<>();
+//        params.put("cno", cno);
+//        params.put("c_id", c_id);
+//        rowCnt = commentDao.deleted(params);
+//        System.out.println("rowCnt = " + rowCnt);
+//        return rowCnt;
+//    }
+
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int remove(Integer cno, Integer bno, Integer c_id) throws Exception {
-        int rowCnt = boardDao.updateCommentCnt(bno, -1);
+    public int remove(Map<String, Object> params) throws Exception {
+        int rowCnt = boardDao.updateCommentCnt((Integer) params.get("bno"), -1);
         System.out.println("updateCommentCnt - rowCnt = " + rowCnt);
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("cno", cno);
-        params.put("c_id", c_id);
         rowCnt = commentDao.deleted(params);
         System.out.println("rowCnt = " + rowCnt);
         return rowCnt;
@@ -54,13 +63,11 @@ public class CommentServiceImpl implements CommentService {
     @Transactional(rollbackFor = Exception.class)
     public int write(CommentDto commentDto) throws Exception {
         boardDao.updateCommentCnt(commentDto.getBno(), 1);
-//                throw new Exception("test");
         return commentDao.insert(commentDto);
     }
 
     @Override
     public List<CommentDto> getList(Integer bno) throws Exception {
-//        throw new Exception("test");
         return commentDao.selectAll(bno);
     }
 

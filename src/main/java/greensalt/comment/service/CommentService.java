@@ -5,13 +5,18 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CommentService {
     int getCount(Integer bno) throws Exception;
 
     @Transactional(rollbackFor = Exception.class)
-//    int remove(Integer cno, Integer bno, Integer c_id) throws Exception;
-    int remove(@Param("cno") Integer cno, Integer bno, @Param("c_id") Integer c_id)  throws Exception;
+    int remove(Map<String, Object> params)  throws Exception;
+
+    //    int remove(@Param("cno") Integer cno, Integer bno, @Param("c_id") Integer c_id)  throws Exception;
+
+
+
 
     @Transactional(rollbackFor = Exception.class)
     int write(CommentDto commentDto) throws Exception;

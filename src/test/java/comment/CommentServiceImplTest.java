@@ -43,8 +43,13 @@ public class CommentServiceImplTest {
 
         Integer cno = commentDao.selectAll(bno).get(0).getCno();
 
+        Map<String, Object> params = new HashMap<>();
+        params.put("cno", cno);
+        params.put("bno", bno);
+        params.put("c_id", commentDto.getC_id());
+
         // 일부러 예외를 발생시키고 Tx가 취소되는지 확인해야.
-        int rowCnt = commentService.remove(cno, bno, commentDto.getC_id());
+        int rowCnt = commentService.remove(params);
         assertTrue(rowCnt==1);
         assertTrue(boardDao.select(bno).getComment_cnt() == 0);
     }
