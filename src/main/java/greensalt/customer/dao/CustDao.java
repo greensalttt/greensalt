@@ -1,6 +1,7 @@
 package greensalt.customer.dao;
 
 import greensalt.customer.domain.CustDto;
+import greensalt.customer.domain.CustHistoryDto;
 
 public interface CustDao {
     int deleteCust(String c_email) throws Exception;
@@ -23,5 +24,7 @@ public interface CustDao {
     CustDto grdNameJoin(int c_id) throws Exception;
 
     int visitCnt(String c_email) throws Exception;
+
+    int insertCustHist(CustHistoryDto custHistoryDto) throws Exception;
 
 }

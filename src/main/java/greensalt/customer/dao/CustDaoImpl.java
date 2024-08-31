@@ -1,6 +1,7 @@
 package greensalt.customer.dao;
 
 import greensalt.customer.domain.CustDto;
+import greensalt.customer.domain.CustHistoryDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,7 @@ public class CustDaoImpl implements CustDao {
     private SqlSession session;
 
     private static String namespace = "green.mapper.custMapper.";
+
 
     @Override
     public int deleteCust(String c_email)throws Exception {
@@ -60,6 +62,11 @@ public class CustDaoImpl implements CustDao {
     @Override
     public int visitCnt(String c_email)throws Exception{
         return session.update(namespace + "visitCnt", c_email);
+    }
+
+    @Override
+    public int insertCustHist(CustHistoryDto custHistoryDto)throws Exception{
+        return session.insert(namespace + "insertCustHist", custHistoryDto);
     }
 
 
