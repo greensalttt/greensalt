@@ -51,7 +51,6 @@ public class MyPageController {
                 String regDateStr = dateFormat.format(regDate);
                 session.setAttribute("reg_dt", regDateStr);
             }
-
             return "myPage";
         } catch (Exception e) {
             return "errorPageC";
@@ -93,35 +92,62 @@ public class MyPageController {
         binder.setValidator(new MyPageInfoValidator());
     }
 
+//    @PostMapping("/info")
+//    public String modify(@Validated @ModelAttribute("myPageInfoValidator") CustDto custDto, BindingResult result, HttpServletRequest request, String c_nm, String c_zip, String c_road_a, String c_jibun_a, String c_det_a, String c_phn, String c_birth, String sms_agr, String email_agr) {
+//        try {
+//            System.out.println("자스를 통과한 에러가 있나요?! = " + result);
+//            if (result.hasErrors()) {
+//                return "myPageInfo";
+//            }
+//            HttpSession session = request.getSession();
+//            int c_id = (int) session.getAttribute("c_id");
+//
+//            custDto.setC_id(c_id);
+//            custDto.setC_nm(c_nm);
+//            custDto.setC_zip(c_zip);
+//            custDto.setC_road_a(c_road_a);
+//            custDto.setC_jibun_a(c_jibun_a);
+//            custDto.setC_det_a(c_det_a);
+//            custDto.setC_phn(c_phn);
+//            custDto.setC_birth(c_birth);
+//            custDto.setSms_agr(sms_agr);
+//            custDto.setEmail_agr(email_agr);
+//
+//            custDao.updateAll(custDto);
+//
+//            System.out.println(custDto.toStringV1());
+//
+//            return "redirect:/mypage/list";
+//        }
+//
+//        catch (Exception E) {
+//            return "errorPageC";
+//        }
+//    }
+
+
     @PostMapping("/info")
-    public String modify(@Validated @ModelAttribute("myPageInfoValidator") CustDto custDto, BindingResult result, HttpServletRequest request, String c_nm, String c_zip, String c_road_a, String c_jibun_a, String c_det_a, String c_phn, String c_birth, String sms_agr, String email_agr) {
+    public String modify(@Validated @ModelAttribute("myPageInfoValidator") CustDto custDto, BindingResult result, HttpServletRequest request) {
         try {
-            System.out.println("자스를 통과한 에러가 있나요?! = " + result);
             if (result.hasErrors()) {
                 return "myPageInfo";
             }
+
             HttpSession session = request.getSession();
             int c_id = (int) session.getAttribute("c_id");
 
+            // 기존 데이터 조회
+            CustDto oldData = custDao.selectID(c_id);
+
+            // 현재 데이터 설정
             custDto.setC_id(c_id);
-            custDto.setC_nm(c_nm);
-            custDto.setC_zip(c_zip);
-            custDto.setC_road_a(c_road_a);
-            custDto.setC_jibun_a(c_jibun_a);
-            custDto.setC_det_a(c_det_a);
-            custDto.setC_phn(c_phn);
-            custDto.setC_birth(c_birth);
-            custDto.setSms_agr(sms_agr);
-            custDto.setEmail_agr(email_agr);
 
-            custDao.updateAll(custDto);
-
-            System.out.println(custDto.toStringV1());
+            // 서비스 호출하여 정보 업데이트 및 이력 기록
+            custService.custHist(custDto, oldData);
 
             return "redirect:/mypage/list";
-        }
-
-        catch (Exception E) {
+        } catch (Exception e) {
+            e.printStackTrace();
             return "errorPageC";
         }
     }
