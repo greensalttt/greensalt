@@ -1,5 +1,7 @@
 package greensalt.customer.service;
 
+import greensalt.customer.domain.CustDto;
+
 public interface CustService {
 
     /*이메일 중복체크*/
@@ -10,8 +12,10 @@ public interface CustService {
     String pwdEncrypt(String c_pwd) throws Exception;
 
 
-String joinEmail(String c_email) throws Exception;
+    String joinEmail(String c_email) throws Exception;
 
+
+    void custHist(CustDto custDto, CustDto oldData) throws Exception;
 }
 
 
