@@ -10,7 +10,6 @@
     <insert id="insert" parameterType="CustDto">
         insert into cust(c_email, c_pwd, c_name, c_nm, c_birth, c_gnd, c_phn, c_zip, c_road_a, c_jibun_a, c_det_a, sms_agr, email_agr, c_adr_list_id)
         values (#{c_email}, #{c_pwd}, #{c_name}, #{c_nm}, #{c_birth}, #{c_gnd}, #{c_phn}, #{c_zip}, #{c_road_a}, #{c_jibun_a}, #{c_det_a}, #{sms_agr}, #{email_agr}, 1)
-
     </insert>
 
 <!-- 총 고객명수 조회-->
@@ -77,4 +76,10 @@
         WHERE c_email = #{c_email}
     </update>
 
+<!--    회원 이력 추가-->
+
+    <insert id="insertCustHist" parameterType="CustHistoryDto">
+        insert into cust_hist(c_id, c_cng_cd, c_bf, c_af)
+        value (#{c_id},#{c_cng_cd}, #{c_bf}, #{c_af})
+    </insert>
 </mapper>
