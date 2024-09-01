@@ -11,7 +11,7 @@
 ![게시판 검색](https://github.com/user-attachments/assets/2b4e14d1-5c63-492c-8eeb-b5bd6ef69a12)
 ![게시글 및 댓글](https://github.com/user-attachments/assets/2283f7d9-0212-4bdc-8190-9c31be65f6a4)
 
-## 개발기능(~ing)
+## 개발기능 (~ing)
 
 #### 인덱스
    + 앨범 History
@@ -42,6 +42,25 @@
    + SearchCondition를 사용한 검색 필터
    + PageHandler를 사용한 페이징 네비게이션
    + RESTful API와 Ajax를 사용하여 비동기 통신으로 댓글 관리
+     
+<br>
+
+## Commit Message Convention (2024.09.01~)
+
+```
+feat: 새로운 기능 추가
+fix: 버그 수정
+test: 테스트 코드
+remove: 파일 삭제
+docs: README 변경
+style: 코드 스타일 변경
+comment: 주석 추가 및 변경
+chore: 빌드 업데이트 및 자잘한 수정
+refactor: 코드 구조 개선 (기능 변경 X)
+```
+
+
+
    
    
 
