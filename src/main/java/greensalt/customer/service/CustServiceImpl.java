@@ -77,6 +77,22 @@ public class CustServiceImpl implements CustService {
     }
 
     @Override
+    public void custHistPwd(CustDto custDto, CustDto oldData) throws Exception {
+        // 회원 비밀번호 업데이트
+        custDao.updatePwd(custDto);
+
+        // 비밀번호 변경 이력 기록
+        CustHistoryDto historyDto = new CustHistoryDto();
+        historyDto.setC_id(custDto.getC_id());
+        historyDto.setC_cng_cd("PWD"); // 변경 코드
+        historyDto.setC_bf(oldData.getC_pwd()); // 변경 전 비밀번호
+        historyDto.setC_af(custDto.getC_pwd()); // 변경 후 비밀번호
+
+        custDao.insertCustHist(historyDto); // DB에 이력 기록
+    }
+
+
+    @Override
     public void custHist(CustDto custDto, CustDto oldData) throws Exception {
         // 회원 정보 업데이트
         custDao.updateAll(custDto);
@@ -86,8 +102,6 @@ public class CustServiceImpl implements CustService {
 
 
         // 변경된 필드 체크 및 이력 추가
-//        비밀번호 변경은 어떻게 이력 추가할것인가
-//        addHistoryIfChanged(historyList, custDto, oldData, "PWD", oldData.getC_pwd(), custDto.getC_pwd());
         addHistoryIfChanged(historyList, custDto, oldData, "NM", oldData.getC_nm(), custDto.getC_nm());
         addHistoryIfChanged(historyList, custDto, oldData, "ROAD", oldData.getC_road_a(), custDto.getC_road_a());
         addHistoryIfChanged(historyList, custDto, oldData, "ZIP", oldData.getC_zip(), custDto.getC_zip());
@@ -102,6 +116,8 @@ public class CustServiceImpl implements CustService {
             custDao.insertCustHist(historyDto);
         }
     }
+
+
 
     // 변경된 필드가 있는 경우에만 이력 추가
     private void addHistoryIfChanged(List<CustHistoryDto> historyList, CustDto newData, CustDto oldData,

@@ -14,8 +14,10 @@ public interface CustService {
 
     String joinEmail(String c_email) throws Exception;
 
-
     void custHist(CustDto custDto, CustDto oldData) throws Exception;
+
+    void custHistPwd(CustDto custDto, CustDto oldData) throws Exception;
+
 }
 
 

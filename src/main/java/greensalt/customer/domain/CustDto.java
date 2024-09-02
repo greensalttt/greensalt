@@ -58,6 +58,7 @@ public class CustDto {
         this.reg_dt = reg_dt;
     }
 
+
     @Override
     public String toString() {
         return "toString() CustDto{" +
@@ -320,6 +321,5 @@ public class CustDto {
     public void setGrd_name(String grd_name) {
         this.grd_name = grd_name;
     }
-
 
 }
