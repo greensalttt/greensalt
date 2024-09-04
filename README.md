@@ -20,6 +20,7 @@ DBMS: MySQL 8.x
 WAS : tomcat 8.x
 VCS: github
 Build: Maven
+IDE: IntelliJ IDEA
 ```
 <br>
 
